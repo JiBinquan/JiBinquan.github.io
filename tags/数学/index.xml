@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数学 on 青萍之末</title>
-    <link>http://localhost:1313/tags/%E6%95%B0%E5%AD%A6/</link>
+    <link>https://jibinquan.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
     <description>Recent content in 数学 on 青萍之末</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2024 Ji Binquan</copyright>
-    <lastBuildDate>Thu, 07 Oct 2021 16:08:26 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Oct 2021 16:08:26 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EOJ4329 - EOJ Monthly 2021.9 A. Amazing Discovery（公式推导）（矩阵快速幂）</title>
-      <link>http://localhost:1313/posts/%E8%A1%A5%E6%A1%A3eoj4329/</link>
+      <link>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/</link>
       <pubDate>Thu, 07 Oct 2021 16:08:26 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/%E8%A1%A5%E6%A1%A3eoj4329/</guid>
+      <guid>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/%E8%A1%A5%E6%A1%A3eoj4329/feature.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/feature.png" />
     </item>
     
   </channel>
