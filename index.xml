@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>欢迎访问 on 青萍之末</title>
+    <link>https://jibinquan.github.io/</link>
+    <description>Recent content in 欢迎访问 on 青萍之末</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <lastBuildDate>Sun, 02 Jun 2024 18:09:09 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为hugo博客添加Gisus评论功能</title>
+      <link>https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Wed, 25 Sep 2024 19:03:38 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</guid>
+      <description>一个博客怎么能没有评论系统！Giscus是利用 GitHub Discussions 实现的评论系统，让访客可以借助 GitHub 在网站上留下评论和反应。部署起来还是比较简单的，其具有一下特点（来自官网）：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/feature.png" />
+    </item>
+    
+    <item>
+      <title>最优化方法与理论-课程笔记</title>
+      <link>https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</link>
+      <pubDate>Wed, 04 Sep 2024 20:05:16 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</guid>
+      <description>第一章：预备知识 #1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/feature.png" />
+    </item>
+    
+    <item>
+      <title>应用数理统计-题型整理</title>
+      <link>https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/</link>
+      <pubDate>Wed, 28 Aug 2024 18:42:57 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/</guid>
+      <description>专题一 概率基础 （第一题） #1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/feature.png" />
+    </item>
+    
+    <item>
+      <title>CondaHTTPError: HTTP 000 CONNECTION FAILED for url的问题解决</title>
+      <link>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Thu, 20 Jun 2024 16:11:34 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</guid>
+      <description>报错示例 #Fetching package metadata .</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>检索增强生成技术综述</title>
+      <link>https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</link>
+      <pubDate>Thu, 13 Jun 2024 20:13:51 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</guid>
+      <description>摘要 #近年来，随着大语言模型（如GPT）的发展，人工智能在自然语言处理领域取得了显著进展。然而，这些模型在实际应用中面临幻觉问题、知识注入困难和应用落地困难等挑战。为了克服这些问题，检索增强生成技术（Retrieval-Augmented Generation, RAG）应运而生。RAG通过结合外部数据和生成模型，提高了回答的准确性和实时性。本文综述了RAG技术的发展，包括其基本流程框架、评估方法以及在不同应用场景中的表现，并展望了其未来发展方向和潜在改进。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>Windows系统下Github_Pages部署Hugo页面JS与CSS无法使用或文档渲染出错问题</title>
+      <link>https://jibinquan.github.io/posts/windows%E7%B3%BB%E7%BB%9F%E4%B8%8Bgithub_pages%E9%83%A8%E7%BD%B2%E4%B8%8Ehugo%E9%A1%B5%E9%9D%A2js%E4%B8%8Ecss%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%88%96%E6%96%87%E6%A1%A3%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 06 Jun 2024 09:29:34 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/windows%E7%B3%BB%E7%BB%9F%E4%B8%8Bgithub_pages%E9%83%A8%E7%BD%B2%E4%B8%8Ehugo%E9%A1%B5%E9%9D%A2js%E4%B8%8Ecss%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%88%96%E6%96%87%E6%A1%A3%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/</guid>
+      <description>换行符替换导致的 JS/CSS 无法使用或文档渲染出错问题 #在使用git部署到Github仓库时，git bash 给我返回了这么个警告：</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/windows%E7%B3%BB%E7%BB%9F%E4%B8%8Bgithub_pages%E9%83%A8%E7%BD%B2%E4%B8%8Ehugo%E9%A1%B5%E9%9D%A2js%E4%B8%8Ecss%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%88%96%E6%96%87%E6%A1%A3%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>为GitHub设置SSH Key</title>
+      <link>https://jibinquan.github.io/posts/%E4%B8%BAgithub%E8%AE%BE%E7%BD%AEssh-key/</link>
+      <pubDate>Wed, 05 Jun 2024 19:48:08 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E4%B8%BAgithub%E8%AE%BE%E7%BD%AEssh-key/</guid>
+      <description>在2022年后，没有SSH-Key无法通过SSH直接上传文件到仓库，故需要在本地生成SSH-Key上传到github。一般来说，一台设备只需要一个SSH-Key。下面是对Github官方文档的整合。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E4%B8%BAgithub%E8%AE%BE%E7%BD%AEssh-key/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>Hugo博客搭建记录</title>
+      <link>https://jibinquan.github.io/posts/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 04 Jun 2024 10:43:06 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</guid>
+      <description>博客搭建记录 #〇、 环境安装 #0.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/feature.png" />
+    </item>
+    
+    <item>
+      <title>统计</title>
+      <link>https://jibinquan.github.io/statistics/</link>
+      <pubDate>Sun, 02 Jun 2024 18:09:54 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/statistics/</guid>
+      <description>正在施工 #</description>
+      
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://jibinquan.github.io/about/</link>
+      <pubDate>Sun, 02 Jun 2024 18:09:39 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/about/</guid>
+      <description>About Me #你好，我是 Ji Binquan ，硕士在读，就读于东北大学（沈阳）。</description>
+      
+    </item>
+    
+    <item>
+      <title>友情链接</title>
+      <link>https://jibinquan.github.io/friends/</link>
+      <pubDate>Sun, 02 Jun 2024 18:09:31 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/friends/</guid>
+      <description>正在施工 #</description>
+      
+    </item>
+    
+    <item>
+      <title>（补档）MySQL8.1版本安装</title>
+      <link>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3mysql8.1%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Mon, 14 Aug 2023 15:06:17 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3mysql8.1%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/</guid>
+      <description>主要参考：MySQL详细安装教程，关于msi版和zip版详解，Windows - 知乎 (zhihu.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3mysql8.1%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85/feature.png" />
+    </item>
+    
+    <item>
+      <title>（补档）Transformer阅读笔记</title>
+      <link>https://jibinquan.github.io/posts/transformer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 29 Mar 2023 15:31:21 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/transformer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>Transformer：Attention Is All You Need</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/transformer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>某nlp模型训练实验环境配置（Pytorch安装）</title>
+      <link>https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 04 Jan 2023 15:12:58 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/</guid>
+      <description>尝试训练某古早nlp相关模型，在pytorch下需要Allen-nlp0.8.4版本的环境，踩了好多坑才配置成功（主要是pytorch安装太离谱了）于是记录一下</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>Neural Machine Reading Comprehension: Methods and Trends 阅读笔记（一）</title>
+      <link>https://jibinquan.github.io/posts/%E7%A5%9E%E7%BB%8F%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3_%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <pubDate>Mon, 07 Nov 2022 15:38:55 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E7%A5%9E%E7%BB%8F%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3_%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <description>Neural Machine Reading Comprehension: Methods and Trends #神经机器阅读理解：方法与趋势</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E7%A5%9E%E7%BB%8F%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3_%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E4%B8%80/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>EOJ4329 - EOJ Monthly 2021.9 A. Amazing Discovery（公式推导）（矩阵快速幂）</title>
+      <link>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/</link>
+      <pubDate>Thu, 07 Oct 2021 16:08:26 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/</guid>
+      <description>题目链接 #题目大意 #给定 a,b,n ，算这个S $$ S = (a + \sqrt b)^n + (a - \sqrt b)^n $$</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3eoj4329/feature.png" />
+    </item>
+    
+    <item>
+      <title>（补档）势能线段树（吉司机线段树）专题</title>
+      <link>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E5%8A%BF%E8%83%BD%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%89%E5%8F%B8%E6%9C%BA%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%93%E9%A2%98/</link>
+      <pubDate>Sun, 03 Oct 2021 15:29:40 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E5%8A%BF%E8%83%BD%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%89%E5%8F%B8%E6%9C%BA%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%93%E9%A2%98/</guid>
+      <description>势能线段树（吉司机线段树）专题 #势能线段树在近期训练时遇到了好几次，但是由于本人太懒一直没补完，结果ICPC网络赛还真就出了一道势能线段树Orz……结果当然是没做出来……痛定思痛，这回把之前欠的一块儿补了。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E5%8A%BF%E8%83%BD%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%89%E5%8F%B8%E6%9C%BA%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%93%E9%A2%98/feature.png" />
+    </item>
+    
+    <item>
+      <title>（补档）简单背包 模板题</title>
+      <link>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E7%AE%80%E5%8D%95%E8%83%8C%E5%8C%85-%E6%A8%A1%E6%9D%BF%E9%A2%98/</link>
+      <pubDate>Sat, 28 Nov 2020 14:54:50 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E7%AE%80%E5%8D%95%E8%83%8C%E5%8C%85-%E6%A8%A1%E6%9D%BF%E9%A2%98/</guid>
+      <description>背包-模板题 #参考：背包九讲——全篇详细理解与代码实现</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E8%A1%A5%E6%A1%A3%E7%AE%80%E5%8D%95%E8%83%8C%E5%8C%85-%E6%A8%A1%E6%9D%BF%E9%A2%98/feature.jpg" />
+    </item>
+    
+  </channel>
+</rss>

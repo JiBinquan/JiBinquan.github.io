@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jibinquan.github.io/sitemap.xml

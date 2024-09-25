@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>课程笔记 on 青萍之末</title>
+    <link>https://jibinquan.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 课程笔记 on 青萍之末</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <lastBuildDate>Wed, 04 Sep 2024 20:05:16 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最优化方法与理论-课程笔记</title>
+      <link>https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</link>
+      <pubDate>Wed, 04 Sep 2024 20:05:16 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</guid>
+      <description>第一章：预备知识 #1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/feature.png" />
+    </item>
+    
+    <item>
+      <title>应用数理统计-题型整理</title>
+      <link>https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/</link>
+      <pubDate>Wed, 28 Aug 2024 18:42:57 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/</guid>
+      <description>专题一 概率基础 （第一题） #1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/feature.png" />
+    </item>
+    
+  </channel>
+</rss>
