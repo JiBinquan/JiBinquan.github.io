@@ -71,14 +71,14 @@
   <meta property="og:url" content="https://jibinquan.github.io/">
   <meta property="og:site_name" content="青萍之末">
   <meta property="og:title" content="欢迎访问">
-  <meta property="og:description" content="JiBinquan的博客">
+  <meta property="og:description" content="莫听穿林打叶声，何妨吟啸且徐行。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="website">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="欢迎访问">
-  <meta name="twitter:description" content="JiBinquan的博客">
+  <meta name="twitter:description" content="莫听穿林打叶声，何妨吟啸且徐行。">
 
   
   <script type="application/ld+json">
@@ -129,6 +129,9 @@
 
 
 
+
+
+<script defer src="/lib/typeit/typeit.umd.js" integrity=""></script>
 
 
 
@@ -585,9 +588,9 @@
       
   
   
-    
+     
 <article class="max-w-full prose dark:prose-invert">
-    <div class="relative">
+    <div class="relative min-h-screen flex items-center justify-center"> 
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
         <div class="mx-auto max-w-7xl p-0">
             <div class="relative sm:overflow-hidden">
@@ -677,13 +680,32 @@
                         </div>
                         
                     </div>
-                    <section class="prose dark:prose-invert"></section>
+                    <section class="prose dark:prose-invert"><h4 id="typeit-6fb22d3943ec7794c447a8e7c1bb77a4"></h4>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      new TypeIt("#typeit-6fb22d3943ec7794c447a8e7c1bb77a4", {
+        strings: ["一些简单的笔记，记录自己的所见、所学、所思、所做。"],
+        speed:  100 ,
+        lifeLike:  true ,
+        startDelay:  0 ,
+        breakLines:  true ,
+        waitUntilVisible:  true ,
+        loop:  false 
+      }).go();
+    });
+</script>
+<p>莫听穿林打叶声，何妨吟啸且徐行。</p>
+<p>竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</p>
+</section>
                 </div>
             </div>
         </div>
     </div>
 </article>
-<section>
+
+
+<section id="recent-articles" class="opacity-0 invisible transition-opacity duration-500 ease-out">
     
 
 
@@ -1425,10 +1447,45 @@
 
 </section>
 
+<style>
+     
+    #recent-articles {
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+     
+    .show-articles #recent-articles {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    .min-h-screen {
+        min-height: 100vh;
+    }
+</style>
+
+
+<script>
+    document.addEventListener('scroll', function() {
+        const recentArticles = document.getElementById('recent-articles');
+        if (window.scrollY > 500) { 
+            document.body.classList.add('show-articles');
+        } else {
+            document.body.classList.remove('show-articles');
+        }
+    });
+</script>
 
   
 
-      
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   

@@ -467,9 +467,9 @@
       
   
   
-    
+     
 <article class="max-w-full prose dark:prose-invert">
-    <div class="relative">
+    <div class="relative min-h-screen flex items-center justify-center"> 
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
         <div class="mx-auto max-w-7xl p-0">
             <div class="relative sm:overflow-hidden">
@@ -565,7 +565,9 @@
         </div>
     </div>
 </article>
-<section>
+
+
+<section id="recent-articles" class="opacity-0 invisible transition-opacity duration-500 ease-out">
     
 
 
@@ -599,6 +601,35 @@
 
 </section>
 
+<style>
+     
+    #recent-articles {
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+     
+    .show-articles #recent-articles {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    .min-h-screen {
+        min-height: 100vh;
+    }
+</style>
+
+
+<script>
+    document.addEventListener('scroll', function() {
+        const recentArticles = document.getElementById('recent-articles');
+        if (window.scrollY > 500) { 
+            document.body.classList.add('show-articles');
+        } else {
+            document.body.classList.remove('show-articles');
+        }
+    });
+</script>
 
   
 
