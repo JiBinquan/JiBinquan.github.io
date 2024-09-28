@@ -108,7 +108,7 @@
     "keywords": ["补档","技术","环境配置"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "128"
+    "wordCount": "138"
   }]
   </script>
 
@@ -615,7 +615,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-01-04 15:12:58 &#43;0800 CST">2023年1月4日</time><span class="px-2 text-primary-500">&middot;</span><span>128 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2023-01-04 15:12:58 &#43;0800 CST">2023年1月4日</time><span class="px-2 text-primary-500">&middot;</span><span>138 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -801,7 +801,11 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#conda-创建虚拟环境">conda 创建虚拟环境</a></li>
-    <li><a href="#安装pytorch">安装Pytorch</a></li>
+    <li><a href="#安装pytorch">安装Pytorch</a>
+      <ul>
+        <li><a href="#240928-补充">24/09/28 补充：</a></li>
+      </ul>
+    </li>
     <li><a href="#安装allen-nlp">安装allen-nlp</a></li>
     <li><a href="#训练时问题">训练时问题</a></li>
   </ul>
@@ -818,7 +822,11 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#conda-创建虚拟环境">conda 创建虚拟环境</a></li>
-    <li><a href="#安装pytorch">安装Pytorch</a></li>
+    <li><a href="#安装pytorch">安装Pytorch</a>
+      <ul>
+        <li><a href="#240928-补充">24/09/28 补充：</a></li>
+      </ul>
+    </li>
     <li><a href="#安装allen-nlp">安装allen-nlp</a></li>
     <li><a href="#训练时问题">训练时问题</a></li>
   </ul>
@@ -923,7 +931,9 @@
 <p>需要手动下载文件，本地安装！！！</p>
 <p>直接使用 conda 或 pip 下载安装的后果：①下载到CPU版本、②安装后检测不到显卡、③安装后执行训练段错误……</p>
 <p>（大部分是由于 Pytorch 和 CUDA 版本不匹配造成的）</p>
-<p>官网下载地址：https://pytorch.org/get-started/locally/</p>
+<p>官网地址：https://pytorch.org/get-started/locally/</p>
+<p>直接进这个也行：<a href="https://download.pytorch.org/whl/torch/"   target="_blank">
+    download.pytorch.org/whl/torch/</a></p>
 <p>输入</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nvcc -V
 </span></span></code></pre></div><p>查看CUDA版本</p>
@@ -1091,6 +1101,86 @@
 <p>（这里torch版本是+cu113是因为换了台机器）
 print(torch.cuda.is_available()) 显示为True , 最后对torch的操作可以正常执行就一般没问题</p>
 <p>参考：https://blog.csdn.net/weixin_41529093/article/details/109399393</p>
+
+
+<h3 class="relative group">24/09/28 补充： 
+    <div id="240928-%E8%A1%A5%E5%85%85" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#240928-%E8%A1%A5%E5%85%85" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  >
+
+  <span
+    
+      class="text-primary-400 ltr:pr-3 rtl:pl-3 flex items-center"
+    >
+
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+
+  </span>
+
+
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    >后来在实际操作中发现，其实可以直接参考 <code>nvidia-smi</code> 中的最高支持CUDA版本进行torch安装，即：</span>
+</div>
+
+<ol>
+<li>
+<p>命令行运行<code>nvidia-smi</code>，找到最高支持CUDA版本</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/pic/image-20240928102143956_hu13109345880351909951.png 330w,
+        /posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/pic/image-20240928102143956_hu17208463150452752024.png 660w,
+        /posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/pic/image-20240928102143956_hu4249742270999596343.png 1024w,
+        /posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/pic/image-20240928102143956_hu18036834311439508619.png 2x"
+        src="/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/pic/image-20240928102143956_hu17208463150452752024.png"
+        alt="image-20240928102143956"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+</li>
+<li>
+<p>再去下载官网找安装包时，只要低于<code>cu122</code>的，满足系统和python版本的torch安装包都可以下载进行安装，安装步骤同上。因为linux系统会自动按照安装包要求在虚拟环境中自动下载安装相应的cuda工具包。</p>
+</li>
+</ol>
 
 
 <h2 class="relative group">安装allen-nlp 

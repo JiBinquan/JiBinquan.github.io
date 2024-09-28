@@ -111,7 +111,7 @@
     "keywords": ["技术","前端","建站"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "772"
+    "wordCount": "821"
   }]
   </script>
 
@@ -751,7 +751,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-04 10:43:06 &#43;0800 CST">2024年6月4日</time><span class="px-2 text-primary-500">&middot;</span><span>772 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  <time datetime="2024-06-04 10:43:06 &#43;0800 CST">2024年6月4日</time><span class="px-2 text-primary-500">&middot;</span><span>821 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
   
 
   
@@ -946,7 +946,13 @@
     <li><a href="#二更换主题">二、更换主题</a></li>
     <li><a href="#三页面配置">三、页面配置</a>
       <ul>
-        <li><a href="#31-基本信息配置">3.1 基本信息配置</a></li>
+        <li><a href="#31-基本信息配置">3.1 基本信息配置</a>
+          <ul>
+            <li><a href="#个人信息配置">个人信息配置</a></li>
+            <li><a href="#目录配置">目录配置</a></li>
+            <li><a href="#baseurl配置">BaseURL配置</a></li>
+          </ul>
+        </li>
         <li><a href="#32-页面布局配置">3.2 页面布局配置</a>
           <ul>
             <li><a href="#主题选项-theme-options">主题选项 (Theme Options)</a></li>
@@ -1006,7 +1012,13 @@
     <li><a href="#二更换主题">二、更换主题</a></li>
     <li><a href="#三页面配置">三、页面配置</a>
       <ul>
-        <li><a href="#31-基本信息配置">3.1 基本信息配置</a></li>
+        <li><a href="#31-基本信息配置">3.1 基本信息配置</a>
+          <ul>
+            <li><a href="#个人信息配置">个人信息配置</a></li>
+            <li><a href="#目录配置">目录配置</a></li>
+            <li><a href="#baseurl配置">BaseURL配置</a></li>
+          </ul>
+        </li>
         <li><a href="#32-页面布局配置">3.2 页面布局配置</a>
           <ul>
             <li><a href="#主题选项-theme-options">主题选项 (Theme Options)</a></li>
@@ -1332,6 +1344,18 @@
     </span>        
     
 </h3>
+
+
+<h4 class="relative group">个人信息配置 
+    <div id="%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
 <p>因为<code>blowfish </code> 默认的是英文信息，首先在博客目录下的 <code>config\_default</code> 目录下，复制<code>languages.en.toml</code> 和 <code>menus.en.toml</code> ，并重命名为<code>languages.zh-cn.toml</code> 和 <code>menus.zh-cn.toml</code></p>
 <p><code>languages.zh-cn.toml</code>可以这么写</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;zh-cn&#34;</span>                                 <span class="c"># 网站使用的语言代码</span>
@@ -1364,6 +1388,18 @@
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">zhihu</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span> <span class="p">},</span>     <span class="c"># 知乎链接</span>
 </span></span><span class="line"><span class="cl">  <span class="p">]</span>
 </span></span></code></pre></div><p>头像放在<code>assets\img</code> 路径下（若没有建立目录即可），如果你的<code>links</code>没有默认的图标，可以把同名图标放置在<code>assets\icons</code>路径下</p>
+
+
+<h4 class="relative group">目录配置 
+    <div id="%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
 <p><code>menus.zh-cn.toml</code>是目录配置，可以根据你的需要自己配置目录，可以参考如下编写。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">main</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;文章&#34;</span>
@@ -1397,6 +1433,26 @@
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">pageRef</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">weight</span> <span class="p">=</span> <span class="mi">30</span>
+</span></span></code></pre></div>
+
+<h4 class="relative group">BaseURL配置 
+    <div id="baseurl%E9%85%8D%E7%BD%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#baseurl%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>如果你要部署到GithubPages上，请在 <code>config\_default\hugo.toml</code> 中设置为你自己的<code>.github.io</code>域名，或者你自己绑定的其他域名，如下例所示，否则一些页面跳转功能和搜索功能将失效。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># -- Site Configuration --</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Refer to the theme docs for more details about each of these parameters.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># https://blowfish.page/docs/getting-started/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;blowfish&#34;</span> <span class="c"># UNCOMMENT THIS LINE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://jibinquan.github.io/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;zh-cn&#34;</span>
 </span></span></code></pre></div>
 
 <h3 class="relative group">3.2 页面布局配置 
@@ -1705,6 +1761,37 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Total in <span class="m">450</span> ms
 </span></span></code></pre></div>
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  >
+
+  <span
+    
+      class="text-primary-400 ltr:pr-3 rtl:pl-3 flex items-center"
+    >
+
+    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+
+  </span>
+
+
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    >注意在部署前一定是使用<code>hugo</code>进行网页构建，而不能使用<code>hugo server</code>否则会将<code>baseurl</code>编译为本地链接导致部署后搜索等部分功能失效。</span>
+</div>
+
+
 
 <h3 class="relative group">4.3 git 初始化与部署 
     <div id="43-git-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2" class="anchor"></div>
@@ -1939,6 +2026,8 @@
     Github Pages + Hugo 搭建个人博客 - 渣渣的夏天 (zz2summer.github.io)</a></p>
 <p><a href="https://cuttontail.blog/blog/create-a-wesite-using-github-pages-and-hugo/#8-%e6%9c%ac%e5%9c%b0%e8%b0%83%e8%af%95%e5%92%8c%e9%a2%84%e8%a7%88"   target="_blank">
     如何用 GitHub Pages + Hugo 搭建个人博客 · 小绵尾巴 (cuttontail.blog)</a></p>
+<p><a href="https://www.bilibili.com/read/cv33217513/"   target="_blank">
+    Hugo主题blowfish搜索功能失效的解决办法之一 - 哔哩哔哩 (bilibili.com)</a></p>
 
         </div>
         
