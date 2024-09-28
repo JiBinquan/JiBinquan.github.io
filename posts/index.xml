@@ -14,7 +14,7 @@
       <pubDate>Wed, 25 Sep 2024 19:03:38 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</guid>
-      <description>一个博客怎么能没有评论系统！Giscus是利用 GitHub Discussions 实现的评论系统，让访客可以借助 GitHub 在网站上留下评论和反应。部署起来还是比较简单的，其具有一下特点（来自官网）：</description>
+      <description>小站总算是有评论功能了！</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/feature.png" />
     </item>
     
@@ -24,7 +24,7 @@
       <pubDate>Wed, 04 Sep 2024 20:05:16 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</guid>
-      <description>第一章：预备知识 #1.</description>
+      <description>结合杨冬梅老师的教案梳理了知识点和一些题目，表白杨老师，讲得太好。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/feature.png" />
     </item>
     
@@ -34,7 +34,7 @@
       <pubDate>Wed, 28 Aug 2024 18:42:57 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/</guid>
-      <description>专题一 概率基础 （第一题） #1.</description>
+      <description>统计学是一门伟大的学科，科学的统计揭示真理，更科学的统计掩盖事实。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%A2%98%E5%9E%8B%E7%BB%9F%E8%AE%A1/feature.png" />
     </item>
     
@@ -44,7 +44,7 @@
       <pubDate>Thu, 20 Jun 2024 16:11:34 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</guid>
-      <description>报错示例 #Fetching package metadata .</description>
+      <description>实验室服务器配环境时最常出现的问题，如果你conda虚拟环境配不上显示CondaHTTPError，可以参考这篇文章</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/feature.jpg" />
     </item>
     
@@ -54,7 +54,7 @@
       <pubDate>Thu, 13 Jun 2024 20:13:51 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</guid>
-      <description>摘要 #近年来，随着大语言模型（如GPT）的发展，人工智能在自然语言处理领域取得了显著进展。然而，这些模型在实际应用中面临幻觉问题、知识注入困难和应用落地困难等挑战。为了克服这些问题，检索增强生成技术（Retrieval-Augmented Generation, RAG）应运而生。RAG通过结合外部数据和生成模型，提高了回答的准确性和实时性。本文综述了RAG技术的发展，包括其基本流程框架、评估方法以及在不同应用场景中的表现，并展望了其未来发展方向和潜在改进。</description>
+      <description>RAG通过结合外部数据和生成模型，提高了回答的准确性和实时性。本文综述了RAG技术的发展，包括其基本流程框架、评估方法以及在不同应用场景中的表现，并展望了其未来发展方向和潜在改进。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/feature.jpg" />
     </item>
     
@@ -64,7 +64,7 @@
       <pubDate>Thu, 06 Jun 2024 09:29:34 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/windows%E7%B3%BB%E7%BB%9F%E4%B8%8Bgithub_pages%E9%83%A8%E7%BD%B2%E4%B8%8Ehugo%E9%A1%B5%E9%9D%A2js%E4%B8%8Ecss%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%88%96%E6%96%87%E6%A1%A3%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/</guid>
-      <description>换行符替换导致的 JS/CSS 无法使用或文档渲染出错问题 #在使用git部署到Github仓库时，git bash 给我返回了这么个警告：</description>
+      <description>这个自以为是博客部署时遇到的最大的一个坑…默认设置公式排版直接爆炸</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/windows%E7%B3%BB%E7%BB%9F%E4%B8%8Bgithub_pages%E9%83%A8%E7%BD%B2%E4%B8%8Ehugo%E9%A1%B5%E9%9D%A2js%E4%B8%8Ecss%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%88%96%E6%96%87%E6%A1%A3%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/feature.jpg" />
     </item>
     
@@ -74,7 +74,7 @@
       <pubDate>Wed, 05 Jun 2024 19:48:08 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E4%B8%BAgithub%E8%AE%BE%E7%BD%AEssh-key/</guid>
-      <description>在2022年后，没有SSH-Key无法通过SSH直接上传文件到仓库，故需要在本地生成SSH-Key上传到github。一般来说，一台设备只需要一个SSH-Key。下面是对Github官方文档的整合。</description>
+      <description>在2022年后，没有SSH-Key无法通过SSH直接上传文件到仓库，故需要在本地生成SSH-Key上传到github。一般来说，一台设备只需要一个SSH-Key。本文是对Github官方文档的整合</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E4%B8%BAgithub%E8%AE%BE%E7%BD%AEssh-key/feature.jpg" />
     </item>
     
@@ -84,7 +84,7 @@
       <pubDate>Tue, 04 Jun 2024 10:43:06 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</guid>
-      <description>博客搭建记录 #〇、 环境安装 #0.</description>
+      <description>本站搭建过程记录，也记录了一些踩过的坑。想要搭建一个hugo博客的朋友看这篇应该可以搭建出一个最基本的能部署的博客了。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/feature.png" />
     </item>
     
@@ -114,7 +114,7 @@
       <pubDate>Wed, 04 Jan 2023 15:12:58 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/</guid>
-      <description>尝试训练某古早nlp相关模型，在pytorch下需要Allen-nlp0.8.4版本的环境，踩了好多坑才配置成功（主要是pytorch安装太离谱了）于是记录一下</description>
+      <description>尝试训练某古早nlp相关模型，在pytorch下需要Allen-nlp0.8.4版本的环境，踩了好多坑才配置成功（主要是pytorch安装太离谱了）于是记录一下。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/feature.jpg" />
     </item>
     

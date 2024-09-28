@@ -14,7 +14,7 @@
       <pubDate>Thu, 20 Jun 2024 16:11:34 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</guid>
-      <description>报错示例 #Fetching package metadata .</description>
+      <description>实验室服务器配环境时最常出现的问题，如果你conda虚拟环境配不上显示CondaHTTPError，可以参考这篇文章</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/feature.jpg" />
     </item>
     

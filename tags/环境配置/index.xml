@@ -14,7 +14,7 @@
       <pubDate>Thu, 20 Jun 2024 16:11:34 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</guid>
-      <description>报错示例 #Fetching package metadata .</description>
+      <description>实验室服务器配环境时最常出现的问题，如果你conda虚拟环境配不上显示CondaHTTPError，可以参考这篇文章</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/feature.jpg" />
     </item>
     
@@ -34,7 +34,7 @@
       <pubDate>Wed, 04 Jan 2023 15:12:58 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/</guid>
-      <description>尝试训练某古早nlp相关模型，在pytorch下需要Allen-nlp0.8.4版本的环境，踩了好多坑才配置成功（主要是pytorch安装太离谱了）于是记录一下</description>
+      <description>尝试训练某古早nlp相关模型，在pytorch下需要Allen-nlp0.8.4版本的环境，踩了好多坑才配置成功（主要是pytorch安装太离谱了）于是记录一下。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9F%90nlp%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEpytorch%E5%AE%89%E8%A3%85/feature.jpg" />
     </item>
     
