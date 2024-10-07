@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2024 Ji Binquan</copyright>
-    <lastBuildDate>Thu, 13 Jun 2024 20:13:51 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Oct 2024 19:44:10 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【笔记】RAPTOR: 用于树形组织检索的递归摘要处理</title>
+      <link>https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 07 Oct 2024 19:44:10 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>使用树形结构存储不同级别的摘要信息以应对不同粒度的RAG查询，思路新颖有趣</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.jpg" />
+    </item>
+    
     <item>
       <title>检索增强生成技术综述</title>
       <link>https://jibinquan.github.io/posts/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</link>

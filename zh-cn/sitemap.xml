@@ -3,13 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</loc>
-    <lastmod>2024-09-25T19:03:38+08:00</lastmod>
+    <loc>https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2024-10-07T19:44:10+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://jibinquan.github.io/posts/</loc>
+    <lastmod>2024-10-07T19:44:10+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2024-10-07T09:45:10+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jibinquan.github.io/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/</loc>
     <lastmod>2024-09-25T19:03:38+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

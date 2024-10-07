@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>论文笔记 on 青萍之末</title>
+    <link>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 论文笔记 on 青萍之末</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <lastBuildDate>Mon, 07 Oct 2024 19:44:10 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【笔记】RAPTOR: 用于树形组织检索的递归摘要处理</title>
+      <link>https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 07 Oct 2024 19:44:10 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>使用树形结构存储不同级别的摘要信息以应对不同粒度的RAG查询，思路新颖有趣</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.jpg" />
+    </item>
+    
+  </channel>
+</rss>
