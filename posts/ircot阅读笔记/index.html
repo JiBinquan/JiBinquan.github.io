@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用 &middot; 青萍之末</title>
+  <meta name="title" content="【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用 &middot; 青萍之末" />
+  
+  <meta name="description" content="使用思维链解决多跳问答的典型论文，提示工程还能整出多少活？" />
+  <meta name="keywords" content="研究, RAG, 多跳问答, 论文笔记, " />
+  
+  
+  <link rel="canonical" href="https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.5615a487fac507c43511df88c6ad42d8fd2f34979108ea0cb248cba1146fdcb8aad55e5fa3a2d69104e8e06875708d5c066abee2cf0d660691eb2f456d7d9f94.css"
+    integrity="sha512-VhWkh/rFB8Q1Ed&#43;Ixq1C2P0vNJeRCOoMskjLoRRv3Liq1V5fo6LWkQTo4Gh1cI1cBmq&#43;4s8NZgaR6y9FbX2flA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.949e93ad68f98f91b41032983a7aee8da40cd845c548ac475ad1b4771bb9d273da1fb4d059d4d2f8f724a6a7ce5962b522b302ed72b43b8a1057a0e4e3ffc58e.js"
+    integrity="sha512-lJ6TrWj5j5G0EDKYOnrujaQM2EXFSKxHWtG0dxu50nPaH7TQWdTS&#43;PckpqfOWWK1IrMC7XK0O4oQV6Dk4//Fjg==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+  <meta property="og:site_name" content="青萍之末">
+  <meta property="og:title" content="【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用">
+  <meta property="og:description" content="使用思维链解决多跳问答的典型论文，提示工程还能整出多少活？">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-10T20:38:31+08:00">
+    <meta property="article:modified_time" content="2024-10-10T20:38:31+08:00">
+    <meta property="article:tag" content="研究">
+    <meta property="article:tag" content="RAG">
+    <meta property="article:tag" content="多跳问答">
+    <meta property="article:tag" content="论文笔记">
+    <meta property="og:image" content="https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png">
+  <meta name="twitter:title" content="【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用">
+  <meta name="twitter:description" content="使用思维链解决多跳问答的典型论文，提示工程还能整出多少活？">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "文章",
+    "name": "【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用",
+    "headline": "【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用",
+    
+    "abstract": "使用思维链解决多跳问答的典型论文，提示工程还能整出多少活？",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/jibinquan.github.io\/posts\/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Ji Binquan"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-10-10T20:38:31\u002b08:00",
+    "datePublished": "2024-10-10T20:38:31\u002b08:00",
+    
+    "dateModified": "2024-10-10T20:38:31\u002b08:00",
+    
+    "keywords": ["研究","RAG","多跳问答","论文笔记"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "220"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Ji Binquan" />
+  
+  
+  
+  <link href="https://www.zhihu.com/people/herb-42-46" rel="me" />
+  
+  
+  <link href="https://github.com/JiBinquan" rel="me" />
+  
+  
+  <link href="mailto:haing6@163.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">青萍之末</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            研究
+          </p>
+        </a>
+        
+        <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            技术
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            随笔
+          </p>
+        </a>
+        
+        <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            算法
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        友链
+    </p>
+</a>
+
+
+            
+            
+  <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        更多
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            研究
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            技术
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            随笔
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            算法
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            更多
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature_hu8585232550222458842.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      【笔记】IRCOT: 交错检索与链式思考推理在知识密集型多跳问答中的应用
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-10 20:38:31 &#43;0800 CST">2024年10月10日</time><span class="px-2 text-primary-500">&middot;</span><span>220 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%A0%94%E7%A9%B6/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    研究
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/rag/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    RAG
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    多跳问答
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    论文笔记
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Ji Binquan" src="/img/avatar_hu9503206400822313302.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Ji Binquan
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">现在也没研究明白</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/herb-42-46"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="384px" height="384px"><path d="M 5.0507812 2.6835938 L 3.0507812 8.6835938 L 4.9492188 9.3164062 L 5.7207031 7 L 7 7 L 7 10.222656 C 7 10.868331 6.9219874 11.418087 6.8710938 12 L 4 12 L 4 14 L 6.5429688 14 C 5.983285 16.269768 4.8214393 18.029123 2.5039062 19.353516 L 3.4960938 21.089844 C 6.4085349 19.425482 7.9221912 16.957288 8.5761719 14 L 11 14 L 11 12 L 8.8476562 12 C 8.900895 11.408696 9 10.844144 9 10.222656 L 9 7 L 11 7 L 11 5 L 6.3886719 5 L 6.9492188 3.3164062 L 5.0507812 2.6835938 z M 13 5 L 13 18 L 15 18 L 15 20.869141 L 19.302734 18 L 22 18 L 22 17 L 22 5 L 13 5 z M 15 7 L 20 7 L 20 16 L 18.697266 16 L 17 17.130859 L 17 16 L 15 16 L 15 7 z M 9.1777344 15.806641 L 7.5625 16.986328 L 10.191406 20.589844 L 11.808594 19.410156 L 9.1777344 15.806641 z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/JiBinquan"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:haing6@163.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#解决问题">解决问题</a></li>
+    <li><a href="#基本思路">基本思路</a></li>
+    <li><a href="#具体方法">具体方法</a>
+      <ul>
+        <li><a href="#思维链推理的交叉检索">思维链推理的交叉检索</a>
+          <ul>
+            <li><a href="#检索指导的思维链推理">检索指导的思维链推理</a></li>
+          </ul>
+        </li>
+        <li><a href="#qa阅读器">QA阅读器</a></li>
+      </ul>
+    </li>
+    <li><a href="#实验">实验</a>
+      <ul>
+        <li><a href="#数据集">数据集</a></li>
+        <li><a href="#模型">模型</a></li>
+        <li><a href="#操作">操作</a>
+          <ul>
+            <li><a href="#直接性能">直接性能</a></li>
+            <li><a href="#泛化能力">泛化能力</a></li>
+            <li><a href="#事实错误">事实错误</a></li>
+            <li><a href="#对于小型化的作用">对于小型化的作用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#当前的限制">当前的限制</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#解决问题">解决问题</a></li>
+    <li><a href="#基本思路">基本思路</a></li>
+    <li><a href="#具体方法">具体方法</a>
+      <ul>
+        <li><a href="#思维链推理的交叉检索">思维链推理的交叉检索</a>
+          <ul>
+            <li><a href="#检索指导的思维链推理">检索指导的思维链推理</a></li>
+          </ul>
+        </li>
+        <li><a href="#qa阅读器">QA阅读器</a></li>
+      </ul>
+    </li>
+    <li><a href="#实验">实验</a>
+      <ul>
+        <li><a href="#数据集">数据集</a></li>
+        <li><a href="#模型">模型</a></li>
+        <li><a href="#操作">操作</a>
+          <ul>
+            <li><a href="#直接性能">直接性能</a></li>
+            <li><a href="#泛化能力">泛化能力</a></li>
+            <li><a href="#事实错误">事实错误</a></li>
+            <li><a href="#对于小型化的作用">对于小型化的作用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#当前的限制">当前的限制</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>论文标题：Trivedi 等 - 2023 - Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions</p>
+<p>论文链接：<a href="https://aclanthology.org/2023.acl-long.557/"   target="_blank">
+    Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions - ACL Anthology</a></p>
+
+
+<h2 class="relative group">解决问题 
+    <div id="%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>传统的一步式RAG难以满足多步问答需求，即提问一次需要多次进行查询才能得到最终答案，因为要进行检索的查询取决于已经得到的内容，而已经得到的内容是根据之前检索的内容生成的。如图一。</p>
+<img src="pic/image-20240825163350642.png" alt="image-20240825163350642" style="zoom: 50%;" />
+
+
+<h2 class="relative group">基本思路 
+    <div id="%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>基本思路即是使用检索来指导思维链，然后思维链来指导检索，两个步骤交错进行。</p>
+<p>首先，<strong>扩展COT</strong>：使用问题、当前检索到的段落和之前的COT语句来生成下一个语句。</p>
+<p>然后，<strong>扩展检索信息</strong>：使用上一步生成的COT语句进行查询，将检索到的段落进行收集。</p>
+<p>以此重复，直到COT得到答案或者达到最大限制的推理步数。</p>
+<p>上述步骤停止后，将所有收集到的段落作为检索结果，作为问题或思维链的提示上下文来回答问题。</p>
+
+
+<h2 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">思维链推理的交叉检索 
+    <div id="%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86%E7%9A%84%E4%BA%A4%E5%8F%89%E6%A3%80%E7%B4%A2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86%E7%9A%84%E4%BA%A4%E5%8F%89%E6%A3%80%E7%B4%A2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>IRCoT检索器由三个要素构成：</p>
+<ol>
+<li>一个可以通过查询从语料库或知识源获得给定数量文本段落的基本检索器</li>
+<li>一个具有zero/few-shot思维链生成能力的语言模型</li>
+<li>少量带注释的问题，带有推理步骤，解释如何用自然语言（思维链）得出答案。以及来自知识源的，能够支持推理链和答案的一组文本片段。</li>
+</ol>
+<p>检索器工作方法如图二所示，首先使用问题Q检索K个段落，收集起来作为一组基本段落。然后交错执行思维链推理和检索两个步骤，直到满足终止标准。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240828103158268_hu11425661845668396409.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240828103158268_hu13719018070535676509.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240828103158268_hu12361252967275626154.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240828103158268_hu5839723500959420007.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240828103158268_hu13719018070535676509.png"
+        alt="image-20240828103158268"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+
+
+<h4 class="relative group">检索指导的思维链推理 
+    <div id="%E6%A3%80%E7%B4%A2%E6%8C%87%E5%AF%BC%E7%9A%84%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%A3%80%E7%B4%A2%E6%8C%87%E5%AF%BC%E7%9A%84%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>检索指导的思维链推理使用问题、到目前为止收集的段落以及到目前为止生成的 CoT 句子生成下一个 CoT 句子。该任务的提示模板如下所示：</p>
+<img src="pic/image-20240828104005252.png" alt="image-20240828104005252" style="zoom: 67%;" />
+<p>在上下文能力的验证中，作者使用上述格式的完整CoT，在实际测试中，则只向模型展示到目前为止生成的 CoT 句子，然后让它完成其余部分。即使模型可能会输出多个句子，但对于每个推理步骤，只获取第一个生成的句子并丢弃其余的句子。</p>
+<p>在上下文能力验证中，作者将事实段落和M个随机采样段落按照上图格式打乱并连接在一起。在实际测试中，使用之前收集的检索到的全部段落。如果生成的 CoT 句子具有“answer is:”字符串或已达到最大步骤数，则终止该过程并返回所有收集的段落作为检索结果。</p>
+<p>使用在上一步中生成的CoT语句作为查询来检索更多的段落并收集起来。最多段落总数需要限制以免超出LLM的上下文长度限制。</p>
+
+
+<h3 class="relative group">QA阅读器 
+    <div id="qa%E9%98%85%E8%AF%BB%E5%99%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#qa%E9%98%85%E8%AF%BB%E5%99%A8" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>本文通过两种提示策略实现基于上下文的文本问答。</p>
+<ol>
+<li><strong>CoT提示</strong>：使用之前相同的CoT模板，但是在实际测试中要求模型从头开始生成完整的 CoT。 CoT 的最终句子预计采用“答案是：&hellip;”的形式，以便可以通过编程方式提取答案。如果不是这种形式，则返回全部的生成内容作为答案。</li>
+<li><strong>直接提示</strong>：对于直接提示，作者使用与 CoT 提示相同的模板，但答案字段（“A：”）仅包含最终答案而不是 CoT。</li>
+</ol>
+
+
+<h2 class="relative group">实验 
+    <div id="%E5%AE%9E%E9%AA%8C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">数据集 
+    <div id="%E6%95%B0%E6%8D%AE%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p><strong>HotpotQA</strong>：</p>
+<p>​	现有的问答（QA）数据集无法训练可执行复杂推理和提供答案解释的 QA 系统。HotpotQA创建了一个新型问答数据集 HotpotQA，该数据集包含 11.3 万个基于维基百科的问答对，具备以下四个特点：</p>
+<ol>
+<li>
+<p>问题的答案必须要基于多个支持文档；</p>
+</li>
+<li>
+<p>问题多样化，不局限于任何已有的知识库或知识模式；</p>
+</li>
+<li>
+<p>提供句子级别的支持推理线索（supporting fact），允许 QA 系统用强大的监督进行推理，并对预测结果进行解释；</p>
+</li>
+<li>
+<p>提供了新型模拟比较型问题，来测试 QA 系统提取相关线索、执行必要对比的能力。</p>
+<p>论文展示了 HotpotQA 数据集对最新 QA 系统是有难度的，支持推理线索帮助模型提升性能、做出可解释的预测。</p>
+<p><a href="https://arxiv.org/pdf/1809.09600"   target="_blank">
+    arxiv.org/pdf/1809.09600</a></p>
+</li>
+</ol>
+<p><strong>2WikiMultihopQA</strong>：</p>
+<p>​	多跳问答 （QA） 数据集旨在通过要求模型阅读多个段落来回答给定问题来测试推理和推理技能。然而，当前的数据集并没有为从问题到答案的推理过程提供完整的解释。此外，以前的研究表明，现有多跳数据集中的许多示例不需要多跳推理来回答问题。在这项研究中，我们提出了一个新的多跳QA数据集，称为2WikiMultiHopQA，它使用结构化和非结构化数据。在我们的数据集中，我们引入了包含多跳问题推理路径的证据信息。证据信息有两个好处：</p>
+<p>（i） 为预测提供全面的解释。</p>
+<p>（ii） 评估模型的推理技能。</p>
+<p>​	在生成问答对时，我们精心设计了一个管道和一组模板，以保证多跳步骤和问题的质量。我们还利用了 Wikidata 中的结构化格式，并使用逻辑规则来创建自然但仍需要多跳推理的问题。通过实验，我们证明了我们的数据集对于多跳模型具有挑战性，并且它确保需要多跳推理。</p>
+<p><a href="https://aclanthology.org/2020.coling-main.580.pdf"   target="_blank">
+    aclanthology.org/2020.coling-main.580.pdf</a></p>
+<p><strong>MuSiQue（可回答部分）</strong>：</p>
+<p>​	多跳推理仍然是一个难以实现的目标，因为现有的多跳基准测试在很大程度上可以通过捷径解决。我们能否创建一个从结构上要求进行正确多跳推理的问答（QA）数据集？为此，我们引入了一种自下而上的方法，系统地选择可以组合的单跳问题对，这些问题是相互关联的，即其中一个推理步骤严重依赖于另一个步骤的信息。这种自下而上的方法让我们能够探索大量的问题空间，并添加严格的筛选条件以及其他针对关联推理的机制。它提供了对构建过程和生成的k跳问题的特性进行细粒度控制的能力。我们使用这种方法创建了MuSiQue-Ans，一个包含25K个2到4跳问题的新多跳QA数据集。相较于现有数据集，MuSiQue-Ans整体上更难（人机差距增加了3倍），并且更难通过不相关的推理来作弊（例如，单跳模型的F1分数下降了30分）。我们还添加了无法回答的对比问题，以生成一个更严格的数据集MuSiQue-Full。我们希望我们的数据集能够帮助NLP社区开发能够进行真正多跳推理的模型。</p>
+<p><a href="https://arxiv.org/pdf/2108.00573"   target="_blank">
+    arxiv.org/pdf/2108.00573</a></p>
+<p><strong>IIRC（可回答部分）</strong>：</p>
+<p>​	人类通常需要阅读多篇文档来满足他们的信息需求。然而，大多数现有的阅读理解（RC）任务仅关注于上下文中提供了回答问题所需的全部信息的情况，因此无法评估系统识别信息不足的潜在情况以及定位这些信息来源的能力。为填补这一空白，我们提出了一个名为IIRC的数据集，该数据集包含超过13,000个问题，问题来自英文维基百科的段落，这些段落只提供了部分解答所需的信息，缺失的信息存在于一个或多个链接文档中。这些问题是由不访问任何链接文档的众包工人编写的，这导致问题与答案所在上下文之间的词汇重叠极少。这个过程还生成了许多无答案的问题，以及那些需要离散推理的问题，增加了任务的难度。我们参考了最近在各种阅读理解数据集上的建模工作，构建了一个用于该数据集的基线模型，发现其在这一任务上的F1得分为31.1%，而人类的预估表现为88.4%。该数据集、基线系统的代码以及一个排行榜可以在https://allennlp.org/iirc找到。</p>
+<p><a href="https://aclanthology.org/2020.emnlp-main.86.pdf"   target="_blank">
+    aclanthology.org/2020.emnlp-main.86.pdf</a></p>
+<p><strong>构建</strong></p>
+<p>对于HotpotQA，使用其自带的维基百科语料库进行开放域设置。对于另外三个原本属于阅读理解或混合设置的数据集，作者使用相关上下文构建了其的开放域设置的语料库（附录A）。对于每个数据集，从原始开发集随机抽取100个问题用于调优超参数，并随机抽取另外500个问题作为测试集。</p>
+
+
+<h3 class="relative group">模型 
+    <div id="%E6%A8%A1%E5%9E%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%A8%A1%E5%9E%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>使用BM25作为基础检索器，构建两种检索系统：</p>
+<ol>
+<li><strong>一步检索器（OneR）</strong>：直接使用问题检索K个段落。K选择在开发集上表现最好的 K ∈ {5, 7, 9, 11, 13, 15}。</li>
+<li><strong>IRCoT检索器</strong>：使用BM25作为检索器，结合GPT3、Flan-T5作为不同规模的CoT生成器进行实验。</li>
+</ol>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240903161006629_hu11464593372235744605.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240903161006629_hu8795532255163285541.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240903161006629_hu15259058822725172681.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240903161006629_hu8271746875748341417.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240903161006629_hu8795532255163285541.png"
+        alt="image-20240903161006629"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>在这些段落中，作者通过以下步骤构建示例和进行超参数搜索：</p>
+<ol>
+<li><strong>构建示例</strong>：
+<ul>
+<li>作者为每个数据集创建了三个演示（“训练”）集，每个演示集包含15个从数据集中随机抽取的问题。</li>
+<li>这些演示集被用于在不同的实验中，向模型展示上下文示例。</li>
+<li>在测试时，作者在模型的上下文长度限制内打包尽可能多的演示。 GPT3的上下文限制是 8K tokens。 Flan-T5 的上下文限制为 6K tokens，这是 80G A100 GPU 内存所能容纳的最大值。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>对于IRCoT的推理模块的训练示例，作者使用了黄金段落（即包含正确答案的段落）以及数量较少的干扰段落（M ∈ {1, 2, 3}），以生成训练示例。</li>
+</ul>
+<ol start="2">
+<li><strong>超参数搜索</strong>：
+<ul>
+<li>对于每个实验，作者首先使用第一个演示集对开发集（dev set）进行超参数搜索，以确定最佳的超参数设置。</li>
+<li>对于IRCoT Retriever，作者的关键超参数是K（即每个步骤检索的段落数，K ∈ {2, 4, 6, 8}）和干扰段落的数量M。</li>
+<li>在超参数搜索过程中，作者允许所有检索系统最多检索15个段落，并通过衡量这些段落中黄金段落的召回率来选择最佳的超参数。</li>
+<li>找到最佳的超参数后，作者使用这些超参数在测试集上进行评估，并报告了不同实验中三个演示集的结果的平均值和标准差。</li>
+</ul>
+</li>
+</ol>
+<p>通过这种方法，作者确保了在固定预算下每个系统的最优召回率，并将这些结果用于进一步的实验和分析。</p>
+<p>在qa阅读器的选择上，Flan-T5在直接提示策略下表现更好，而GPT3在CoT提示策略下表现更好，于是后面就这么用的。</p>
+<p>作者还构建了开放域的问答模型，将检索器和阅读器结合在一起。此外，作者还实验了没有检索器的问答阅读器 <strong>NoR QA</strong>，以评估语言模型能否仅凭其参数知识回答问题。为了选择最佳的 ODQA 模型超参数，作者搜索了能在开发集上最大化答案 F1 值的超参数 K 和 M。IIRC 的结构与其他数据集略有不同，其问题基于一个主要段落，并且其他支持段落来自该段落中提到的实体的维基百科页面。论文也稍微修改了检索器和阅读器以适应这种情况。</p>
+
+
+<h3 class="relative group">操作 
+    <div id="%E6%93%8D%E4%BD%9C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%93%8D%E4%BD%9C" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">直接性能 
+    <div id="%E7%9B%B4%E6%8E%A5%E6%80%A7%E8%83%BD" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%9B%B4%E6%8E%A5%E6%80%A7%E8%83%BD" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904090942140_hu92414360939465029.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904090942140_hu16622736215859927021.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904090942140_hu14139970263247329384.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904090942140_hu2101974564997285963.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904090942140_hu16622736215859927021.png"
+        alt="image-20240904090942140"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>图三展示了IRCoT检索器的的f1性能是优于一步检索器的，不论是在T5和GPT3的环境下。</p>
+<p>图四展示了无检索器、一步检索器、和IRCoT的性能差异。值得关注的最后一个在GPT3下IIRC数据集中没有检索器直接问答反而是最好的，应该是拿这个训练过。</p>
+<p>总的来说，IRCoT在少样本多步ODQA方面达到了当时的SOTA效果。如表1，展示了EM和F1的相关情况。</p>
+<img src="pic/image-20240904151838847.png" alt="image-20240904151838847" style="zoom:50%;" />
+
+
+<h4 class="relative group">泛化能力 
+    <div id="%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者实验了三种问答系统的泛化能力，使用一个数据集的提示示例来评估另一个数据集，图5图6说明IRCoT的性能还是高一些。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904095328170_hu11595520564297256960.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904095328170_hu14743791364276348136.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904095328170_hu2152689363861795619.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904095328170_hu10016214817231415343.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904095328170_hu14743791364276348136.png"
+        alt="image-20240904095328170"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+
+
+<h4 class="relative group">事实错误 
+    <div id="%E4%BA%8B%E5%AE%9E%E9%94%99%E8%AF%AF" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%8B%E5%AE%9E%E9%94%99%E8%AF%AF" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者使用三种问答系统为每个数据集随机抽取的40个问题生成CoT，如果生成的CoT中有一环是错误的，那就认为CoT存在事实错误。如图7，IRCoT事实错误最少。</p>
+<img src="pic/image-20240904150631480.png" alt="image-20240904150631480" style="zoom:50%;" />
+<p>表2展示了不同方法的CoT预测在质量上的差异。由于NoR完全依赖于参数知识，它经常在第一句话就犯事实性错误，从而导致整个CoT出错。OneR能够检索到最接近问题的相关信息，因此较少在初期犯错，但在CoT后期仍然会犯错。另一方面，IRCoT通常能够在每一步中防止这种错误。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904150900333_hu11817428068732585132.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904150900333_hu7412168978637128117.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904150900333_hu6081588065910875220.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904150900333_hu2474987704455171301.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904150900333_hu7412168978637128117.png"
+        alt="image-20240904150900333"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+
+
+<h4 class="relative group">对于小型化的作用 
+    <div id="%E5%AF%B9%E4%BA%8E%E5%B0%8F%E5%9E%8B%E5%8C%96%E7%9A%84%E4%BD%9C%E7%94%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AF%B9%E4%BA%8E%E5%B0%8F%E5%9E%8B%E5%8C%96%E7%9A%84%E4%BD%9C%E7%94%A8" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904152238738_hu7327656760861134665.png 330w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904152238738_hu11645599591808765435.png 660w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904152238738_hu16669622077932077664.png 1024w,
+        /posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904152238738_hu11411797499171341072.png 2x"
+        src="/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240904152238738_hu11645599591808765435.png"
+        alt="image-20240904152238738"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>图8图9分别展示了在不同模型规模下，一步检索和IRCoT召回率和F1的变化情况。可以看到大多数情况下，小规模LM的IRCoT表现比更大规模LM的一步检索效果还要好。</p>
+
+
+<h2 class="relative group">当前的限制 
+    <div id="%E5%BD%93%E5%89%8D%E7%9A%84%E9%99%90%E5%88%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%BD%93%E5%89%8D%E7%9A%84%E9%99%90%E5%88%B6" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<ol>
+<li>
+<p><strong>依赖基础语言模型的能力</strong>：</p>
+<ul>
+<li>
+<p>IRCoT 依赖于基础语言模型具备零样本或少量样本的链式思考（CoT）生成能力。</p>
+</li>
+<li>
+<p>大型语言模型（超过100B参数）通常具备这种能力，但较小的模型（低于20B参数）较少具备，这限制了IRCoT的广泛应用。</p>
+</li>
+<li>
+<p>随着对小型语言模型的关注增加，它们将逐步具备链式思考生成能力，使IRCoT能兼容更多的模型。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>对长输入的要求</strong>：</p>
+<ul>
+<li>IRCoT 依赖于基础语言模型支持长输入，因为需要将多个检索到的段落与问答示例一起输入模型。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>未来研究可以探索重新排序和选择检索段落的策略，以减少对长输入支持的需求。</li>
+</ul>
+<ol start="4">
+<li><strong>计算成本</strong>：</li>
+</ol>
+<ul>
+<li>IRCoT 相比基线方法（OneR 和 ZeroR）在检索和问答上有性能提升，但也增加了计算成本，因为它对链式思考的每个句子都需要单独调用语言模型。</li>
+</ul>
+<ol start="5">
+<li><strong>实验重现性</strong>：
+<ul>
+<li>部分实验使用了OpenAI的商用API（code-davinci-002），但由于该模型已被弃用，实验的重现性受到影响。</li>
+<li>使用 Flan-T5-* 的实验结果仍可重现，因为其模型权重是公开的。</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\IRCOT阅读笔记\\index.md"
+        var oid_likes = "likes_posts\\IRCOT阅读笔记\\index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >【笔记】RAPTOR: 用于树形组织检索的递归摘要处理</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-07 19:44:10 &#43;0800 CST">2024年10月7日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="JiBinquan/Giscus"
+        data-repo-id="R_kgDOM2XbtA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM2XbtM4Civds"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/about/"
+            title="">
+            
+            关于
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/statistics/"
+            title="">
+            
+            统计
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      ©️ 2024 Ji Binquan
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://jibinquan.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
