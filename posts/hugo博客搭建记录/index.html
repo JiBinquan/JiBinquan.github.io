@@ -111,7 +111,7 @@
     "keywords": ["技术","前端","建站"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "821"
+    "wordCount": "4110"
   }]
   </script>
 
@@ -751,7 +751,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-06-04 10:43:06 &#43;0800 CST">2024年6月4日</time><span class="px-2 text-primary-500">&middot;</span><span>821 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  <time datetime="2024-06-04 10:43:06 &#43;0800 CST">2024年6月4日</time><span class="px-2 text-primary-500">&middot;</span><span>4110 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">9 分钟</span>
   
 
   
@@ -1664,8 +1664,11 @@
     </span>        
     
 </h4>
-<p>如果你发现页面统计的字数远远少于文章的字数，请在<code>hugo.toml</code>中加入下面一行：</p>
+<p>如果你发现页面统计的字数远远少于文章的字数，请在<code>hugo.toml</code>的<code>defaultContentLanguage = &quot;zh-cn&quot;</code>后加入下面一行：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">hasCJKLanguage</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><p>如果还是字数还是少，请来到<code>\themes\blowfish\config\_default\hugo.toml</code>下，修改相同字段：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;zh-cn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">hasCJKLanguage</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span></code></pre></div>
 
 <h2 class="relative group">四、部署到Github 
