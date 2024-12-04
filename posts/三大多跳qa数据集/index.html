@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>【速览】三个经典多跳QA数据集 &middot; 青萍之末</title>
+  <meta name="title" content="【速览】三个经典多跳QA数据集 &middot; 青萍之末" />
+  
+  <meta name="description" content="简单介绍HotPotQA、2WikiMultihopQA和MuSiQue数据集的数据形式和构建理念" />
+  <meta name="keywords" content="研究, RAG, 多跳问答, " />
+  
+  
+  <link rel="canonical" href="https://jibinquan.github.io/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.5615a487fac507c43511df88c6ad42d8fd2f34979108ea0cb248cba1146fdcb8aad55e5fa3a2d69104e8e06875708d5c066abee2cf0d660691eb2f456d7d9f94.css"
+    integrity="sha512-VhWkh/rFB8Q1Ed&#43;Ixq1C2P0vNJeRCOoMskjLoRRv3Liq1V5fo6LWkQTo4Gh1cI1cBmq&#43;4s8NZgaR6y9FbX2flA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.949e93ad68f98f91b41032983a7aee8da40cd845c548ac475ad1b4771bb9d273da1fb4d059d4d2f8f724a6a7ce5962b522b302ed72b43b8a1057a0e4e3ffc58e.js"
+    integrity="sha512-lJ6TrWj5j5G0EDKYOnrujaQM2EXFSKxHWtG0dxu50nPaH7TQWdTS&#43;PckpqfOWWK1IrMC7XK0O4oQV6Dk4//Fjg==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://jibinquan.github.io/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/">
+  <meta property="og:site_name" content="青萍之末">
+  <meta property="og:title" content="【速览】三个经典多跳QA数据集">
+  <meta property="og:description" content="简单介绍HotPotQA、2WikiMultihopQA和MuSiQue数据集的数据形式和构建理念">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-04T19:14:15+08:00">
+    <meta property="article:modified_time" content="2024-12-04T19:14:15+08:00">
+    <meta property="article:tag" content="研究">
+    <meta property="article:tag" content="RAG">
+    <meta property="article:tag" content="多跳问答">
+    <meta property="og:image" content="https://jibinquan.github.io/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/feature.jpg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jibinquan.github.io/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/feature.jpg">
+  <meta name="twitter:title" content="【速览】三个经典多跳QA数据集">
+  <meta name="twitter:description" content="简单介绍HotPotQA、2WikiMultihopQA和MuSiQue数据集的数据形式和构建理念">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "文章",
+    "name": "【速览】三个经典多跳QA数据集",
+    "headline": "【速览】三个经典多跳QA数据集",
+    
+    "abstract": "简单介绍HotPotQA、2WikiMultihopQA和MuSiQue数据集的数据形式和构建理念",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/jibinquan.github.io\/posts\/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Ji Binquan"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-12-04T19:14:15\u002b08:00",
+    "datePublished": "2024-12-04T19:14:15\u002b08:00",
+    
+    "dateModified": "2024-12-04T19:14:15\u002b08:00",
+    
+    "keywords": ["研究","RAG","多跳问答"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "9964"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Ji Binquan" />
+  
+  
+  
+  <link href="https://www.zhihu.com/people/herb-42-46" rel="me" />
+  
+  
+  <link href="https://github.com/JiBinquan" rel="me" />
+  
+  
+  <link href="mailto:haing6@163.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">青萍之末</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            研究
+          </p>
+        </a>
+        
+        <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            技术
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            随笔
+          </p>
+        </a>
+        
+        <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            算法
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        友链
+    </p>
+</a>
+
+
+            
+            
+  <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        更多
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            研究
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            技术
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            随笔
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            算法
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            更多
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/feature_hu1203262912602545298.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      【速览】三个经典多跳QA数据集
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-12-04 19:14:15 &#43;0800 CST">2024年12月4日</time><span class="px-2 text-primary-500">&middot;</span><span>9964 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">20 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%A0%94%E7%A9%B6/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    研究
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/rag/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    RAG
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    多跳问答
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Ji Binquan" src="/img/avatar_hu9503206400822313302.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Ji Binquan
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">现在也没研究明白</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/herb-42-46"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="384px" height="384px"><path d="M 5.0507812 2.6835938 L 3.0507812 8.6835938 L 4.9492188 9.3164062 L 5.7207031 7 L 7 7 L 7 10.222656 C 7 10.868331 6.9219874 11.418087 6.8710938 12 L 4 12 L 4 14 L 6.5429688 14 C 5.983285 16.269768 4.8214393 18.029123 2.5039062 19.353516 L 3.4960938 21.089844 C 6.4085349 19.425482 7.9221912 16.957288 8.5761719 14 L 11 14 L 11 12 L 8.8476562 12 C 8.900895 11.408696 9 10.844144 9 10.222656 L 9 7 L 11 7 L 11 5 L 6.3886719 5 L 6.9492188 3.3164062 L 5.0507812 2.6835938 z M 13 5 L 13 18 L 15 18 L 15 20.869141 L 19.302734 18 L 22 18 L 22 17 L 22 5 L 13 5 z M 15 7 L 20 7 L 20 16 L 18.697266 16 L 17 17.130859 L 17 16 L 15 16 L 15 7 z M 9.1777344 15.806641 L 7.5625 16.986328 L 10.191406 20.589844 L 11.808594 19.410156 L 9.1777344 15.806641 z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/JiBinquan"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:haing6@163.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#训练集验证集和测试集">训练集、验证集和测试集</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#hotpotqa-用于多样化可解释的多跳问题解答的数据集">HotPotQA： 用于多样化、可解释的多跳问题解答的数据集</a>
+      <ul>
+        <li><a href="#构建思路">构建思路</a></li>
+        <li><a href="#数据格式">数据格式</a>
+          <ul>
+            <li><a href="#训练集格式"><strong>训练集格式</strong></a></li>
+            <li><a href="#验证集格式"><strong>验证集格式</strong></a></li>
+            <li><a href="#测试集格式">测试集格式</a></li>
+          </ul>
+        </li>
+        <li><a href="#开放域问答">开放域问答</a></li>
+      </ul>
+    </li>
+    <li><a href="#2wikimultihopqa用于全面评估推理步骤的多跳问答数据集">2WikiMultiHopQA：用于全面评估推理步骤的多跳问答数据集</a>
+      <ul>
+        <li><a href="#构建思路-1">构建思路</a></li>
+        <li><a href="#数据格式-1">数据格式</a>
+          <ul>
+            <li><a href="#训练集验证集">训练集/验证集</a></li>
+            <li><a href="#测试集">测试集</a></li>
+          </ul>
+        </li>
+        <li><a href="#开放域问答-1">开放域问答</a></li>
+      </ul>
+    </li>
+    <li><a href="#musique通过单跳问题组合构建的多跳问题">MuSiQue：通过单跳问题组合构建的多跳问题</a>
+      <ul>
+        <li><a href="#构建思路-2">构建思路</a></li>
+        <li><a href="#数据格式-2">数据格式</a>
+          <ul>
+            <li><a href="#训练集验证集格式">训练集/验证集格式</a></li>
+            <li><a href="#测试集格式-1">测试集格式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#整合格式">整合格式</a>
+      <ul>
+        <li><a href="#四种问题类型">四种问题类型：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#训练集验证集和测试集">训练集、验证集和测试集</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#hotpotqa-用于多样化可解释的多跳问题解答的数据集">HotPotQA： 用于多样化、可解释的多跳问题解答的数据集</a>
+      <ul>
+        <li><a href="#构建思路">构建思路</a></li>
+        <li><a href="#数据格式">数据格式</a>
+          <ul>
+            <li><a href="#训练集格式"><strong>训练集格式</strong></a></li>
+            <li><a href="#验证集格式"><strong>验证集格式</strong></a></li>
+            <li><a href="#测试集格式">测试集格式</a></li>
+          </ul>
+        </li>
+        <li><a href="#开放域问答">开放域问答</a></li>
+      </ul>
+    </li>
+    <li><a href="#2wikimultihopqa用于全面评估推理步骤的多跳问答数据集">2WikiMultiHopQA：用于全面评估推理步骤的多跳问答数据集</a>
+      <ul>
+        <li><a href="#构建思路-1">构建思路</a></li>
+        <li><a href="#数据格式-1">数据格式</a>
+          <ul>
+            <li><a href="#训练集验证集">训练集/验证集</a></li>
+            <li><a href="#测试集">测试集</a></li>
+          </ul>
+        </li>
+        <li><a href="#开放域问答-1">开放域问答</a></li>
+      </ul>
+    </li>
+    <li><a href="#musique通过单跳问题组合构建的多跳问题">MuSiQue：通过单跳问题组合构建的多跳问题</a>
+      <ul>
+        <li><a href="#构建思路-2">构建思路</a></li>
+        <li><a href="#数据格式-2">数据格式</a>
+          <ul>
+            <li><a href="#训练集验证集格式">训练集/验证集格式</a></li>
+            <li><a href="#测试集格式-1">测试集格式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#整合格式">整合格式</a>
+      <ul>
+        <li><a href="#四种问题类型">四种问题类型：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>看多跳RAG论文少不了这三个数据集的身影，基本上是多跳RAG必测的三个数据集，由于不同方法的测试标准也不一样，直接了解这三个数据集本来的设计思路和数据格式还是很必要的，便于后面的数据处理和评估设计。</p>
+
+
+<h2 class="relative group">训练集、验证集和测试集 
+    <div id="%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%92%8C%E6%B5%8B%E8%AF%95%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%92%8C%E6%B5%8B%E8%AF%95%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>在机器学习和深度学习中，数据集通常分为三种类型：训练集（train）、验证集（dev）和测试集（test）。它们各自的作用和特点如下：</p>
+<ol>
+<li>
+<p><strong>训练集（Train Dataset）</strong>：</p>
+<ul>
+<li><strong>用途</strong>：用于训练模型，帮助模型学习数据的特征。</li>
+<li><strong>特征</strong>：包含大量的样本，通常是整个数据集中最大的部分。</li>
+<li><strong>目标</strong>：通过调整模型参数，使得模型在该数据集上的表现达到最佳。</li>
+</ul>
+</li>
+<li>
+<p><strong>验证集（Dev Dataset）</strong>：</p>
+<ul>
+<li><strong>用途</strong>：用于调整模型的超参数和进行模型选择，帮助评估模型的泛化能力。</li>
+<li><strong>特征</strong>：一般较小于训练集，但在模型训练过程中多次使用。</li>
+<li><strong>目标</strong>：提供模型在未见数据上的表现，以防止过拟合，并帮助选择最佳模型结构或超参数。</li>
+</ul>
+</li>
+<li>
+<p><strong>测试集（Test Dataset）</strong>：</p>
+<ul>
+<li><strong>用途</strong>：用于评估最终模型的性能，给出对新数据的真实表现。</li>
+<li><strong>特征</strong>：通常与训练集和验证集完全独立，且仅在模型训练结束后使用。</li>
+<li><strong>目标</strong>：评估模型在真实应用场景中的表现，提供模型的泛化能力和有效性指标。</li>
+</ul>
+</li>
+</ol>
+
+
+<h3 class="relative group">总结 
+    <div id="%E6%80%BB%E7%BB%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%80%BB%E7%BB%93" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>训练集</strong>：用来训练模型。</li>
+<li><strong>验证集</strong>：用来调优模型。</li>
+<li><strong>测试集</strong>：用来最终评估模型性能。</li>
+</ul>
+<p>这种划分有助于确保模型的学习和评估是公正和有效的，减少对模型性能的偏见。</p>
+
+
+<h2 class="relative group">HotPotQA： 用于多样化、可解释的多跳问题解答的数据集 
+    <div id="hotpotqa-%E7%94%A8%E4%BA%8E%E5%A4%9A%E6%A0%B7%E5%8C%96%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hotpotqa-%E7%94%A8%E4%BA%8E%E5%A4%9A%E6%A0%B7%E5%8C%96%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>论文题目：Yang 等 - 2018 - HotpotQA A Dataset for Diverse, Explainable Multi-hop Question Answering</p>
+<p>论文链接：[<a href="https://arxiv.org/abs/1809.09600"   target="_blank">
+    1809.09600] HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering (arxiv.org)</a></p>
+<p>项目地址：<a href="https://hotpotqa.github.io/"   target="_blank">
+    HotpotQA Homepage</a></p>
+
+
+<h3 class="relative group">构建思路 
+    <div id="%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>HotPotQA是2018年由卡内基梅隆大学发布的用于多样化、可解释的多跳问题解答的数据集。</p>
+
+
+<h3 class="relative group">数据格式 
+    <div id="%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group"><strong>训练集格式</strong> 
+    <div id="%E8%AE%AD%E7%BB%83%E9%9B%86%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83%E9%9B%86%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p><code>hotpot_train_v1.1.json</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;supporting_facts&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="s2">&#34;str(title)&#34;</span><span class="p">,</span> <span class="s2">&#34;int(sent_id)&#34;</span><span class="p">]</span>        <span class="c1">// 支持文档的标题和对应句子的序号（第几句）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;level&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="c1">// 以下三种之一作为值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s2">&#34;easy&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;hard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;medium&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span> <span class="c1">// 问题内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;context&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;str(Title)&#34;</span><span class="p">,</span> <span class="c1">// 文档标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;str(Sent)&#34;</span><span class="p">,</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="s2">&#34;str(Sent)&#34;</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span> <span class="c1">// 这里应该是一个字符串，代表答案内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span> <span class="c1">// 这里应该是一个唯一的字符串标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="p">[</span>        <span class="c1">// 以下两种之一作为值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s2">&#34;bridge&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;comparison&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>下面是对各个字段的解释：</p>
+<ol>
+<li>
+<p><strong>supporting_facts</strong>:</p>
+<ul>
+<li>类型: <code>List of Lists</code>，包含数个字符串列表，每个字符串列表由一个字符串和一个整数构成。</li>
+<li>含义: 支持该问题的事实。包含支持问题答案相关事实的文档题目（title）和相关事实的句子在文档中对应的定位（sent_id）。</li>
+</ul>
+</li>
+<li>
+<p><strong>level</strong>:</p>
+<ul>
+<li>类型: <code>List of Strings</code>，可能的取值为 <code>&quot;easy&quot;</code>, <code>&quot;hard&quot;</code>, <code>&quot;medium&quot;</code>。</li>
+<li>含义: 问题的难度级别。它表示该问题的难度，可以是“easy”（简单）、“hard”（困难）或“medium”（中等）。</li>
+</ul>
+</li>
+<li>
+<p><strong>question</strong>:</p>
+<ul>
+<li>类型: <code>String</code>。</li>
+<li>含义: 问题文本。这是实际提出的多跳问题的内容。</li>
+</ul>
+</li>
+<li>
+<p><strong>context</strong>:</p>
+<ul>
+<li>类型: <code>List of Lists</code>，包含数个字符串列表（应该是10个）。</li>
+<li>含义: 可能能够提供上下文信息的文档或句子。信息由几个能够提供关键信息的文档和其他干扰文档组成。每个列表有一个标题（Title）和数个句子（Sent）。</li>
+</ul>
+</li>
+<li>
+<p><strong>answer</strong>:</p>
+<ul>
+<li>类型: <code>String</code>。</li>
+<li>含义: 问题的答案。这是根据给定的上下文回答问题的答案。</li>
+</ul>
+</li>
+<li>
+<p><strong>_id</strong>:</p>
+<ul>
+<li>类型: <code>String</code>。</li>
+<li>含义: 唯一标识符。用于唯一标识该条问答数据。</li>
+</ul>
+</li>
+<li>
+<p><strong>type</strong>:</p>
+<ul>
+<li>类型: <code>List of Strings</code>，可能的取值为 <code>&quot;bridge&quot;</code>, <code>&quot;comparison&quot;</code>。</li>
+<li>含义: 问题的类型。它可以是两种类型之一：
+<ul>
+<li><code>&quot;bridge&quot;</code>：表示需要跨越多个上下文信息来连接事实并推导出答案。</li>
+<li><code>&quot;comparison&quot;</code>：表示需要对比多个事实来得出答案。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;supporting_facts&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Allie Goertz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Allie Goertz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Allie Goertz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Milhouse Van Houten&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;level&#34;</span><span class="p">:</span> <span class="s2">&#34;hard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;Musician and satirist Allie Goertz wrote a song about the \&#34;The Simpsons\&#34; character Milhouse, who Matt Groening named after who?&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;context&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Lisa Simpson&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Lisa Marie Simpson is a fictional character in the animated television series \&#34;The Simpsons\&#34;.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; She is the middle child and most intelligent of the Simpson family.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Voiced by Yeardley Smith, Lisa first appeared on television in \&#34;The Tracey Ullman Show\&#34; short \&#34;Good Night\&#34; on April 19, 1987.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Cartoonist Matt Groening created and designed her while waiting to meet James L. Brooks.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening had been invited to pitch a series of shorts based on his comic \&#34;Life in Hell\&#34;, but instead decided to create a new set of characters.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; He named the elder Simpson daughter after his younger sister Lisa Groening.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; After appearing on \&#34;The Tracey Ullman Show\&#34; for three years, the Simpson family were moved to their own series on Fox, which debuted on December 17, 1989.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Marge Simpson&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Marjorie Jacqueline \&#34;Marge\&#34; Simpson (n\u00e9e Bouvier) is a fictional character in the American animated sitcom \&#34;The Simpsons\&#34; and part of the eponymous family.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; She is voiced by Julie Kavner and first appeared on television in \&#34;The Tracey Ullman Show\&#34; short \&#34;Good Night\&#34; on April 19, 1987.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Marge was created and designed by cartoonist Matt Groening while he was waiting in the lobby of James L. Brooks&#39; office.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening had been called to pitch a series of shorts based on \&#34;Life in Hell\&#34; but instead decided to create a new set of characters.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; He named the character after his mother Margaret Groening.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; After appearing on \&#34;The Tracey Ullman Show\&#34; for three seasons, the Simpson family received their own series on Fox, which debuted December 17, 1989.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Bart Simpson&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Bartholomew JoJo \&#34;Bart\&#34; Simpson is a fictional character in the American animated television series \&#34;The Simpsons\&#34; and part of the Simpson family.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; He is voiced by Nancy Cartwright and first appeared on television in \&#34;The Tracey Ullman Show\&#34; short \&#34;Good Night\&#34; on April 19, 1987.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Cartoonist Matt Groening created and designed Bart while waiting in the lobby of James L. Brooks&#39; office.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening had been called to pitch a series of shorts based on his comic strip, \&#34;Life in Hell\&#34;, but instead decided to create a new set of characters.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; While the rest of the characters were named after Groening&#39;s family members, Bart&#39;s name is an anagram of the word \&#34;brat\&#34;.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; After appearing on \&#34;The Tracey Ullman Show\&#34; for three years, the Simpson family received its own series on Fox, which debuted December 17, 1989.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Allie Goertz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Allison Beth \&#34;Allie\&#34; Goertz (born March 2, 1991) is an American musician.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Goertz is known for her satirical songs based on various pop culture topics.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Her videos are posted on YouTube under the name of Cossbysweater.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Subjects of her songs have included the film \&#34;The Room\&#34;, the character Milhouse from the television show \&#34;The Simpsons\&#34;, and the game Dungeons &amp; Dragons.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Her style has been compared to that of Bo Burnham.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; In December 2015, Goertz released a concept album based on the Adult Swim series \&#34;Rick and Morty\&#34;, \&#34;Sad Dance Songs\&#34;, with the album&#39;s cover emulating the animation and logo of the series.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The album was made possible through Kickstarter.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; She is co-host of Everything&#39;s Coming Up Podcast, a Simpsons-focused podcast along with Julia Prescott.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Milhouse Van Houten&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Milhouse Mussolini van Houten is a fictional character featured in the animated television series \&#34;The Simpsons\&#34;, voiced by Pamela Hayden, and created by Matt Groening who named the character after President Richard Nixon&#39;s middle name.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Later in the series, it is revealed that Milhouse&#39;s middle name is \&#34;Mussolini.\&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Los Angeles Reader&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Los Angeles Reader was a weekly paper established in 1978 and distributed in Los Angeles, United States.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; It followed the format of the (still active) Chicago Reader.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The paper was known for having lengthy, thoughtful reviews of movies, plays and concerts in the LA area.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; James Vowell was its founding editor.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Among its writers were Keith Fitzgerald, Nigey Lennon, Lionel Rolfe, Lawrence Wechsler, Mick Farren, Richard Meltzer, Heidi Dvorak, Chris Morris, Jerry Stahl, Steven Kane, Andy Klein, Allen Levy, Jim Goad, Kirk Silsbee, Henry Sheehan, Samantha Dunn, Natalie Nichols, Steve Appleford, Eric Mankin (also editor), Paul Birchall, Eddie Rivera (who wrote the paper&#39;s first cover story), Amy Steinberg, Harry Sheehan, Dan Sallit, Myron Meisel, David Ehrenstein.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Tom Davis, Bruce Bebb, Stuart Goldman, Ernest Hardy, Kevin Uhrich, Erik Himmelsbach and David L. Ulin.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; It is famous for being the first newspaper to publish Matt Groening&#39;s cartoon strip, Life in Hell on April 25, 1980.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; James Vowell hired Matt Groening as his assistant editor in 1979.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening was also originally a Reader music critic.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; It also ran a cartoon strip by David Lynch (director of Blue Velvet) called The Angriest Dog in the World, a strip notable for having exactly the same drawing panels for its entire run.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; James Vowell and his wife Codette Wallace bought the Reader from the Chicago Reader in February 1989.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; They sold \&#34;The Reader\&#34; to New Times Media in 1996, which merged it with the \&#34;Los Angeles View\&#34; to form \&#34;New Times LA\&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Homer Simpson&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Homer Jay Simpson is a fictional character and the main protagonist of the American animated television series \&#34;The Simpsons\&#34; as the patriarch of the eponymous family.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; He is voiced by Dan Castellaneta and first appeared on television, along with the rest of his family, in \&#34;The Tracey Ullman Show\&#34; short \&#34;Good Night\&#34; on April 19, 1987.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Homer was created and designed by cartoonist Matt Groening while he was waiting in the lobby of James L. Brooks&#39; office.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening had been called to pitch a series of shorts based on his comic strip \&#34;Life in Hell\&#34; but instead decided to create a new set of characters.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; He named the character after his father, Homer Groening.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; After appearing for three seasons on \&#34;The Tracey Ullman Show\&#34;, the Simpson family got their own series on Fox that debuted December 17, 1989.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;List of The Simpsons video games&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;\&#34;The Simpsons\&#34; is an American animated television sitcom created by Matt Groening for the Fox Broadcasting Company.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The series is a satirical parody of a middle class American lifestyle epitomized by its eponymous family, which consists of Homer, Marge, Bart, Lisa and Maggie.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; It is set in the fictional town of Springfield, and lampoons American culture, society and television, and many aspects of the human condition.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The family was conceived by Groening shortly before a pitch for a series of animated shorts with producer James L.\u00a0Brooks.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Groening created a dysfunctional family and named the characters after members of his own family, substituting Bart for his own name.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The shorts became a part of \&#34;The Tracey Ullman Show\&#34; on April 19, 1987 and after a three-season run, the sketch was developed into a half-hour prime time show and became a hit series for Fox.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The growing popularity of the series motivated video game developers to create video games based on the series.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Two pinball machines have also been produced; one self-titled, that was only made available for a limited time after the first season finale (1990) and \&#34;The Simpsons Pinball Party\&#34; (2003).&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; Additionally, several handheld device games have been released, such as \&#34;Bartman: Avenger of Evil\&#34; (1990) and \&#34;Bart Simpson&#39;s Cupcake Crisis\&#34; (1991).&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;The Simpsons: An Uncensored, Unauthorized History&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;The Simpsons: An Uncensored, Unauthorized History is a non-fiction book about the American animated television series \&#34;The Simpsons\&#34;.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; It was written by John Ortved, and first published in October 2009 by Faber and Faber.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; In the United Kingdom, the book is called Simpsons Confidential: The uncensored, totally unauthorised history of the world&#39;s greatest TV show by the people that made it.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The book is an oral history of the show, and concentrates particularly on the writers and producers of the show.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The book includes entire chapters devoted to key figures such as creator Matt Groening and James L. Brooks and Sam Simon, who helped develop the series.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; According to National Public Radio reviewer Linda Holmes, \&#34;Ortved&#39;s thesis, essentially, is that lots of people are responsible for the success of \&#34;The Simpsons\&#34;, and their creator, Matt Groening, has too often been viewed as the sole source to the detriment of others who also deserve to be praised.\&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;List of The Simpsons guest stars&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;In addition to the show&#39;s regular cast of voice actors, celebrity guest stars have been a staple of \&#34;The Simpsons\&#34;, an American animated television sitcom created by Matt Groening for the Fox Broadcasting Company, since its first season.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; \&#34;The Simpsons\&#34; focuses on the eponymous family, which consists of Homer, Marge, Bart, Lisa and Maggie.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The family was initially conceived by Groening for a series of animated shorts, which originally aired as a part of \&#34;The Tracey Ullman Show\&#34; between 1987 and 1989.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The shorts were developed into a half-hour prime time series which began in December 1989.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; The series&#39; 27th season began in September 2015 and episodes of \&#34;The Simpsons\&#34; have aired.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34; A feature film adaptation of the series called \&#34;The Simpsons Movie\&#34;, was released in 2007.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;President Richard Nixon&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;5a8d7341554299441c6b9fe5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;bridge&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div>
+
+<h4 class="relative group"><strong>验证集格式</strong> 
+    <div id="%E9%AA%8C%E8%AF%81%E9%9B%86%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E9%AA%8C%E8%AF%81%E9%9B%86%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p><code>hotpot_dev_fullwiki_v1.json</code>、<code>hotpot_dev_distractor_v1.json</code></p>
+<p>验证集分成两种，<code>distractor</code>版的<code>content</code>字段由两个关键文档和八个干扰文档组成。<code>full_wiki</code>版更加困难，<code>content</code>字段不一定包含关键文档（所有这个字段其实没什么用），要求模型从全部的维基百科的第一段中检索并找到关键信息，然后回答问题。</p>
+
+
+<h4 class="relative group">测试集格式 
+    <div id="%E6%B5%8B%E8%AF%95%E9%9B%86%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B5%8B%E8%AF%95%E9%9B%86%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p><code>hotpot_test_fullwiki_v1.json</code></p>
+<p>测试集只由问题和<code>full_wiki</code>版的上下文（就是没什么卵用）组成。为了保证公平性，答案不公开，需要在<a href="https://hotpotqa.github.io/"   target="_blank">
+    HotpotQA Homepage</a> 上将模型和其输出结果进行上传获得最终的评估分数。</p>
+<p>格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;context&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;str(Title)&#34;</span><span class="p">,</span> <span class="c1">// 文档标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;str(Sent)&#34;</span><span class="p">,</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="s2">&#34;str(Sent)&#34;</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">开放域问答 
+    <div id="%E5%BC%80%E6%94%BE%E5%9F%9F%E9%97%AE%E7%AD%94" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%BC%80%E6%94%BE%E5%9F%9F%E9%97%AE%E7%AD%94" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>可以在此页面下载作者团队处理过的WiKi离线语料库：<a href="https://hotpotqa.github.io/wiki-readme.html"   target="_blank">
+    HotpotQA Homepage</a></p>
+
+
+<h2 class="relative group">2WikiMultiHopQA：用于全面评估推理步骤的多跳问答数据集 
+    <div id="2wikimultihopqa%E7%94%A8%E4%BA%8E%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94%E6%95%B0%E6%8D%AE%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2wikimultihopqa%E7%94%A8%E4%BA%8E%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94%E6%95%B0%E6%8D%AE%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>论文题目：Ho 等 - 2020 - Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps</p>
+<p>论文链接：<a href="https://aclanthology.org/2020.coling-main.580/"   target="_blank">
+    Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology</a></p>
+<p>项目地址：<a href="https://github.com/Alab-NII/2wikimultihop"   target="_blank">
+    Alab-NII/2wikimultihop</a></p>
+
+
+<h3 class="relative group">构建思路 
+    <div id="%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>​	有研究表明：HotpotQA 中的许多示例不需要多跳推理即可解决。</p>
+<p>​	为此，作者在每个样本中引入了新信息，即包含全面而简洁的信息来解释预测的证据。本数据集中的证据信息是一组三元组，其中每个三元组都是从 Wikidata 获得的结构化数据（主题实体、属性、对象实体），作者认为这样可用于解释预测并测试模型的推理和推理技能。</p>
+<div align=center>
+<img src="pic/image-20241020165537514.png" alt="image-20241020165537514" style="zoom:80%;" />
+</div>    
+<center>
+    <b>图 1：数据集中的一个推理问题示例。其与 HotpotQA 之间的区别在于解释推理路径的证据信息。</b>
+</center>
+
+
+<h3 class="relative group">数据格式 
+    <div id="%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">训练集/验证集 
+    <div id="%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p><code>train.json</code>、<code>dev.json</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="p">[</span>				 <span class="c1">// 以下四种之一作为值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="s2">&#34;compositional&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;inference&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;bridge_comparison&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;comparison&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;context&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;str(Title)&#34;</span><span class="p">,</span> <span class="c1">// 文档标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;str(Sent)&#34;</span><span class="p">,</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="s2">&#34;str(Sent)&#34;</span> <span class="c1">// 句子内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;supporting_facts&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="s2">&#34;str(title)&#34;</span><span class="p">,</span> <span class="s2">&#34;int(sent_id)&#34;</span><span class="p">]</span>        <span class="c1">// 支持文档的标题和对应句子的序号（第几句）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;evidences&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">			<span class="p">[</span><span class="s2">&#34;str(subject entity)&#34;</span><span class="p">,</span> <span class="s2">&#34;str(relation)&#34;</span><span class="p">,</span> <span class="s2">&#34;str(object entity)&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li><code>_id</code>: 每个样本的唯一标识</li>
+<li><code>question</code>: 字符串</li>
+<li><code>answer</code>: 问题的答案（测试数据中无此信息）</li>
+<li><code>supporting_facts</code>: 列表，每个元素包含[标题, 句子id]，标题是段落标题，句子id是模型使用的句子的索引（从0开始）（测试数据中无此信息）</li>
+<li><code>context</code>: 列表，每个元素包含[标题, 句子]，句子是一个句子列表</li>
+<li><code>evidences</code>: 列表，每个元素是一个包含[主体实体, 关系, 客体实体]的三元组,有几组<code>supporting_facts</code>就有几组这个（测试数据中无此信息）</li>
+<li><code>type</code>: 字符串，问题类型有：比较、推理、组合和桥接比较</li>
+<li><code>entity_ids</code>: 字符串，包含两个Wikidata id（桥接比较问题为四个），例如 &lsquo;Q7320430_Q51759&rsquo;（数据里面没找到啊？）</li>
+</ul>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;13f5ad2c088c11ebbd6fac1f6bf848b6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;bridge_comparison&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;Are director of film Move (1970 Film) and director of film M\u00e9diterran\u00e9e (1963 Film) from the same country?&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;context&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Stuart Rosenberg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Stuart Rosenberg (August 11, 1927 \u2013 March 15, 2007) was an American film and television director whose motion pictures include \&#34;Cool Hand Luke\&#34; (1967), \&#34;Voyage of the Damned\&#34; (1976), \&#34;The Amityville Horror\&#34; (1979), and \&#34;The Pope of Greenwich Village\&#34; (1984).&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;He was noted for his work with actor Paul Newman.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;M\u00e9diterran\u00e9e (1963 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;M\u00e9diterran\u00e9e is a 1963 French experimental film directed by Jean-Daniel Pollet with assistance from Volker Schl\u00f6ndorff.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;It was written by Philippe Sollers and produced by Barbet Schroeder, with music by Antione Duhamel.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;The 45 minute film is cited as one of Pollet&#39;s most influential films, which according to Jonathan Rosenbaum directly influenced Jean-Luc Goddard&#39;s \&#34;Contempt\&#34;, released later the same year.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Footage for the film was shot around the Mediterranean, including at a Greek temple, a Sicilian garden, the sea, and also features a fisherman, a bullfighter, and a girl on an operating table.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Move (1970 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Move is a 1970 American comedy film starring Elliott Gould, Paula Prentiss and Genevi\u00e8ve Wa\u00efte, and directed by Stuart Rosenberg.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;The screenplay was written by Joel Lieber and Stanley Hart, adapted from a novel by Lieber.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Ian Barry (director)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Ian Barry is an Australian director of film and TV.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Peter Levin&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Peter Levin is an American director of film, television and theatre.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Brian Johnson (special effects artist)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Brian Johnson( born 1939 or 1940) is a British designer and director of film and television special effects.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Rachel Feldman&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Rachel Feldman( born August 22, 1954) is an American director of film and television and screenwriter of television films.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Hanro Smitsman&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Hanro Smitsman, born in 1967 in Breda( Netherlands), is a writer and director of film and television.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Jean-Daniel Pollet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Jean-Daniel Pollet (1936\u20132004) was a French film director and screenwriter who was most active in the 1960s and 1970s.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;He was associated with two approaches to filmmaking: comedies which blended burlesque and melancholic elements, and poetic films based on texts by writers such as the French poet Francis Ponge.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Howard W. Koch&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Howard Winchel Koch( April 11, 1916 \u2013 February 16, 2001) was an American producer and director of film and television.&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;supporting_facts&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Move (1970 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;M\u00e9diterran\u00e9e (1963 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Stuart Rosenberg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Jean-Daniel Pollet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;evidences&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Move (1970 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;director&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Stuart Rosenberg&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;M\u00e9diterran\u00e9e (1963 film)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;director&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Jean-Daniel Pollet&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Stuart Rosenberg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;country of citizenship&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;American&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Jean-Daniel Pollet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;country of citizenship&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;French&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;no&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div>
+
+<h4 class="relative group">测试集 
+    <div id="%E6%B5%8B%E8%AF%95%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B5%8B%E8%AF%95%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>与训练集和验证集格式相同，但是<code>answer</code>、<code>supporting_facts</code>和<code>evidences</code>留空。</p>
+<p>进行评测需要联系作者，格式要求见github。</p>
+
+
+<h3 class="relative group">开放域问答 
+    <div id="%E5%BC%80%E6%94%BE%E5%9F%9F%E9%97%AE%E7%AD%94-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%BC%80%E6%94%BE%E5%9F%9F%E9%97%AE%E7%AD%94-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>可以在此页面下载作者团队处理过的WiKi离线语料库：<a href="https://www.dropbox.com/scl/fi/p6xcpt4a7wxzqsa58kkko/para_with_hyperlink.zip?rlkey=tzei8xc346a8e2dx8h934p7t1&amp;e=1"   target="_blank">
+    para_with_hyperlink.zip</a></p>
+
+
+<h2 class="relative group">MuSiQue：通过单跳问题组合构建的多跳问题 
+    <div id="musique%E9%80%9A%E8%BF%87%E5%8D%95%E8%B7%B3%E9%97%AE%E9%A2%98%E7%BB%84%E5%90%88%E6%9E%84%E5%BB%BA%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E9%A2%98" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#musique%E9%80%9A%E8%BF%87%E5%8D%95%E8%B7%B3%E9%97%AE%E9%A2%98%E7%BB%84%E5%90%88%E6%9E%84%E5%BB%BA%E7%9A%84%E5%A4%9A%E8%B7%B3%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>论文题目：Trivedi 等 - 2022 - ♫ MuSiQue Multihop Questions via Single-hop Question Composition</p>
+<p>论文链接：<a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00475/110996/MuSiQue-Multihop-Questions-via-Single-hop-Question"   target="_blank">
+    ♫ MuSiQue: Multihop Questions via Single-hop Question Composition | Transactions of the Association for Computational Linguistics | MIT Press</a></p>
+<p>项目地址：<a href="https://github.com/stonybrooknlp/musique"   target="_blank">
+    StonyBrookNLP/musique: Repository for MuSiQue: Multi-hop Questions via Single-hop Question Composition, TACL 2022</a></p>
+
+
+<h3 class="relative group">构建思路 
+    <div id="%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9E%84%E5%BB%BA%E6%80%9D%E8%B7%AF-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>作者引入了一种自下而上的过程，通过仔细选择和组合从现有数据集中获得的单跳问题，构建具有挑战性的多跳阅读理解问答数据集。其背后的关键思想包括：</p>
+<p>（i）从大量单跳问题中组合多跳问题，这使得能够系统地探索广泛的候选多跳问题空间。</p>
+<p>（ii）应用一套严格的筛选标准，确保没有子问题能够在未找到其连接的前一个子问题答案的情况下被回答（这一关键特性我们正式定义为MuSiQue条件的一部分。</p>
+<p>（iii）在每个单跳问题的层面上减少训练-测试泄漏，从而减轻简单记忆技巧的影响。</p>
+<p>（iv）添加难以识别的干扰上下文。</p>
+<p>（v）在子问题层面上创建不可回答的多跳问题。</p>
+<p>以这种方法，作者构建了一个新的多跳问答数据集MuSiQue-Ans，包含约25,000个2-4跳的问题，具有六种不同的组合结构（见表1）。 MuSiQue-Ans 比两个先前的多跳推理数据集<strong>HotpotQA</strong>和<strong>2WikiMultihopQA</strong>更具挑战性且更难以作弊。特别是，它的人机差距是前者的三倍，且断开推理（DiRe）得分显著较低，该得分反映了一个数据集通过断开推理作弊的程度。</p>
+<p>另外，通过引入上下文不足的概念，作者还发布了一个数据集变体 MuSiQue-Full，包含约50,000个多跳问题，这些问题形成了可回答与不可回答问题的对比对。 MuSiQue-Full 的挑战性更高，且更难以作弊。</p>
+<div align=center>
+<img src="pic/image-20241021161455785.png" alt="image-20241021161455785" style="zoom:80%;" />
+</div>    
+
+
+<h3 class="relative group">数据格式 
+    <div id="%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">训练集/验证集格式 
+    <div id="%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83%E9%9B%86%E9%AA%8C%E8%AF%81%E9%9B%86%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;nhop_indx(str)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;paragraphs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="c1">// 以下两种之一作为值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;question_decomposition&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;paragraph_support_idx&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;answer_aliases&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;str&#34;</span><span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;answerable&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="c1">// 以下两种之一作为值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li><strong>id</strong>:</li>
+</ol>
+<ul>
+<li><code>&quot;nhop_indx(str)&quot;</code> 表示当前问答任务的唯一标识符，<code>nhop</code>表示该问题有几跳。</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>paragraphs</strong>:</p>
+<ul>
+<li><code>paragraphs</code> 是一个段落列表，包含多个与问题相关的文本段落。</li>
+<li><strong>idx</strong>: 每个段落的索引编号，类型为整数 (<code>int</code>)，用于标识段落顺序或位置。</li>
+<li><strong>title</strong>: 段落的标题，类型为字符串 (<code>str</code>)，表示该段落的主题或概述。</li>
+<li><strong>paragraph_text</strong>: 段落的具体内容，类型为字符串 (<code>str</code>)，包括完整的文本信息。</li>
+<li><strong>is_supporting</strong>: 这是一个布尔值列表，表示该段落是否支持回答当前的问题。可能的取值为 <code>true</code>（支持）或 <code>false</code>（不支持）。在<code>-ans</code> 数据中，一定存在<code>true</code>字段，而在<code>-full</code>数据中则不一定。</li>
+</ul>
+</li>
+<li>
+<p><strong>question</strong>:</p>
+</li>
+</ol>
+<ul>
+<li>当前需要回答的问题，类型为字符串 (<code>str</code>)，代表任务的核心问题。</li>
+</ul>
+<ol start="4">
+<li>
+<p><strong>question_decomposition</strong>:</p>
+<ul>
+<li>问题的分解列表，适用于多步骤问题或复杂问题的分解。</li>
+<li><strong>id</strong>: 分解后问题的编号，类型为整数 (<code>int</code>)。</li>
+<li><strong>question</strong>: 每个分解问题的内容，类型为字符串 (<code>str</code>)（这里的问题不是简单子问题，而是涵盖推理步骤的子问题拆解，会有一些奇怪的代词）。</li>
+<li><strong>answer</strong>: 对分解问题的答案，类型为字符串 (<code>str</code>)。</li>
+<li><strong>paragraph_support_idx</strong>: 支持分解问题答案的段落索引，类型为整数 (<code>int</code>)，指向 <code>paragraphs</code> 中的某个段落。</li>
+</ul>
+</li>
+<li>
+<p><strong>answer</strong>:</p>
+</li>
+</ol>
+<ul>
+<li>最终的回答，类型为字符串 (<code>str</code>)，是针对 <code>question</code> 的完整答案。</li>
+</ul>
+<ol start="6">
+<li><strong>answer_aliases</strong>:</li>
+</ol>
+<ul>
+<li>答案的别名或同义词列表，每个别名为字符串 (<code>str</code>)，用于处理多种可能的正确回答。</li>
+</ul>
+<ol start="7">
+<li>
+<p><strong>answerable</strong>:</p>
+<ul>
+<li>表示当前问题是否可以被回答的布尔值，可能的取值为 <code>true</code>（可回答）或 <code>false</code>（不可回答）。在<code>-ans</code> 数据中，都为<code>true</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;2hop__28482_46077&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;paragraphs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Pavlodar&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Pavlodar (Kazakh and Russian: Павлодар) is a city in northeastern Kazakhstan and the capital of Pavlodar Region. It is located 450 km northeast of the national capital Nur-Sultan, and 405 km southeast of the Russian city of Omsk along the Irtysh River. , the city has a population of 331,710. The population of \&#34;Pavlodar\&#34; is composed predominantly of ethnic Russians and Kazakhs with significant Ukrainian, German and Tatar minorities. The city is served by Pavlodar Airport.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;San Jose, San Pablo, Laguna&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Barangay San Jose (commonly known as Malamig) is one of the 80 barangays of San Pablo City in the Philippines. Located along the eastern part of the city, it is bordered by Brgy. Concepcion on the north and Brgy. San Francisco on the west.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Siege of Sloviansk&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The Siege of Sloviansk was an operation by the Armed Forces of Ukraine to recapture the city of Sloviansk in Donetsk Oblast from pro-Russian insurgents who had seized it on 12 April 2014. The city was taken back on 5 July 2014 after shelling from artillery and heavy fighting. The fighting in Sloviansk marked the first major military engagement between pro-Russian separatists and Ukrainian government forces, in the first runoff of battles of 2014.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Springfield, Tennessee&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Springfield is a city in and the county seat of Robertson County, which is located in Middle Tennessee on the northern border of the state. The population was 16,478 at the 2010 census and 16,809 in 2016.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Baltic Sea&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Since May 2004, with the accession of the Baltic states and Poland, the Baltic Sea has been almost entirely surrounded by countries of the European Union (EU). The only remaining non-EU shore areas are Russian: the Saint Petersburg area and the exclave of the Kaliningrad Oblast.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Estonia&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The superior god of Oeselians as described by Henry of Latvia was called Tharapita. According to the legend in the chronicle Tharapita was born on a forested mountain in Virumaa (Latin: Vironia), mainland Estonia from where he flew to Oesel, Saaremaa The name Taarapita has been interpreted as \&#34;Taara, help!\&#34;/\&#34;Thor, help!\&#34; (Taara a(v)ita in Estonian) or \&#34;Taara keeper\&#34;/\&#34;Thor keeper\&#34; (Taara pidaja) Taara is associated with the Scandinavian god Thor. The story of Tharapita&#39;s or Taara&#39;s flight from Vironia to Saaremaa has been associated with a major meteor disaster estimated to have happened in 660 ± 85 BC that formed Kaali crater in Saaremaa.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Eastern Front (World War I)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;This offensive was unanticipated by the Turks, as it was in the middle of winter. The Turkish situation was exacerbated by the Third Army&#39;s commander Kamil Pasha and Chief of Staff Major Guse absence. Coupled with an imbalance of forces -- the Russians had 325 000 troops, while the Turks only 78 000 -- the situation appeared grim for the Central Powers. After three months of fighting, the Russians captured the city of Trabzon on April 18, 1916.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Oklahoma, Clearfield County, Pennsylvania&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Oklahoma is a census-designated place located in Sandy Township, Clearfield County, in the state of Pennsylvania. As of the 2010 census the population was 782. It is bordered to the northwest by the city of DuBois.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Belarus&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Belarus (; , ), officially the Republic of Belarus (, ), formerly known by its Russian name Byelorussia or Belorussia (), is a landlocked country in Eastern Europe bordered by Russia to the northeast, Ukraine to the south, Poland to the west, and Lithuania and Latvia to the northwest. Its capital and most populous city is Minsk. Over 40% of its is forested. Its major economic sectors are service industries and manufacturing. Until the 20th century, different states at various times controlled the lands of modern-day Belarus, including the Principality of Polotsk (11th to 14th centuries), the Grand Duchy of Lithuania, the Polish–Lithuanian Commonwealth, and the Russian Empire.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;El Quinche&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;El Quinche is a city of Ecuador, in the Pichincha Province, about in a straight line distance northeast of the city of Quito. The city, administratively a rural parish of the canton of Quito, is located in the valley of the headwaters of the Guayllabamba River, to the west of Pambamarca. It borders Cayambe Canton to the northeast.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Tuva&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Tuva (; Russian: Тува́) or  Tyva (Tuvan: Тыва), officially the Tyva Republic (Russian: Респу́блика Тыва́, tr. Respublika Tyva, IPA: [rʲɪˈspublʲɪkə tɨˈva]; Tuvan: Тыва Республика, Tyva Respublika [tʰɯˈʋa resˈpʰuplika]), is a federal subject of Russia (a republic, also defined in the Constitution of the Russian Federation as a state).The Tuvan republic lies at the geographical center of Asia, in southern Siberia. The republic borders the Altai Republic, the Republic of Khakassia, Krasnoyarsk Krai, Irkutsk Oblast, and the Republic of Buryatia in Russia and Mongolia to the south. Its capital is the city of Kyzyl. It has a population of 307,930 (2010 census).From 1921 to 1944, Tuva constituted a sovereign, independent nation under the name of Tannu Tuva, officially, the Tuvan People&#39;s Republic, or the People&#39;s Republic of Tannu Tuva. The independence of Tannu Tuva, however, was recognized only by its neighbors: the Soviet Union and Mongolia.A majority of the population are ethnic Tuvans who speak Tuvan as their native tongue, while Russian is spoken natively by the Russian minority; both are official and widely understood in the republic. Tuva is governed by the Great Khural, which elects a chairman for a four-year term.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Russian language&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The language was first introduced in North America when Russian explorers voyaged into Alaska and claimed it for Russia during the 1700s. Although most colonists left after the United States bought the land in 1867, a handful stayed and preserved the Russian language in this region to this day, although only a few elderly speakers of this unique dialect are left. Sizable Russian-speaking communities also exist in North America, especially in large urban centers of the U.S. and Canada, such as New York City, Philadelphia, Boston, Los Angeles, Nashville, San Francisco, Seattle, Spokane, Toronto, Baltimore, Miami, Chicago, Denver and Cleveland. In a number of locations they issue their own newspapers, and live in ethnic enclaves (especially the generation of immigrants who started arriving in the early 1960s). Only about 25% of them are ethnic Russians, however. Before the dissolution of the Soviet Union, the overwhelming majority of Russophones in Brighton Beach, Brooklyn in New York City were Russian-speaking Jews. Afterward, the influx from the countries of the former Soviet Union changed the statistics somewhat, with ethnic Russians and Ukrainians immigrating along with some more Russian Jews and Central Asians. According to the United States Census, in 2007 Russian was the primary language spoken in the homes of over 850,000 individuals living in the United States.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Russian Soviet Federative Socialist Republic&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The Russian Soviet Federative Socialist Republic (Russian SFSR or RSFSR; Russian: Российская Советская Федеративная Социалистическая Республика, tr. Rossiyskaya Sovetskaya Federativnaya Sotsialisticheskaya Respublika  listen (help·info)) commonly referred to as Soviet Russia or simply as Russia, was a sovereign state in 1917–22, the largest, most populous, and most economically developed republic of the Soviet Union in 1922–91 and a sovereign part of the Soviet Union with its own legislation in 1990–91. The Republic comprised sixteen autonomous republics, five autonomous oblasts, ten autonomous okrugs, six krais, and forty oblasts. Russians formed the largest ethnic group. To the west it bordered Finland, Norway and Poland; and to the south, China, Mongolia and North Korea whilst bordering the Arctic Ocean to the north, the Pacific Ocean to the east and the Black sea and Caspian Sea to the south. Within the USSR, it bordered the Baltic republics (Lithuania, Latvia and Estonia), the Byelorussian SSR and the Ukrainian SSR to the west. To the south it bordered the Georgian, Azerbaijan and Kazakh SSRs.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Estonia&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Militarization was another aspect of the Soviet state. Large parts of the country, especially the coastal areas, were closed to all but the Soviet military. Most of the sea shore and all sea islands (including Saaremaa and Hiiumaa) were declared \&#34;border zones\&#34;. People not actually residing there were restricted from travelling to them without a permit. A notable closed military installation was the city of Paldiski, which was entirely closed to all public access. The city had a support base for the Soviet Baltic Fleet&#39;s submarines and several large military bases, including a nuclear submarine training centre complete with a full-scale model of a nuclear submarine with working nuclear reactors. The Paldiski reactors building passed into Estonian control in 1994 after the last Russian troops left the country. Immigration was another effect of Soviet occupation. Hundreds of thousands of migrants were relocated to Estonia from other parts of the Soviet Union to assist industrialisation and militarisation, contributing an increase of about half a million people within 45 years.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Lesozavodsk&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Lesozavodsk () is a town in Primorsky Krai, Russia, located on the Ussuri River (Amur&#39;s tributary), from the Sino–Russian border and about north of Vladivostok, the administrative center of the krai. Population: 37,000 (1972). It was formerly known as Ussuri ().&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Tucson, Arizona&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Tucson is located 118 mi (190 km) southeast of Phoenix and 60 mi (97 km) north of the United States - Mexico border. The 2010 United States Census puts the city&#39;s population at 520,116 with a metropolitan area population at 980,263. In 2009, Tucson ranked as the 32nd largest city and 52nd largest metropolitan area in the United States. A major city in the Arizona Sun Corridor, Tucson is the largest city in southern Arizona, the second largest in the state after Phoenix. It is also the largest city in the area of the Gadsden Purchase. As of 2015, The Greater Tucson Metro area has exceeded a population of 1 million.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Southern Scientific Center RAS&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Southern Scientific Center of the Russian Academy of Science (SSC RAS) is a regional unit of the Russian Academy of Science, which includes research groups from a number of cities located in the Southern Federal District of Russia. It has a staff of about 260 people, including 2 Academicians and 2 Corresponding Members of the Russian Academy of Science, 59 Doctors of Science and 118 PhDs.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Estonia&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The Oeselians or Osilians (Estonian saarlased; singular: saarlane) were a historical subdivision of Estonians inhabiting Saaremaa (Danish: Øsel; German: Ösel; Swedish: Ösel), an Estonian island in the Baltic Sea. They were first mentioned as early as the second century BC in Ptolemy&#39;s Geography III. The Oeselians were known in the Old Norse Icelandic Sagas and in Heimskringla as Víkingr frá Esthland (Estonian Vikings). Their sailing vessels were called pirate ships by Henry of Latvia in his Latin chronicles written at the beginning of the 13th century.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Oklahoma City&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;The third-largest university in the state, the University of Central Oklahoma, is located just north of the city in the suburb of Edmond. Oklahoma Christian University, one of the state&#39;s private liberal arts institutions, is located just south of the Edmond border, inside the Oklahoma City limits.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Rēzekne&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;Rēzekne (Latgalian \&#34;Rēzekne\&#34; or \&#34;Rēzne\&#34; , ; see other names) is a city in the Rēzekne River valley in Latgale region of eastern Latvia. It is called \&#34;The Heart of Latgale\&#34; (Latvian \&#34;Latgales sirds\&#34;, Latgalian \&#34;Latgolys sirds\&#34;). Built on seven hills, Rēzekne is situated east of Riga, and west of the Latvian-Russian border, at the intersection of the Moscow – Ventspils and Warsaw – Saint Petersburg Railways. It has a population of 31,216 (2016) making it the 7th largest city in Latvia.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;is_supporting&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;Which major Russian city borders the body of water in which Saaremaa is located?&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question_decomposition&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">28482</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;Where is Saaremaa located?&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;the Baltic Sea&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_support_idx&#34;</span><span class="p">:</span> <span class="mi">17</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">46077</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;which major russian city borders #1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;Saint Petersburg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_support_idx&#34;</span><span class="p">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;Saint Petersburg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answer_aliases&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Petersburg&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;answerable&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div>
+
+<h4 class="relative group">测试集格式 
+    <div id="%E6%B5%8B%E8%AF%95%E9%9B%86%E6%A0%BC%E5%BC%8F-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B5%8B%E8%AF%95%E9%9B%86%E6%A0%BC%E5%BC%8F-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;paragraphs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;idx&#34;</span><span class="p">:</span> <span class="s2">&#34;int&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;paragraph_text&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;str&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>测试集只保留<code>id</code>、<code>paragraphs(去掉is_supporting)</code> 和 <code>question</code> 字段。提交方式见github。</p>
+
+
+<h2 class="relative group">整合格式 
+    <div id="%E6%95%B4%E5%90%88%E6%A0%BC%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B4%E5%90%88%E6%A0%BC%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>因为这三个数据集一般都是同时出现，所以在模型测试时，转换成同一种格式还是很有必要的，这样方便对模型的测试，这里参考<code>Efficient_RAG(Zhuang et.al, 2024)</code>给出一种转换格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;sample_id&#34;</span><span class="p">,</span>  <span class="c1">//# 样本的唯一标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;hop&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1">//# 问题跳数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;sample_type&#34;</span><span class="p">,</span>  <span class="c1">//# 样本类型，例如 &#34;compose&#34;, &#34;compare&#34;, &#34;inference&#34;, &#34;bridge_compare&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;question&#34;</span><span class="p">:</span> <span class="s2">&#34;What is the question text?&#34;</span><span class="p">,</span>  <span class="c1">//# 问题文本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;This is the answer text.&#34;</span><span class="p">,</span>  <span class="c1">//# 答案文本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;chunks&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">//# 文本块的唯一标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Chunk Title 1&#34;</span><span class="p">,</span>  <span class="c1">//# 文本块标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;chunk&#34;</span><span class="p">:</span> <span class="s2">&#34;Text content of chunk 1.&#34;</span>  <span class="c1">//# 文本块内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//# ... 更多文本块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;supporting_facts&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">//# 支持事实的唯一标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Supporting Fact Title 1&#34;</span><span class="p">,</span>  <span class="c1">//# 支持事实标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;chunk&#34;</span><span class="p">:</span> <span class="s2">&#34;Text content of supporting fact 1.&#34;</span>  <span class="c1">//# 支持事实内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//# ... 更多支持事实
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;decomposition&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//# 对于 MuSiQueDataset，这是问题的分解信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//# 对于其他数据集，可能为空或具有不同的结构
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s2">&#34;decomposed_part_1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;decomposed_part_2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//# ... 更多分解部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>答案格式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;问题的ID值&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;original_question&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;原始问题的文本内容&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ground_truth&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;原始问题的答案&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;final_answer&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;最终答案的文本内容，如果解析或获取失败则为&#39;Unavailable&#39;&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Inference_process&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;推理过程的描述，如果解析或获取失败则为&#39;Unavailable&#39;&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sub_questions&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sub_question&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;第一个子问题的文本内容&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;relevant_chunks&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;相关文本块的标题&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;chunk&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;&lt;相关文本块的内容片段1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;&lt;相关文本块的内容片段2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">               <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;answer&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;第一个子问题的答案文本内容，如果获取失败则为None&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">       <span class="err">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">四种问题类型： 
+    <div id="%E5%9B%9B%E7%A7%8D%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9B%9B%E7%A7%8D%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>比较问题（Comparison question）</strong>
+<ul>
+<li><strong>定义</strong>：对同一组中的两个或多个实体在实体的某些方面进行比较的问题。</li>
+<li><strong>示例</strong>：如 “Who was born first, Albert Einstein or Abraham Lincoln?”（阿尔伯特・爱因斯坦和亚伯拉罕・林肯谁先出生？）。</li>
+<li><strong>推理过程</strong>：需要理解问题中的属性（如出生日期），并对两个实体进行定量或逻辑比较来得出答案。</li>
+</ul>
+</li>
+<li><strong>推理问题（Inference question）</strong>
+<ul>
+<li><strong>定义</strong>：基于知识库中的两个三元组和，利用逻辑规则获取新的三元组，然后根据新三元组创建问题，其答案为。</li>
+<li><strong>示例</strong>：已知三元组 (Abraham Lincoln, mother, Nancy Hanks Lincoln) 和 (Nancy Hanks Lincoln, father, James Hanks)，可得到新三元组 (Abraham Lincoln, maternal grandfather, James Hanks)，问题为 “Who is the maternal grandfather of Abraham Lincoln?”（亚伯拉罕・林肯的外祖父是谁？），答案是 James Hanks。</li>
+<li><strong>推理过程</strong>：要求系统理解多个逻辑规则，例如要找到 “grandchild”（孙辈），需先找到 “child”（子女），再基于此继续寻找下一级 “child”。</li>
+</ul>
+</li>
+<li><strong>组合问题（Compositional question）</strong>
+<ul>
+<li><strong>定义</strong>：由知识库中的两个三元组和创建，但与推理问题不同，两个关系和不存在推理关系。</li>
+<li><strong>示例</strong>：对于三元组 (La La Land, distributor, Summit Entertainment) 和 (Summit Entertainment, founded by, Bernd Eichinger)，问题是 “Who is the founder of the company that distributed La La Land film?”（发行《爱乐之城》电影的公司的创始人是谁？），答案是 Bernd Eichinger。</li>
+<li><strong>推理过程</strong>：系统需要回答多个原始问题并将它们组合起来，如回答上述示例问题，需先回答 “Who is the distributor of La La Land?”（《爱乐之城》的发行商是谁？），再回答其创始人是谁。</li>
+</ul>
+</li>
+<li><strong>桥接比较问题（Bridge - comparison question）</strong>
+<ul>
+<li><strong>定义</strong>：将桥接问题与比较问题相结合，需要找到桥接实体并进行比较以获得最终答案。</li>
+<li><strong>示例</strong>：“Which movie has the director born first, La La Land or Tenet?”（《爱乐之城》和《信条》哪部电影的导演出生更早？）</li>
+<li><strong>推理过程</strong>：模型需要找到连接两个段落（一个关于电影，一个关于导演）的桥接实体，获取出生日期信息，然后进行比较得出最终答案。</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\三大多跳QA数据集\\index.md"
+        var oid_likes = "likes_posts\\三大多跳QA数据集\\index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/genground%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >【组会】Generate-then-Ground：在检索增强多跳问答中的生成后再矫正策略</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-11 19:07:39 &#43;0800 CST">2024年10月11日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="JiBinquan/Giscus"
+        data-repo-id="R_kgDOM2XbtA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM2XbtM4Civds"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/about/"
+            title="">
+            
+            关于
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/statistics/"
+            title="">
+            
+            统计
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      ©️ 2024 Ji Binquan
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://jibinquan.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
