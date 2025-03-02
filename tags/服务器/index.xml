@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2025 Ji Binquan</copyright>
-    <lastBuildDate>Thu, 20 Jun 2024 16:11:34 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Mar 2025 19:11:05 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务器管理操作笔记</title>
+      <link>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 02 Mar 2025 19:11:05 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</guid>
+      <description>实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature.jpg" />
+    </item>
+    
     <item>
       <title>CondaHTTPError: HTTP 000 CONNECTION FAILED for url的问题解决</title>
       <link>https://jibinquan.github.io/posts/condahttperror%E8%A7%A3%E5%86%B3/</link>

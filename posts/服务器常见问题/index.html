@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>服务器管理操作笔记 &middot; 青萍之声</title>
+  <meta name="title" content="服务器管理操作笔记 &middot; 青萍之声" />
+  
+  <meta name="description" content="实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充" />
+  <meta name="keywords" content="技术, 服务器, " />
+  
+  
+  <link rel="canonical" href="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.5615a487fac507c43511df88c6ad42d8fd2f34979108ea0cb248cba1146fdcb8aad55e5fa3a2d69104e8e06875708d5c066abee2cf0d660691eb2f456d7d9f94.css"
+    integrity="sha512-VhWkh/rFB8Q1Ed&#43;Ixq1C2P0vNJeRCOoMskjLoRRv3Liq1V5fo6LWkQTo4Gh1cI1cBmq&#43;4s8NZgaR6y9FbX2flA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.949e93ad68f98f91b41032983a7aee8da40cd845c548ac475ad1b4771bb9d273da1fb4d059d4d2f8f724a6a7ce5962b522b302ed72b43b8a1057a0e4e3ffc58e.js"
+    integrity="sha512-lJ6TrWj5j5G0EDKYOnrujaQM2EXFSKxHWtG0dxu50nPaH7TQWdTS&#43;PckpqfOWWK1IrMC7XK0O4oQV6Dk4//Fjg==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+  <meta property="og:site_name" content="青萍之声">
+  <meta property="og:title" content="服务器管理操作笔记">
+  <meta property="og:description" content="实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-02T19:11:05+08:00">
+    <meta property="article:modified_time" content="2025-03-02T19:11:05+08:00">
+    <meta property="article:tag" content="技术">
+    <meta property="article:tag" content="服务器">
+    <meta property="og:image" content="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature.jpg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature.jpg">
+  <meta name="twitter:title" content="服务器管理操作笔记">
+  <meta name="twitter:description" content="实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "文章",
+    "name": "服务器管理操作笔记",
+    "headline": "服务器管理操作笔记",
+    
+    "abstract": "实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/jibinquan.github.io\/posts\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Ji Binquan"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-02T19:11:05\u002b08:00",
+    "datePublished": "2025-03-02T19:11:05\u002b08:00",
+    
+    "dateModified": "2025-03-02T19:11:05\u002b08:00",
+    
+    "keywords": ["技术","服务器"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3105"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Ji Binquan" />
+  
+  
+  
+  <link href="https://www.zhihu.com/people/herb-42-46" rel="me" />
+  
+  
+  <link href="https://github.com/JiBinquan" rel="me" />
+  
+  
+  <link href="mailto:haing6@163.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">青萍之声</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            研究
+          </p>
+        </a>
+        
+        <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            技术
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            随笔
+          </p>
+        </a>
+        
+        <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            算法
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        友链
+    </p>
+</a>
+
+
+            
+            
+  <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        更多
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            研究
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            技术
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            随笔
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            算法
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            更多
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature_hu18419207250818247285.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      服务器管理操作笔记
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-02 19:11:05 &#43;0800 CST">2025年3月2日</time><span class="px-2 text-primary-500">&middot;</span><span>3105 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">7 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E6%8A%80%E6%9C%AF/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    技术
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    服务器
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Ji Binquan" src="/img/avatar_hu9503206400822313302.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Ji Binquan
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">现在也没研究明白</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/herb-42-46"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="384px" height="384px"><path d="M 5.0507812 2.6835938 L 3.0507812 8.6835938 L 4.9492188 9.3164062 L 5.7207031 7 L 7 7 L 7 10.222656 C 7 10.868331 6.9219874 11.418087 6.8710938 12 L 4 12 L 4 14 L 6.5429688 14 C 5.983285 16.269768 4.8214393 18.029123 2.5039062 19.353516 L 3.4960938 21.089844 C 6.4085349 19.425482 7.9221912 16.957288 8.5761719 14 L 11 14 L 11 12 L 8.8476562 12 C 8.900895 11.408696 9 10.844144 9 10.222656 L 9 7 L 11 7 L 11 5 L 6.3886719 5 L 6.9492188 3.3164062 L 5.0507812 2.6835938 z M 13 5 L 13 18 L 15 18 L 15 20.869141 L 19.302734 18 L 22 18 L 22 17 L 22 5 L 13 5 z M 15 7 L 20 7 L 20 16 L 18.697266 16 L 17 17.130859 L 17 16 L 15 16 L 15 7 z M 9.1777344 15.806641 L 7.5625 16.986328 L 10.191406 20.589844 L 11.808594 19.410156 L 9.1777344 15.806641 z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/JiBinquan"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:haing6@163.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1基本指令">1.基本指令</a>
+      <ul>
+        <li><a href="#11-文件与目录操作">1.1 文件与目录操作</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-网络管理">2. 网络管理</a>
+      <ul>
+        <li><a href="#21-网卡相关">2.1 网卡相关</a>
+          <ul>
+            <li><a href="#网络连接">网络连接</a></li>
+            <li><a href="#ip查询">ip查询</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-防火墙">2.2 防火墙</a>
+          <ul>
+            <li><a href="#查看目前开放端口">查看目前开放端口</a></li>
+            <li><a href="#开放指定端口">开放指定端口</a></li>
+            <li><a href="#关闭指定端口">关闭指定端口</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-磁盘管理">3. 磁盘管理</a>
+      <ul>
+        <li><a href="#31-磁盘空间管理">3.1 磁盘空间管理</a></li>
+        <li><a href="#32-外部磁盘挂载与卸载">3.2 外部磁盘挂载与卸载</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-其他问题">4. 其他问题</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1基本指令">1.基本指令</a>
+      <ul>
+        <li><a href="#11-文件与目录操作">1.1 文件与目录操作</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-网络管理">2. 网络管理</a>
+      <ul>
+        <li><a href="#21-网卡相关">2.1 网卡相关</a>
+          <ul>
+            <li><a href="#网络连接">网络连接</a></li>
+            <li><a href="#ip查询">ip查询</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-防火墙">2.2 防火墙</a>
+          <ul>
+            <li><a href="#查看目前开放端口">查看目前开放端口</a></li>
+            <li><a href="#开放指定端口">开放指定端口</a></li>
+            <li><a href="#关闭指定端口">关闭指定端口</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-磁盘管理">3. 磁盘管理</a>
+      <ul>
+        <li><a href="#31-磁盘空间管理">3.1 磁盘空间管理</a></li>
+        <li><a href="#32-外部磁盘挂载与卸载">3.2 外部磁盘挂载与卸载</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-其他问题">4. 其他问题</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h2 class="relative group">1.基本指令 
+    <div id="1%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">1.1 文件与目录操作 
+    <div id="11-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#11-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h5 class="relative group"><strong>查看当前目录和文件列表</strong> 
+    <div id="%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>命令：<code>ls</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls          <span class="c1"># 列出当前目录下的文件和文件夹（颜色区分文件类型）</span>
+</span></span><span class="line"><span class="cl">ls -l       <span class="c1"># 详细列表格式，显示权限、所有者、文件大小、修改时间等信息</span>
+</span></span><span class="line"><span class="cl">ls -a       <span class="c1"># 显示所有文件，包括隐藏文件（以.开头的文件）</span>
+</span></span><span class="line"><span class="cl">ls -lh      <span class="c1"># 以人类可读格式显示文件大小</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>切换目录</strong> 
+    <div id="%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>命令：<code>cd</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /var/log     <span class="c1"># 进入 /var/log 目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~            <span class="c1"># 进入当前用户的主目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> -            <span class="c1"># 返回上一个工作目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..           <span class="c1"># 进入当前目录的上一级目录</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>查看当前路径</strong> 
+    <div id="%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>命令：<code>pwd</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">pwd</span>     <span class="c1"># 输出当前所在目录的完整路径</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>创建和删除目录</strong> 
+    <div id="%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>创建目录：<code>mkdir</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir new_folder          <span class="c1"># 创建一个名为 new_folder 的目录</span>
+</span></span><span class="line"><span class="cl">mkdir -p /tmp/a/b/c       <span class="c1"># 递归创建多级目录（a、b、c）</span>
+</span></span></code></pre></div></li>
+<li>
+<p>删除目录：<code>rmdir</code> 和 <code>rm -r</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rmdir empty_folder        <span class="c1"># 删除空目录</span>
+</span></span><span class="line"><span class="cl">rm -r folder_to_remove    <span class="c1"># 递归删除目录及其内容（注意：删除操作不可逆，请谨慎使用）</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>文件复制、移动、跨服务器传输和删除</strong> 
+    <div id="%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E7%A7%BB%E5%8A%A8%E8%B7%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%A0%E8%BE%93%E5%92%8C%E5%88%A0%E9%99%A4" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E7%A7%BB%E5%8A%A8%E8%B7%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%A0%E8%BE%93%E5%92%8C%E5%88%A0%E9%99%A4" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>复制文件或目录：<code>cp</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp source.txt destination.txt      <span class="c1"># 复制文件</span>
+</span></span><span class="line"><span class="cl">cp -r source_directory/ target_dir/ <span class="c1"># 递归复制整个目录</span>
+</span></span></code></pre></div></li>
+<li>
+<p>移动或重命名文件/目录：<code>mv</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mv old_name.txt new_name.txt       <span class="c1"># 重命名文件</span>
+</span></span><span class="line"><span class="cl">mv file.txt /path/to/destination/   <span class="c1"># 移动文件到指定目录</span>
+</span></span></code></pre></div></li>
+<li>
+<p>删除文件：<code>rm</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm file.txt             <span class="c1"># 删除单个文件</span>
+</span></span><span class="line"><span class="cl">rm -f file.txt          <span class="c1"># 强制删除文件（不提示确认）</span>
+</span></span><span class="line"><span class="cl">rm -rf directory/       <span class="c1"># 强制递归删除目录及其内容</span>
+</span></span></code></pre></div></li>
+</ul>
+<ul>
+<li>
+<p>文件远程传输：<code>scp</code></p>
+<p>基本语法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">scp <span class="o">[</span>选项<span class="o">]</span> 源路径 目标路径
+</span></span></code></pre></div><p>示例：</p>
+<p>使用 <code>-r</code> 参数递归复制整个目录</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">scp file.txt user@example.com:/home/user/ <span class="c1">#从本地复制文件到远程主机</span>
+</span></span><span class="line"><span class="cl">scp -r username@remote_host:/path/to/remote_file /path/to/local_directory/ <span class="c1">#从远程主机复制目录到本地</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>查看和编辑文件内容</strong> 
+    <div id="%E6%9F%A5%E7%9C%8B%E5%92%8C%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E5%92%8C%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>查看文件内容：<code>cat</code>、<code>more</code>、<code>less</code>、<code>head</code>、<code>tail</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file.txt           <span class="c1"># 显示整个文件内容</span>
+</span></span><span class="line"><span class="cl">more file.txt          <span class="c1"># 分页显示文件内容</span>
+</span></span><span class="line"><span class="cl">less file.txt          <span class="c1"># 分页显示，并支持向前翻页</span>
+</span></span><span class="line"><span class="cl">head -n <span class="m">10</span> file.txt    <span class="c1"># 显示文件前10行</span>
+</span></span><span class="line"><span class="cl">tail -n <span class="m">10</span> file.txt    <span class="c1"># 显示文件最后10行</span>
+</span></span><span class="line"><span class="cl">tail -f /var/log/syslog  <span class="c1"># 实时跟踪日志文件更新</span>
+</span></span></code></pre></div></li>
+<li>
+<p>编辑文件：<code>vi</code>、<code>nano</code>、<code>vim</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vi file.txt            <span class="c1"># 使用 vi 编辑文件</span>
+</span></span><span class="line"><span class="cl">nano file.txt          <span class="c1"># 使用 nano 编辑文件</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>文件搜索与查找</strong> 
+    <div id="%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%9F%A5%E6%89%BE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%9F%A5%E6%89%BE" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>根据文件名查找：<code>find</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find / -name <span class="s2">&#34;config*.txt&#34;</span>   <span class="c1"># 从根目录开始查找所有以 config 开头的 txt 文件</span>
+</span></span></code></pre></div></li>
+<li>
+<p>根据内容搜索：<code>grep</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep <span class="s2">&#34;error&#34;</span> /var/log/syslog   <span class="c1"># 在 syslog 文件中查找包含 &#34;error&#34; 的行</span>
+</span></span><span class="line"><span class="cl">grep -R <span class="s2">&#34;function_name&#34;</span> ./     <span class="c1"># 在当前目录递归查找包含 &#34;function_name&#34; 的文件</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h5 class="relative group"><strong>文件权限与所有者管理</strong> 
+    <div id="%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E6%89%80%E6%9C%89%E8%80%85%E7%AE%A1%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E6%89%80%E6%9C%89%E8%80%85%E7%AE%A1%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h5>
+<ul>
+<li>
+<p>修改权限：<code>chmod</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod <span class="m">755</span> script.sh      <span class="c1"># 设置文件权限为 rwxr-xr-x</span>
+</span></span><span class="line"><span class="cl">chmod u+x script.sh      <span class="c1"># 仅为当前用户添加可执行权限</span>
+</span></span></code></pre></div></li>
+<li>
+<p>修改所有者：<code>chown</code> 和 <code>chgrp</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chown user:group file.txt   <span class="c1"># 同时修改文件的所有者和所属组</span>
+</span></span><span class="line"><span class="cl">chown user file.txt         <span class="c1"># 修改文件所有者</span>
+</span></span><span class="line"><span class="cl">chgrp group file.txt        <span class="c1"># 修改文件所属组</span>
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+
+
+<h2 class="relative group">2. 网络管理 
+    <div id="2-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">2.1 网卡相关 
+    <div id="21-%E7%BD%91%E5%8D%A1%E7%9B%B8%E5%85%B3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#21-%E7%BD%91%E5%8D%A1%E7%9B%B8%E5%85%B3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">网络连接 
+    <div id="%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>查看网络接口状态</strong></p>
+<ul>
+<li>
+<p>命令：<code>ip link show</code> 或 <code>ifconfig</code>（部分系统可能需要安装 net-tools）<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip link show             <span class="c1"># 查看所有网络接口的状态</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">ifconfig -a              <span class="c1"># 显示所有网络接口（包括未激活的）</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>激活/禁用网络接口</strong></p>
+<ul>
+<li>
+<p>使用 <code>ip</code> 命令<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> eth0 up       <span class="c1"># 激活 eth0 接口</span>
+</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> eth0 down     <span class="c1"># 禁用 eth0 接口</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>配置静态 IP 地址</strong></p>
+<ul>
+<li>
+<p>示例（临时配置）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ip addr add 192.168.1.100/24 dev eth0
+</span></span><span class="line"><span class="cl">sudo ip route add default via 192.168.1.1
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong>：永久配置需要修改对应网络管理配置文件（如 <code>/etc/network/interfaces</code>、<code>/etc/sysconfig/network-scripts/ifcfg-eth0</code> 或 NetworkManager 的配置文件），不同的发行版配置方式不同。</p>
+</li>
+<li>
+<p><strong>查看当前网络连接情况</strong></p>
+<ul>
+<li>
+<p>使用 <code>netstat</code> 或 <code>ss</code> 命令<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netstat -tulnp     <span class="c1"># 列出所有监听中的 TCP/UDP 端口及其对应的进程（需要 root 权限）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者使用 ss 命令（更快更现代）</span>
+</span></span><span class="line"><span class="cl">ss -tulnp
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+
+
+<h4 class="relative group">ip查询 
+    <div id="ip%E6%9F%A5%E8%AF%A2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#ip%E6%9F%A5%E8%AF%A2" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>其实<code>ifconfig</code> 就能看到ip信息了</p>
+<ul>
+<li>
+<p><strong>查看本机IP地址</strong></p>
+<ul>
+<li>
+<p>命令：<code>ip addr show</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip addr show eth0       <span class="c1"># 查看指定接口的 IP 地址信息</span>
+</span></span><span class="line"><span class="cl">ip addr show            <span class="c1"># 查看所有网络接口的 IP 地址信息</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>查看路由信息</strong></p>
+<ul>
+<li>
+<p>命令：<code>ip route</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route show           <span class="c1"># 查看当前路由表信息</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>域名解析与网络诊断</strong></p>
+<ul>
+<li>
+<p>使用 <code>ping</code> 测试网络连通性<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping www.google.com
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>traceroute</code>（或 <code>tracepath</code>）追踪网络路径<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">traceroute www.google.com
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">tracepath www.google.com
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 class="relative group">2.2 防火墙 
+    <div id="22-%E9%98%B2%E7%81%AB%E5%A2%99" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#22-%E9%98%B2%E7%81%AB%E5%A2%99" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>防火墙在服务器管理中扮演着重要的安全角色，不同系统和发行版可能默认使用不同的防火墙工具，如 iptables、ufw（Ubuntu常用）、firewalld（CentOS/RHEL常用）。</p>
+
+
+<h4 class="relative group">查看目前开放端口 
+    <div id="%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%89%8D%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%89%8D%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>使用 iptables 查看规则</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo iptables -L -n -v
+</span></span></code></pre></div><p>解释：</p>
+<ul>
+<li><code>-L</code> 列出所有规则</li>
+<li><code>-n</code> 禁止域名解析，加快显示速度</li>
+<li><code>-v</code> 显示详细信息（包括流量统计等）</li>
+</ul>
+</li>
+<li>
+<p><strong>使用 ufw 查看状态（适用于 Ubuntu 系统）</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw status verbose
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用 firewall-cmd 查看开放端口（适用于 firewalld 系统，如 CentOS 7/8）</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --list-all
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h4 class="relative group">开放指定端口 
+    <div id="%E5%BC%80%E6%94%BE%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%BC%80%E6%94%BE%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>使用 iptables 开放端口</strong><br>
+示例（开放 TCP 端口 8080）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo iptables -A INPUT -p tcp --dport <span class="m">8080</span> -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存规则（不同系统保存方法不一样，Ubuntu可能需要使用 iptables-persistent 或编写脚本）</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用 ufw 开放端口</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw allow 8080/tcp
+</span></span><span class="line"><span class="cl">sudo ufw reload     <span class="c1"># 重新加载规则</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用 firewall-cmd 开放端口</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>8080/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload
+</span></span></code></pre></div></li>
+</ul>
+
+
+<h4 class="relative group">关闭指定端口 
+    <div id="%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>使用 iptables 关闭端口</strong><br>
+示例（关闭 TCP 端口 8080）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo iptables -D INPUT -p tcp --dport <span class="m">8080</span> -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接拒绝该端口的访问</span>
+</span></span><span class="line"><span class="cl">sudo iptables -A INPUT -p tcp --dport <span class="m">8080</span> -j DROP
+</span></span></code></pre></div><p><strong>注意</strong>：iptables 规则不会永久生效，重启后会失效。需要保存规则（不同系统保存方式不同）。</p>
+</li>
+<li>
+<p><strong>使用 ufw 关闭端口</strong><br>
+示例（关闭 TCP 端口 8080）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw deny 8080/tcp
+</span></span><span class="line"><span class="cl">sudo ufw reload  <span class="c1"># 重新加载规则</span>
+</span></span></code></pre></div><p>或者直接删除规则：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw delete allow 8080/tcp
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用 firewall-cmd 关闭端口</strong><br>
+示例（关闭 TCP 端口 8080）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --remove-port<span class="o">=</span>8080/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+
+
+<h2 class="relative group">3. 磁盘管理 
+    <div id="3-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">3.1 磁盘空间管理 
+    <div id="31-%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#31-%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>
+<p><strong>查看磁盘使用情况</strong></p>
+<ul>
+<li>
+<p>命令：<code>df</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">df -h         <span class="c1"># 以人类可读格式显示各文件系统的使用情况</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>查看目录或文件大小</strong></p>
+<ul>
+<li>
+<p>命令：<code>du</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du -sh /var/log    <span class="c1"># 显示 /var/log 目录的总大小</span>
+</span></span><span class="line"><span class="cl">du -h --max-depth<span class="o">=</span><span class="m">1</span> /   <span class="c1"># 显示根目录下每个子目录的大小</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>查看磁盘分区和挂载情况</strong></p>
+<ul>
+<li>
+<p>命令：<code>lsblk</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsblk          <span class="c1"># 列出所有块设备及其挂载点</span>
+</span></span></code></pre></div></li>
+<li>
+<p>命令：<code>fdisk -l</code> 或 <code>parted -l</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo fdisk -l
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>监控磁盘 I/O 状况</strong></p>
+<ul>
+<li>
+<p>工具：<code>iostat</code>（需要安装 sysstat 软件包）<br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iostat -x <span class="m">2</span>    <span class="c1"># 每2秒刷新一次详细的 I/O 信息</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 class="relative group">3.2 外部磁盘挂载与卸载 
+    <div id="32-%E5%A4%96%E9%83%A8%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#32-%E5%A4%96%E9%83%A8%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>
+<p><strong>挂载外部磁盘</strong></p>
+<ol>
+<li>
+<p><strong>查看设备信息与挂载情况</strong></p>
+<ul>
+<li>
+<p>命令：<code>lsblk</code> 或 <code>fdisk -l</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsblk
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+</span></span><span class="line"><span class="cl">loop0    7:0    <span class="m">0</span>     4K  <span class="m">1</span> loop /snap/bare/5
+</span></span><span class="line"><span class="cl">loop1    7:1    <span class="m">0</span>  55.4M  <span class="m">1</span> loop /snap/core18/2846
+</span></span><span class="line"><span class="cl">sda      8:0    <span class="m">0</span> 447.1G  <span class="m">0</span> disk 
+</span></span><span class="line"><span class="cl">├─sda1   8:1    <span class="m">0</span>   512M  <span class="m">0</span> part /boot/efi
+</span></span><span class="line"><span class="cl">└─sda2   8:2    <span class="m">0</span> 446.6G  <span class="m">0</span> part /
+</span></span><span class="line"><span class="cl">sdb      8:16   <span class="m">0</span>  14.6T  <span class="m">0</span> disk 
+</span></span><span class="line"><span class="cl">├─sdb1   8:17   <span class="m">0</span>   3.7T  <span class="m">0</span> part /data0
+</span></span><span class="line"><span class="cl">├─sdb2   8:18   <span class="m">0</span>   3.7T  <span class="m">0</span> part /data1
+</span></span><span class="line"><span class="cl">└─sdb3   8:19   <span class="m">0</span>   7.3T  <span class="m">0</span> part /data2
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>创建挂载点</strong><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mkdir -p /mnt/external_disk
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p><strong>挂载设备（临时挂载，重启失效）</strong><br>
+示例（假设设备为 <code>/dev/sdb1</code>）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mount /dev/sdb1 /mnt/external_disk
+</span></span></code></pre></div><ul>
+<li>
+<p>如果需要指定文件系统类型或挂载选项，可使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mount -t ext4 -o defaults /dev/sdb1 /mnt/external_disk
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>自动挂载设置（编辑 /etc/fstab）</strong><br>
+示例：</p>
+<p>在 Linux 中，可以通过编辑 <code>/etc/fstab</code> 文件来设置开机自动挂载某个硬盘到指定目录。以下是具体步骤：</p>
+<p><strong>(1)确定硬盘分区信息</strong></p>
+<p>首先，使用 <code>lsblk</code> 或 <code>fdisk -l</code> 命令查看硬盘分区信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsblk
+</span></span></code></pre></div><p>或者：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo fdisk -l
+</span></span></code></pre></div><p>找到你要挂载的分区，例如 <code>/dev/sdb1</code>。</p>
+<p><strong>(2)获取分区 UUID（推荐）</strong></p>
+<p>使用 <code>blkid</code> 命令查看该分区的 UUID：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo blkid /dev/sdb1
+</span></span></code></pre></div><p>示例输出：</p>
+<pre tabindex="0"><code>/dev/sdb1: UUID=&#34;12345678-abcd-efgh-ijkl-9876543210&#34; TYPE=&#34;ext4&#34;
+</code></pre><p>记录下 <code>UUID</code> 的值（<code>12345678-abcd-efgh-ijkl-9876543210</code>）。</p>
+<p><strong>(3)创建挂载目录</strong></p>
+<p>决定要挂载的目录，比如 <code>/mnt/mydisk</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mkdir -p /mnt/mydisk
+</span></span></code></pre></div><p><strong>(4)编辑 <code>/etc/fstab</code></strong></p>
+<p>使用文本编辑器（如 <code>vim</code> 或 <code>nano</code>）打开 <code>/etc/fstab</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/fstab
+</span></span></code></pre></div><p>在文件末尾添加一行（注意，有的磁盘文件系统类型是xfs的，刚才blkid命令可以看到，就把下面ext4改成xfs）：</p>
+<pre tabindex="0"><code>UUID=12345678-abcd-efgh-ijkl-9876543210  /mnt/mydisk  ext4  defaults  0  2
+</code></pre><ul>
+<li><strong>UUID</strong>：替换为你实际的 UUID（推荐使用 UUID，而非设备路径 <code>/dev/sdb1</code>，以防设备名变化）。</li>
+<li><strong>/mnt/mydisk</strong>：你要挂载的目录。</li>
+<li><strong>ext4</strong>：文件系统类型（如果是 NTFS、xfs、btrfs 等，需修改）。</li>
+<li><strong>defaults</strong>：默认挂载选项（<code>rw,relatime</code> 等）。</li>
+<li>0 2：
+<ul>
+<li>第一个 <code>0</code>：是否需要 <code>dump</code> 备份（一般设为 <code>0</code>）。</li>
+<li>第二个 <code>2</code>：文件系统检查顺序（<code>/</code> 根目录通常为 <code>1</code>，其他磁盘为 <code>2</code>）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(5)测试挂载</strong></p>
+<p>运行以下命令测试挂载：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mount -a
+</span></span></code></pre></div><p>如果没有报错，则配置正确。</p>
+<p><strong>(6)重启验证</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo reboot
+</span></span></code></pre></div><p>重启后，使用 <code>df -h</code> 或 <code>mount | grep /mnt/mydisk</code> 检查是否自动挂载成功：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">df -h
+</span></span><span class="line"><span class="cl">mount <span class="p">|</span> grep /mnt/mydisk
+</span></span></code></pre></div><p>这样，每次开机时，系统都会自动挂载该硬盘到指定目录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/dev/sdb1   /mnt/external_disk   ext4   defaults   <span class="m">0</span>  <span class="m">2</span>
+</span></span></code></pre></div><p><strong>卸载外部磁盘</strong></p>
+</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li>
+<p>命令：<code>umount</code><br>
+示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo umount /mnt/external_disk
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者通过设备名卸载</span>
+</span></span><span class="line"><span class="cl">sudo umount /dev/sdb1
+</span></span></code></pre></div></li>
+<li>
+<p><strong>注意</strong>：卸载前请确保没有进程正在使用挂载目录，可以使用 <code>lsof /mnt/external_disk</code> 查看。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+<h2 class="relative group">4. 其他问题 
+    <div id="4-%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>看看这里面写了么：<a href="https://blog.abelcode.tech/p/server-management-notes/"   target="_blank">
+    Server Management Notes（作者：abel）</a></p>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\服务器常见问题\\index.md"
+        var oid_likes = "likes_posts\\服务器常见问题\\index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >【组会】SlimPLM：利用小型代理模型来决定大语言模型检索的时间和内容</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-02-26 10:34:56 &#43;0800 CST">2025年2月26日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="JiBinquan/Giscus"
+        data-repo-id="R_kgDOM2XbtA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM2XbtM4Civds"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/about/"
+            title="">
+            
+            关于
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/statistics/"
+            title="">
+            
+            统计
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      ©️ 2025 Ji Binquan
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://jibinquan.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

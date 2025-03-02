@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2025 Ji Binquan</copyright>
-    <lastBuildDate>Mon, 07 Oct 2024 09:45:10 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Mar 2025 19:11:05 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务器管理操作笔记</title>
+      <link>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 02 Mar 2025 19:11:05 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</guid>
+      <description>实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature.jpg" />
+    </item>
+    
     <item>
       <title>使用hfd通过镜像下载hugging Face上的模型</title>
       <link>https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/</link>

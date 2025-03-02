@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2025 Ji Binquan</copyright>
-    <lastBuildDate>Wed, 26 Feb 2025 10:34:56 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Mar 2025 19:11:05 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务器管理操作笔记</title>
+      <link>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 02 Mar 2025 19:11:05 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</guid>
+      <description>实验室服务器维护常用命令记录（Linux系统下），主要包括网络管理与磁盘管理的常用操作，后续也可能更新补充</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/feature.jpg" />
+    </item>
+    
     <item>
       <title>【组会】SlimPLM：利用小型代理模型来决定大语言模型检索的时间和内容</title>
       <link>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
