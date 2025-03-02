@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>全局问答 on 青萍之末</title>
+    <title>全局问答 on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/%E5%85%A8%E5%B1%80%E9%97%AE%E7%AD%94/</link>
-    <description>Recent content in 全局问答 on 青萍之末</description>
+    <description>Recent content in 全局问答 on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
     <lastBuildDate>Mon, 07 Oct 2024 19:44:10 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E5%85%A8%E5%B1%80%E9%97%AE%E7%AD%94/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【笔记】RAPTOR: 用于树形组织检索的递归摘要处理</title>

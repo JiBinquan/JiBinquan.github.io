@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>技术 on 青萍之末</title>
+    <title>技术 on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/%E6%8A%80%E6%9C%AF/</link>
-    <description>Recent content in 技术 on 青萍之末</description>
+    <description>Recent content in 技术 on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
     <lastBuildDate>Mon, 07 Oct 2024 09:45:10 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用hfd通过镜像下载hugging Face上的模型</title>

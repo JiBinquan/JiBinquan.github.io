@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>论文笔记 on 青萍之末</title>
+    <title>论文笔记 on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
-    <description>Recent content in 论文笔记 on 青萍之末</description>
+    <description>Recent content in 论文笔记 on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
-    <lastBuildDate>Fri, 11 Oct 2024 19:07:39 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
+    <lastBuildDate>Wed, 26 Feb 2025 10:34:56 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【组会】SlimPLM：利用小型代理模型来决定大语言模型检索的时间和内容</title>
+      <link>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>241218组会报告文字版补档，使用小型LLM辅助进行检索判断的RAG框架</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
+    </item>
+    
     <item>
       <title>【组会】Generate-then-Ground：在检索增强多跳问答中的生成后再矫正策略</title>
       <link>https://jibinquan.github.io/posts/genground%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>

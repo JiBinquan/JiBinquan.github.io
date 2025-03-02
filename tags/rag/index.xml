@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>RAG on 青萍之末</title>
+    <title>RAG on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/rag/</link>
-    <description>Recent content in RAG on 青萍之末</description>
+    <description>Recent content in RAG on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
-    <lastBuildDate>Wed, 04 Dec 2024 19:14:15 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
+    <lastBuildDate>Wed, 26 Feb 2025 10:34:56 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【组会】SlimPLM：利用小型代理模型来决定大语言模型检索的时间和内容</title>
+      <link>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>241218组会报告文字版补档，使用小型LLM辅助进行检索判断的RAG框架</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
+    </item>
+    
     <item>
       <title>【速览】三个经典多跳QA数据集</title>
       <link>https://jibinquan.github.io/posts/%E4%B8%89%E5%A4%A7%E5%A4%9A%E8%B7%B3qa%E6%95%B0%E6%8D%AE%E9%9B%86/</link>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>算法 on 青萍之末</title>
+    <title>算法 on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/%E7%AE%97%E6%B3%95/</link>
-    <description>Recent content in 算法 on 青萍之末</description>
+    <description>Recent content in 算法 on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
     <lastBuildDate>Thu, 07 Oct 2021 16:08:26 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EOJ4329 - EOJ Monthly 2021.9 A. Amazing Discovery（公式推导）（矩阵快速幂）</title>

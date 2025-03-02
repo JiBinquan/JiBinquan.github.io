@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>环境配置 on 青萍之末</title>
+    <title>环境配置 on 青萍之声</title>
     <link>https://jibinquan.github.io/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
-    <description>Recent content in 环境配置 on 青萍之末</description>
+    <description>Recent content in 环境配置 on 青萍之声</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>:copyright: 2024 Ji Binquan</copyright>
+    <copyright>:copyright: 2025 Ji Binquan</copyright>
     <lastBuildDate>Thu, 20 Jun 2024 16:11:34 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CondaHTTPError: HTTP 000 CONNECTION FAILED for url的问题解决</title>
