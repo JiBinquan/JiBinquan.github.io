@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>使用hfd通过镜像下载hugging Face上的模型 &middot; 青萍之声</title>
-  <meta name="title" content="使用hfd通过镜像下载hugging Face上的模型 &middot; 青萍之声" />
+  <title>【笔记】EfficientRAG：多跳问题回答的高效检索器 &middot; 青萍之声</title>
+  <meta name="title" content="【笔记】EfficientRAG：多跳问题回答的高效检索器 &middot; 青萍之声" />
   
-  <meta name="description" content="本次主要记录下载 Llama-3.2-11B-Vision-Instruct的过程，这个仓库还有访问限制，应该比较有代表性。" />
-  <meta name="keywords" content="技术, " />
+  <meta name="description" content="介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。" />
+  <meta name="keywords" content="研究, RAG, 多跳问答, 论文笔记, " />
   
   
-  <link rel="canonical" href="https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/" />
+  <link rel="canonical" href="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
   
   
   
@@ -63,23 +63,26 @@
   
   
   
-  <meta property="og:url" content="https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/">
+  <meta property="og:url" content="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
   <meta property="og:site_name" content="青萍之声">
-  <meta property="og:title" content="使用hfd通过镜像下载hugging Face上的模型">
-  <meta property="og:description" content="本次主要记录下载 Llama-3.2-11B-Vision-Instruct的过程，这个仓库还有访问限制，应该比较有代表性。">
+  <meta property="og:title" content="【笔记】EfficientRAG：多跳问题回答的高效检索器">
+  <meta property="og:description" content="介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-10-07T09:45:10+08:00">
-    <meta property="article:modified_time" content="2024-10-07T09:45:10+08:00">
-    <meta property="article:tag" content="技术">
-    <meta property="og:image" content="https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/feature.jpg">
+    <meta property="article:published_time" content="2024-10-06T10:34:56+08:00">
+    <meta property="article:modified_time" content="2024-10-06T10:34:56+08:00">
+    <meta property="article:tag" content="研究">
+    <meta property="article:tag" content="RAG">
+    <meta property="article:tag" content="多跳问答">
+    <meta property="article:tag" content="论文笔记">
+    <meta property="og:image" content="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png">
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/feature.jpg">
-  <meta name="twitter:title" content="使用hfd通过镜像下载hugging Face上的模型">
-  <meta name="twitter:description" content="本次主要记录下载 Llama-3.2-11B-Vision-Instruct的过程，这个仓库还有访问限制，应该比较有代表性。">
+  <meta name="twitter:image" content="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png">
+  <meta name="twitter:title" content="【笔记】EfficientRAG：多跳问题回答的高效检索器">
+  <meta name="twitter:description" content="介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。">
 
   
   <script type="application/ld+json">
@@ -87,26 +90,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "文章",
-    "name": "使用hfd通过镜像下载hugging Face上的模型",
-    "headline": "使用hfd通过镜像下载hugging Face上的模型",
+    "name": "【笔记】EfficientRAG：多跳问题回答的高效检索器",
+    "headline": "【笔记】EfficientRAG：多跳问题回答的高效检索器",
     
-    "abstract": "本次主要记录下载 Llama-3.2-11B-Vision-Instruct的过程，这个仓库还有访问限制，应该比较有代表性。",
+    "abstract": "介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/jibinquan.github.io\/posts\/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B\/",
+    "url" : "https:\/\/jibinquan.github.io\/posts\/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/",
     "author" : {
       "@type": "Person",
       "name": "Ji Binquan"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-10-07T09:45:10\u002b08:00",
-    "datePublished": "2024-10-07T09:45:10\u002b08:00",
+    "dateCreated": "2024-10-06T10:34:56\u002b08:00",
+    "datePublished": "2024-10-06T10:34:56\u002b08:00",
     
-    "dateModified": "2024-10-07T09:45:10\u002b08:00",
+    "dateModified": "2024-10-06T10:34:56\u002b08:00",
     
-    "keywords": ["技术"],
+    "keywords": ["研究","RAG","多跳问答","论文笔记"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "723"
+    "wordCount": "3403"
   }]
   </script>
 
@@ -130,6 +133,139 @@
   
 
 <script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/lib/katex/katex.min.5cc585eee579806fa7c1ea4d3cb915eb00e206013697950334c3a13f385bc441e531ee5aed3e688179cfae581a0801b26e817b8b70037bd5b248222f95843c9b.css" integrity="sha512-XMWF7uV5gG&#43;nwepNPLkV6wDiBgE2l5UDNMOhPzhbxEHlMe5a7T5ogXnPrlgaCAGyboF7i3ADe9WySCIvlYQ8mw==" />
+
+
+<script defer src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4&#43;aQiLo9/uaQqckDpdJ8Zm3M0QBs&#43;Pktg4pz0kEklUg=="></script>
+
+
+<script defer src="/lib/katex/auto-render.min.cee516b6699579b25d5d360fe617d7f2e05902dabe0bf55c55eacc2b7e83c0332b22914e55ff96aa70bc07be54612ec6566c9f5fb0c2d1723f94f689b2cc5e13.js" integrity="sha512-zuUWtmmVebJdXTYP5hfX8uBZAtq&#43;C/VcVerMK36DwDMrIpFOVf&#43;WqnC8B75UYS7GVmyfX7DC0XI/lPaJssxeEw=="
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -542,7 +678,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/feature_hu5896385322519438335.jpg);">
+    style="background-image:url(/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature_hu7580727166470568016.png);">
     
 
 
@@ -568,7 +704,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      使用hfd通过镜像下载hugging Face上的模型
+      【笔记】EfficientRAG：多跳问题回答的高效检索器
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -613,7 +749,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-07 09:45:10 &#43;0800 CST">2024年10月7日</time><span class="px-2 text-primary-500">&middot;</span><span>723 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="2024-10-06 10:34:56 &#43;0800 CST">2024年10月6日</time><span class="px-2 text-primary-500">&middot;</span><span>3403 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">7 分钟</span>
   
 
   
@@ -637,10 +773,34 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E6%8A%80%E6%9C%AF/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%A0%94%E7%A9%B6/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    技术
+    研究
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/rag/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    RAG
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    多跳问答
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    论文笔记
   </span>
 </span>
   </span>
@@ -782,9 +942,35 @@
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-获取access-token">1. 获取Access Token</a></li>
-    <li><a href="#2-下载并配置hfd">2. 下载并配置hfd</a></li>
-    <li><a href="#3下载模型">3.下载模型</a></li>
+    <li><a href="#解决问题">解决问题</a></li>
+    <li><a href="#基本思路">基本思路</a></li>
+    <li><a href="#具体方法">具体方法</a></li>
+    <li><a href="#训练">训练</a>
+      <ul>
+        <li><a href="#数据准备">数据准备</a></li>
+        <li><a href="#训练任务">训练任务</a></li>
+      </ul>
+    </li>
+    <li><a href="#实验">实验</a>
+      <ul>
+        <li><a href="#数据集">数据集</a></li>
+        <li><a href="#baseline">Baseline</a></li>
+        <li><a href="#验证模型">验证模型</a></li>
+        <li><a href="#结果">结果</a>
+          <ul>
+            <li><a href="#检索与问答">检索与问答</a></li>
+            <li><a href="#推理效率">推理效率</a></li>
+            <li><a href="#域外泛化">域外泛化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#讨论">讨论</a></li>
+    <li><a href="#补充">补充</a>
+      <ul>
+        <li><a href="#recallk">Recall@k</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -798,9 +984,35 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-获取access-token">1. 获取Access Token</a></li>
-    <li><a href="#2-下载并配置hfd">2. 下载并配置hfd</a></li>
-    <li><a href="#3下载模型">3.下载模型</a></li>
+    <li><a href="#解决问题">解决问题</a></li>
+    <li><a href="#基本思路">基本思路</a></li>
+    <li><a href="#具体方法">具体方法</a></li>
+    <li><a href="#训练">训练</a>
+      <ul>
+        <li><a href="#数据准备">数据准备</a></li>
+        <li><a href="#训练任务">训练任务</a></li>
+      </ul>
+    </li>
+    <li><a href="#实验">实验</a>
+      <ul>
+        <li><a href="#数据集">数据集</a></li>
+        <li><a href="#baseline">Baseline</a></li>
+        <li><a href="#验证模型">验证模型</a></li>
+        <li><a href="#结果">结果</a>
+          <ul>
+            <li><a href="#检索与问答">检索与问答</a></li>
+            <li><a href="#推理效率">推理效率</a></li>
+            <li><a href="#域外泛化">域外泛化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#讨论">讨论</a></li>
+    <li><a href="#补充">补充</a>
+      <ul>
+        <li><a href="#recallk">Recall@k</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -858,29 +1070,54 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p>由于一些不可抗力，童鞋们在下载huggingface上的模型时可能面临无法下载、速度贼慢等问题，这时候就需要使用一些国内的镜像站进行下载，比如<a href="https://hf-mirror.com/"   target="_blank">
-    HF-Mirror</a>。</p>
-<img src="pic/image-20241007094857550.png" alt="image-20241007094857550" style="zoom:33%;" />
-<p><a href="https://hf-mirror.com/"   target="_blank">
-    HF-Mirror</a>官网给出了几种下载的方法，我试了几种，感觉<code>hfd</code>还比较好用，<strong><a href="https://gist.github.com/padeoe/697678ab8e528b85a2a7bddafea1fa4f"   target="_blank">
-    hfd</a></strong> 是<a href="https://hf-mirror.com/"   target="_blank">
-    HF-Mirror</a>开发的 huggingface 专用下载工具，基于成熟工具 <code>git+aria2</code>，据说可以做到稳定下载不断线（其实我下载时还是断线了……）。</p>
-<p>本次主要记录下载 <code>meta-llama/Llama-3.2-11B-Vision-Instruct</code> 的过程，这个仓库还有访问限制，应该比较有代表性。</p>
+          
+
+<p>原文题目：Zhuang 等 - 2024 - EfficientRAG Efficient Retriever for Multi-Hop Question Answering</p>
+<p>原文链接：<a href="https://aclanthology.org/2024.emnlp-main.199/"   target="_blank">
+    EfficientRAG: Efficient Retriever for Multi-Hop Question Answering - ACL Anthology</a></p>
+<p>项目地址：<a href="https://github.com/NIL-zhuang/EfficientRAG-official"   target="_blank">
+    NIL-zhuang/EfficientRAG-official: Code Repo for EfficientRAG: Efficient Retriever for Multi-Hop Question Answering</a></p>
 
 
-<h2 class="relative group">1. 获取Access Token 
-    <div id="1-%E8%8E%B7%E5%8F%96access-token" class="anchor"></div>
+<h2 class="relative group">解决问题 
+    <div id="%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#1-%E8%8E%B7%E5%8F%96access-token" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>先进入hf主站的token设置页面（当然你首先得有一个hf主站的账号密码）：<a href="https://huggingface.co/settings/tokens"   target="_blank">
-    Hugging Face – The AI community building the future.</a></p>
-<p>添加一个新的<code>access token</code></p>
+<p>之前解决多跳推理思路一般在于多轮检索重写或生成查询、交叉多个检索和推理步骤，让模型多次自我询问逐步提出问题。而上述方法普遍存在两个问题：</p>
+<p>1)它们需要多次LLM调用，涉及为下一轮检索重写或生成新的查询，从而增加了延迟和成本。</p>
+<p>2)针对不同的场景可能需要专门去设计prompt和few-shot例子。</p>
+
+
+<h2 class="relative group">基本思路 
+    <div id="%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>作者认为，多跳问题中的关系类型是有限的，或者与实体的数量相比要少得多。有论文证明小模型也具有一定的推理能力，那么可以通过小模型而不是LLM来有效地管理从检索信息中识别关系及其关联实体。（即，多跳问题的类型没有那么多，小模型也可完成相应的关系分解任务，没有必要上大模型，这样节省资源而且效率高）</p>
+<p>因此，作者使用小模型训练了一个标签器和一个过滤器来迭代生成新的检索查询，同时保留最相关的检索信息，与其他RAG方法相比，提高了效率。</p>
+
+
+<h2 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
 <p>
 
 
@@ -897,12 +1134,12 @@
         class="my-0 rounded-md"
         loading="lazy"
         srcset="
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007100045356_hu10552881372389761124.png 330w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007100045356_hu9087920354642466249.png 660w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007100045356_hu125280990991328370.png 1024w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007100045356_hu12091965068733155515.png 2x"
-        src="/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007100045356_hu9087920354642466249.png"
-        alt="image-20241007100045356"
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240921100637942_hu11917554306069590521.png 330w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240921100637942_hu2798378593057341890.png 660w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240921100637942_hu4694236930214470876.png 1024w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240921100637942_hu4253608119709209943.png 2x"
+        src="/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240921100637942_hu2798378593057341890.png"
+        alt="image-20240921100637942"
       />
       
       
@@ -910,51 +1147,135 @@
   
 
 </p>
-<p>设置一个名字，把能勾选的都勾选上，点击<code>create token</code>按钮生成密钥<code>hf-****</code>，复制下来备用。</p>
-<p>另外，有的模型需要单独申请下载（比如llama系列模型），需要在相关仓库中填写表单申请通过后才能下载。</p>
+<p>EfficientRAG核心在于加了两个两个轻量级组件:标签器（Labeler &amp; Tagger）以及过滤器。他们模型结构是一样的，Labeler 和 Tagger 通过同一模型的不同输出头生成结果，过滤器是另外训练的一个模型。Labeler和过滤器都作为token级别的二分类器，将token分类为真或假，Tagger是文档块级别的分类器。</p>
+<p>在给定一个问题后，检索器在数据库中找到一些相关的文本块。然后Labeler在文档中标记一些token序列，表示这些token对回答问题有作用。</p>
+<p>Tagger用于标记整个文本块对回答问题是有用还是没用，如果在这个文本块的基础上还需要更多的信息来回答问题，就标记为<code>&lt;Continue&gt;</code> 并把该块放到候选池中。如果文档被标记为无用或不相关，将停止搜索此查询的后续分支。</p>
+<p>过滤器模块接受Labeler标记的token和当前查询，为下一轮检索构造一个新的查询。</p>
+<p>以此循环，直到获得足够的信息来回答初始问题，它就会停止并将所有这些信息传递给最终生成器（LLM）以获得最终回答。除了最后一次调用外，其他的操作都是小模型完成的，提高了性能。</p>
 
 
-<h2 class="relative group">2. 下载并配置hfd 
-    <div id="2-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AEhfd" class="anchor"></div>
+<h2 class="relative group">训练 
+    <div id="%E8%AE%AD%E7%BB%83" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#2-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AEhfd" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p>下载hfd脚本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">wget https://hf-mirror.com/hfd/hfd.sh
-</span></span></code></pre></div><p>还需要安装<code>aria2c</code>下载器，如果是linux系统，使用：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">apt install  aria2c git-lfs
-</span></span></code></pre></div><p>如果是Windows系统，在cmd中使用:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">winget install aria2
-</span></span></code></pre></div>
 
-<h2 class="relative group">3.下载模型 
-    <div id="3%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B" class="anchor"></div>
+
+<h3 class="relative group">数据准备 
+    <div id="%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#3%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>至于定制化训练的数据，当然还是使用LLM构建。作者利用 LLM 来合成Labeler和过滤器的训练数据。该过程包括多跳问题分解、标记标记、下一跳问题过滤和负采样。综合数据详见表1。</p>
+<p><strong>多跳问题分解</strong>：给定一个多跳问题和相关块，作者首先提示LLM将原始问题分解为几个单跳问题。每个单跳问题对应一个块。然后，要求LLM解析子问题的依赖关系。</p>
+<p>**Labeler  token标记：**对于每个子问题和相应的块，作者提示LLM标记与子问题答案相关的块中的重要单词。使用一个二进制标签对数据块中的每个单词进行注释，以确定它是否重要，是否应该由EfficientRAG Labeler保留。</p>
+<p>**过滤器的下一跳问题：**给定一个单跳问题及其相关问题的标记令牌，提示LLM生成一个下一跳问题，这是理想的下一个检索查询，提取下一跳问题的token即可。</p>
+<p>**Tagger 负采样：**对于每个过滤后的下一跳问题，作者检索最相似但不相关的块作为硬负样例。这些否定的数据块将被标记为<code>&lt;Terminate&gt;</code>，而其他相关的数据块将被标记为<code>&lt;Continue&gt;</code>。</p>
+<img src="pic/image-20240922164326153.png" alt="image-20240922164326153" style="zoom: 50%;" />
+
+
+<h3 class="relative group">训练任务 
+    <div id="%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>作者训练了 EfficientRAG Labeler 用于两个任务：<strong>token标注</strong>和<strong>块过滤</strong>，因为它们使用相同的输入。训练使用自动编码器语言模型作为编码器，以获得连接的查询序列和块中每个词元的嵌入。随后，作者使用一个全连接层将词元嵌入投射到二维空间，用以区分“有用token”和“无用token”。另一个全连接层则用于将序列嵌入的平均池化投射到二维空间，表示块的tag <code>&lt;Continue&gt;</code> and<code> &lt;Terminate&gt;</code>。EfficientRAG 过滤器训练方式类似，其输入序列是查询和标注token的拼接。该过滤器提取单词并将其拼接，以形成下一跳查询。</p>
+
+
+<h2 class="relative group">实验 
+    <div id="%E5%AE%9E%E9%AA%8C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C" aria-label="锚点">#</a>
     </span>        
     
 </h2>
-<p><code>hfd.sh</code>脚本在linux系统下应该可以直接运行，可能需要添加一下执行权限<code>chmod a+x hfd.sh</code>。</p>
-<p>windows系统可以在<code>git bash</code>中执行sh脚本。</p>
-<p>如果你的git设置过代理，可能需要先把代理解除掉</p>
-<p>查看git代理设置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git config --global --get http.proxy
-</span></span><span class="line"><span class="cl">git config --global --get https.proxy
-</span></span></code></pre></div><p>git解除代理绑定</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git config --global --unset http.proxy
-</span></span><span class="line"><span class="cl">git config --global --unset https.proxy
-</span></span></code></pre></div><p>一切准备就绪后，可以直接下载：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">HF_ENDPOINT</span><span class="o">=</span>https://hf-mirror.com  ./hfd.sh &lt;hf模型路径&gt; --hf_username &lt;hf主站的用户名&gt; --hf_token &lt;第一步获取的access token&gt;
-</span></span></code></pre></div><ul>
-<li>hf模型路径可看链接获取：
+
+
+<h3 class="relative group">数据集 
+    <div id="%E6%95%B0%E6%8D%AE%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>数据集使用 <code>HotpotQA</code>、<code>MuSiQue</code> 和 <code>2WikiMultihopQA</code>，具体数据集的介绍可以参考之前的文章。</p>
+
+
+<h3 class="relative group">Baseline 
+    <div id="baseline" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#baseline" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>不用检索直接使用大模型自身回答，使用直接提示、思维链提示和问题分解等方法。</li>
+<li>使用采用前10相关的文档块的朴素RAG</li>
+<li>之前的一些方法，如 Iter-RetGen (Shao et al., 2023) 和 SelfAsk (Press et al., 2023)。</li>
+</ol>
+
+
+<h3 class="relative group">验证模型 
+    <div id="%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>作者基于 DeBERTa-v3-large (He et al., 2021，24层，参数量340M)微调 Labeler 和 Filter ，用Contriever-MSMARCO(Izacard et al.,2022)作为数据合成和推理阶段的检索器。采用lama-3- 8b - instruction回答问题和并作为其他所有基准。</p>
+<p>实际训练方面，作者使用Llama-3-70B-Instruct构建了训练数据(附录B.2)。在4× Nvidia A100 gpu上分别训练了大约10个gpu小时，使用AdamW (Loshchilov和Hutter, 2019)优化器，学习率为5e-6。</p>
+
+
+<h3 class="relative group">结果 
+    <div id="%E7%BB%93%E6%9E%9C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%BB%93%E6%9E%9C" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">检索与问答 
+    <div id="%E6%A3%80%E7%B4%A2%E4%B8%8E%E9%97%AE%E7%AD%94" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%A3%80%E7%B4%A2%E4%B8%8E%E9%97%AE%E7%AD%94" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>
 
 
 
@@ -970,52 +1291,118 @@
         class="my-0 rounded-md"
         loading="lazy"
         srcset="
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193334597_hu5479829617955148160.png 330w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193334597_hu16158383574575955602.png 660w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193334597_hu17273735937702872576.png 1024w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193334597_hu16365781932365626161.png 2x"
-        src="/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193334597_hu16158383574575955602.png"
-        alt="image-20241007193334597"
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240923100703008_hu16789559912209939686.png 330w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240923100703008_hu9219257611369355169.png 660w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240923100703008_hu1151673714365514183.png 1024w,
+        /posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240923100703008_hu8712249158879197383.png 2x"
+        src="/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/pic/image-20240923100703008_hu9219257611369355169.png"
+        alt="image-20240923100703008"
       />
       
       
     </figure>
   
 
-</li>
-<li>hf用户名点击主站头像即可查看：
+</p>
+<p>首先表2对比了EfficientRAG与之前方法的检索性能，可以看到在HotpotQA与2WikiMQA上效果不错，但是在MuSiQue上表现一般，作者认为是可能归因于检索的块数量较少和数据集的复杂性增加。</p>
+<p>在实际检索问答上，EfficientRAG在准确度上都能接近最佳效果，如果将问答模型换为GPT3.5，还可以进一步提高性能，在HotpotQA上达到了SOTA效果（表5）。</p>
+<img src="pic/image-20240923110438540.png" alt="image-20240923110438540" style="zoom:50%;" />
 
 
-
-
-  
-  
+<h4 class="relative group">推理效率 
+    <div id="%E6%8E%A8%E7%90%86%E6%95%88%E7%8E%87" class="anchor"></div>
     
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        loading="lazy"
-        srcset="
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193405334_hu12940979302105353127.png 330w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193405334_hu16339336777401755244.png 660w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193405334_hu9930169908698794472.png 1024w,
-        /posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193405334_hu772213879453125216.png 2x"
-        src="/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/pic/image-20241007193405334_hu16339336777401755244.png"
-        alt="image-20241007193405334"
-      />
-      
-      
-    </figure>
-  
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%8E%A8%E7%90%86%E6%95%88%E7%8E%87" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者从MusiQue数据集中随机选择了200个样本进行研究，计算了四个指标:LLM调用次数、迭代次数、回答延迟和GPU利用率。可以看到EfficientRAG在回答延迟方面有较高优势，因为只需要调用一次大模型。</p>
+<img src="pic/image-20240923105228049.png" alt="image-20240923105228049" style="zoom:50%;" />
 
-</li>
-</ul>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">HF_ENDPOINT</span><span class="o">=</span>https://hf-mirror.com  ./hfd.sh meta-llama/Llama-3.2-11B-Vision-Instruct --hf_username Hugging-Leg --hf_token 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
-</span></span></code></pre></div>
+
+<h4 class="relative group">域外泛化 
+    <div id="%E5%9F%9F%E5%A4%96%E6%B3%9B%E5%8C%96" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9F%9F%E5%A4%96%E6%B3%9B%E5%8C%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者提出了一个跨HotpotQA和2WikiMQA数据集的域外实验，在一个数据集上训练模型，并在另一个数据集上测试它。从表6可以看出，EfficientRAG对不同的数据集有很好的适应性，在某些情况下甚至超过了在原始数据上训练的模型。这表明，EfficientRAG不依赖于特定领域的知识，表现出一定程度的可移植性。</p>
+<img src="pic/image-20240923110355407.png" alt="image-20240923110355407" style="zoom:50%;" />
+
+
+<h2 class="relative group">讨论 
+    <div id="%E8%AE%A8%E8%AE%BA" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AE%A8%E8%AE%BA" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>RAG本质上的两个方面：IR+RC</p>
+<p>IR的实际上就是说我如何去将最准确、最相关的信息提供给大模型而过滤掉不相关的干扰信息 ，在保证包含关键文档的情况下，信息“纯度”越高，RAG性能越好。而IR现在结合大模型相较原来传统的研究也多了很多方法，很多RAG的研究本质上都是在卷IR（包括这一篇）。</p>
+<p>RC就是让LLM在现在检索到的文本上自己去进行整合和理解，当然这个东西随着LLM自己的迭代与规模的扩大本来性能就会慢慢提升，这也导致了一个问题是你直接去调LLM提升其RC性能基本不太可能，计算资源不允许，现在我看论文能做的就是用一些提示的方法去引导大模型进行逻辑思考和推理，可能本文提到的外挂插件也可以是一种思路。</p>
+<p>读完本篇文章，有以下感受：</p>
+<ol>
+<li>这个方法只算提升了回答速度，只要需要调用LLM，显存和GPU占用是下不来的。</li>
+<li>虽然本文主打的是高效率，但我还是想看一看在不考虑效率，将外部插件全部使用LLM的情况，准确率等是否会有进一步提升（话说为啥没有消融实验？）。但其实这样和self-rag没啥区别了。</li>
+<li>感觉大小模型协同的方式，工作量是上去了，因为Scaling law的问题，最终效果上可能很难说能做出碾压纯大模型的方法，最后只能在问答效率上做文章，这也是高校研究大模型缺少算力的无奈之举吧。</li>
+</ol>
+
+
+<h2 class="relative group">补充 
+    <div id="%E8%A1%A5%E5%85%85" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%A1%A5%E5%85%85" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Recall@k 
+    <div id="recallk" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#recallk" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>Recall@k 是信息检索和推荐系统中常用的评价指标，用于评估系统在前 k 个返回结果中检索到相关项的能力。具体来说，Recall@k 衡量的是在返回的前 k 个结果中有多少是相关的。</p>
+<p>公式
+Recall@k = (在前 k 个结果中相关项的数量) / (总相关项的数量)</p>
+<p>举例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">真实情况：
+</span></span><span class="line"><span class="cl">疾病A的治疗药物是：药物1，药物2，药物3，药物4.
+</span></span><span class="line"><span class="cl">疾病B的治疗药物是：药物5，药物6，药物7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">模型预测情况：
+</span></span><span class="line"><span class="cl">疾病A的治疗药物是：药物2，药物5，药物1，药物6，药物3，药物7（按照推荐的可能性排序）
+</span></span><span class="line"><span class="cl">疾病 B的治疗药物是：药物7，药物8，药物5，药物6（按照推荐的可能性排序）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">若K=3,则选取模型推测结果的前三个，即：
+</span></span><span class="line"><span class="cl">疾病A：药物2，药物5，药物1
+</span></span><span class="line"><span class="cl">疾病B：药物7，药物8，药物5
+</span></span><span class="line"><span class="cl">所以：
+</span></span><span class="line"><span class="cl">对于疾病A：药物2，药物1是相关项
+</span></span><span class="line"><span class="cl">对于疾病B：药物7，药物5是相关项
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">recall@k = (2/4 + 2/3) /2 = 0.583
+</span></span></code></pre></div><p>参考：<a href="https://blog.csdn.net/LiuRuiaby35646/article/details/140229812"   target="_blank">
+    分类模型、回归模型的常见评价指标_预测分类模型评价指标代码-CSDN博客</a></p>
+
         </div>
         
         
@@ -1034,8 +1421,8 @@
           
         
       <script>
-        var oid = "views_posts\\使用hfd通过镜像下载hugging-face上的模型\\index.md"
-        var oid_likes = "likes_posts\\使用hfd通过镜像下载hugging-face上的模型\\index.md"
+        var oid = "views_posts\\EfficientRAG阅读笔记\\index.md"
+        var oid_likes = "likes_posts\\EfficientRAG阅读笔记\\index.md"
       </script>
       
       
@@ -1055,7 +1442,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+            <a class="flex group mr-3" href="/posts/%E4%B8%BAhugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gisus%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1067,11 +1454,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >【笔记】EfficientRAG：多跳问题回答的高效检索器</span
+                  >为hugo博客添加Gisus评论功能</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-10-06 10:34:56 &#43;0800 CST">2024年10月6日</time>
+                    <time datetime="2024-09-25 19:03:38 &#43;0800 CST">2024年9月25日</time>
                   
                 </span>
               </span>
@@ -1080,15 +1467,15 @@
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/posts/raptor%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+            <a class="flex text-right group ml-3" href="/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >【笔记】RAPTOR: 用于树形组织检索的递归摘要处理</span
+                  >使用hfd通过镜像下载hugging Face上的模型</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-10-07 19:44:10 &#43;0800 CST">2024年10月7日</time>
+                    <time datetime="2024-10-07 09:45:10 &#43;0800 CST">2024年10月7日</time>
                   
                 </span>
               </span>

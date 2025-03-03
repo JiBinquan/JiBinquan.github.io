@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2025 Ji Binquan</copyright>
-    <lastBuildDate>Wed, 26 Feb 2025 10:34:56 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Mar 2025 15:38:07 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【速览】Search-in-the-Chain：通过搜索知识密集型任务来互动增强大型语言模型</title>
+      <link>https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>介绍了一个动态推理链的方法，感觉方法比较灵活，算是很好的思路</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
+    </item>
+    
     <item>
       <title>【组会】SlimPLM：利用小型代理模型来决定大语言模型检索的时间和内容</title>
       <link>https://jibinquan.github.io/posts/slimplm%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
@@ -46,6 +56,16 @@
       <guid>https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
       <description>使用思维链解决多跳问答的典型论文，提示工程还能整出多少活？</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/ircot%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
+    </item>
+    
+    <item>
+      <title>【笔记】EfficientRAG：多跳问题回答的高效检索器</title>
+      <link>https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 06 Oct 2024 10:34:56 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
     </item>
     
   </channel>

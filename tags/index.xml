@@ -7,7 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>:copyright: 2025 Ji Binquan</copyright>
-    <lastBuildDate>Sun, 02 Mar 2025 19:11:05 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Mar 2025 15:38:07 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG</title>
+      <link>https://jibinquan.github.io/tags/rag/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/tags/rag/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>多跳问答</title>
+      <link>https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>论文笔记</title>
+      <link>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>研究</title>
+      <link>https://jibinquan.github.io/tags/%E7%A0%94%E7%A9%B6/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/tags/%E7%A0%94%E7%A9%B6/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>服务器</title>
       <link>https://jibinquan.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
@@ -24,46 +64,6 @@
       <pubDate>Sun, 02 Mar 2025 19:11:05 +0800</pubDate>
       
       <guid>https://jibinquan.github.io/tags/%E6%8A%80%E6%9C%AF/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>RAG</title>
-      <link>https://jibinquan.github.io/tags/rag/</link>
-      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
-      
-      <guid>https://jibinquan.github.io/tags/rag/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>多跳问答</title>
-      <link>https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/</link>
-      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
-      
-      <guid>https://jibinquan.github.io/tags/%E5%A4%9A%E8%B7%B3%E9%97%AE%E7%AD%94/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>论文笔记</title>
-      <link>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
-      
-      <guid>https://jibinquan.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>研究</title>
-      <link>https://jibinquan.github.io/tags/%E7%A0%94%E7%A9%B6/</link>
-      <pubDate>Wed, 26 Feb 2025 10:34:56 +0800</pubDate>
-      
-      <guid>https://jibinquan.github.io/tags/%E7%A0%94%E7%A9%B6/</guid>
       <description></description>
       
     </item>

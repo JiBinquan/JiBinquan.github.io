@@ -9,6 +9,16 @@
     <copyright>:copyright: 2025 Ji Binquan</copyright>
     <lastBuildDate>Sun, 02 Jun 2024 18:09:09 +0800</lastBuildDate><atom:link href="https://jibinquan.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>【速览】Search-in-the-Chain：通过搜索知识密集型任务来互动增强大型语言模型</title>
+      <link>https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 03 Mar 2025 15:38:07 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>介绍了一个动态推理链的方法，感觉方法比较灵活，算是很好的思路</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
+    </item>
+    
+    <item>
       <title>服务器管理操作笔记</title>
       <link>https://jibinquan.github.io/posts/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</link>
       <pubDate>Sun, 02 Mar 2025 19:11:05 +0800</pubDate>
@@ -76,6 +86,16 @@
       <guid>https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/</guid>
       <description>本次主要记录下载 Llama-3.2-11B-Vision-Instruct的过程，这个仓库还有访问限制，应该比较有代表性。</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/%E4%BD%BF%E7%94%A8hfd%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BDhugging-face%E4%B8%8A%E7%9A%84%E6%A8%A1%E5%9E%8B/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>【笔记】EfficientRAG：多跳问题回答的高效检索器</title>
+      <link>https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 06 Oct 2024 10:34:56 +0800</pubDate>
+      
+      <guid>https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>介绍了一个大小模型协同的高效RAG方法，使用BERT量级的模型辅助RAG任务，节省了资源的开销。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jibinquan.github.io/posts/efficientrag%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/feature.png" />
     </item>
     
     <item>
