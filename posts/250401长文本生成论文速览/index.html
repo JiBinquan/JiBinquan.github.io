@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>【速览】四篇长文本生成论文速览 &middot; 青萍之声</title>
+  <meta name="title" content="【速览】四篇长文本生成论文速览 &middot; 青萍之声" />
+  
+  <meta name="description" content="简单介绍STORM、LongWriter、AutoPatent和CogWriter这四篇2024年以来的LLM长文本生成论文" />
+  <meta name="keywords" content="研究, Agent, 长文本生成, " />
+  
+  
+  <link rel="canonical" href="https://jibinquan.github.io/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.5615a487fac507c43511df88c6ad42d8fd2f34979108ea0cb248cba1146fdcb8aad55e5fa3a2d69104e8e06875708d5c066abee2cf0d660691eb2f456d7d9f94.css"
+    integrity="sha512-VhWkh/rFB8Q1Ed&#43;Ixq1C2P0vNJeRCOoMskjLoRRv3Liq1V5fo6LWkQTo4Gh1cI1cBmq&#43;4s8NZgaR6y9FbX2flA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.949e93ad68f98f91b41032983a7aee8da40cd845c548ac475ad1b4771bb9d273da1fb4d059d4d2f8f724a6a7ce5962b522b302ed72b43b8a1057a0e4e3ffc58e.js"
+    integrity="sha512-lJ6TrWj5j5G0EDKYOnrujaQM2EXFSKxHWtG0dxu50nPaH7TQWdTS&#43;PckpqfOWWK1IrMC7XK0O4oQV6Dk4//Fjg==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://jibinquan.github.io/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/">
+  <meta property="og:site_name" content="青萍之声">
+  <meta property="og:title" content="【速览】四篇长文本生成论文速览">
+  <meta property="og:description" content="简单介绍STORM、LongWriter、AutoPatent和CogWriter这四篇2024年以来的LLM长文本生成论文">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-01T16:30:11+08:00">
+    <meta property="article:modified_time" content="2025-04-01T16:30:11+08:00">
+    <meta property="article:tag" content="研究">
+    <meta property="article:tag" content="Agent">
+    <meta property="article:tag" content="长文本生成">
+    <meta property="og:image" content="https://jibinquan.github.io/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/feature.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jibinquan.github.io/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/feature.png">
+  <meta name="twitter:title" content="【速览】四篇长文本生成论文速览">
+  <meta name="twitter:description" content="简单介绍STORM、LongWriter、AutoPatent和CogWriter这四篇2024年以来的LLM长文本生成论文">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "文章",
+    "name": "【速览】四篇长文本生成论文速览",
+    "headline": "【速览】四篇长文本生成论文速览",
+    
+    "abstract": "简单介绍STORM、LongWriter、AutoPatent和CogWriter这四篇2024年以来的LLM长文本生成论文",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/jibinquan.github.io\/posts\/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Ji Binquan"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-04-01T16:30:11\u002b08:00",
+    "datePublished": "2025-04-01T16:30:11\u002b08:00",
+    
+    "dateModified": "2025-04-01T16:30:11\u002b08:00",
+    
+    "keywords": ["研究","Agent","长文本生成"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "12111"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Ji Binquan" />
+  
+  
+  
+  <link href="https://www.zhihu.com/people/herb-42-46" rel="me" />
+  
+  
+  <link href="https://github.com/JiBinquan" rel="me" />
+  
+  
+  <link href="mailto:haing6@163.com" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/lib/katex/katex.min.5cc585eee579806fa7c1ea4d3cb915eb00e206013697950334c3a13f385bc441e531ee5aed3e688179cfae581a0801b26e817b8b70037bd5b248222f95843c9b.css" integrity="sha512-XMWF7uV5gG&#43;nwepNPLkV6wDiBgE2l5UDNMOhPzhbxEHlMe5a7T5ogXnPrlgaCAGyboF7i3ADe9WySCIvlYQ8mw==" />
+
+
+<script defer src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4&#43;aQiLo9/uaQqckDpdJ8Zm3M0QBs&#43;Pktg4pz0kEklUg=="></script>
+
+
+<script defer src="/lib/katex/auto-render.min.cee516b6699579b25d5d360fe617d7f2e05902dabe0bf55c55eacc2b7e83c0332b22914e55ff96aa70bc07be54612ec6566c9f5fb0c2d1723f94f689b2cc5e13.js" integrity="sha512-zuUWtmmVebJdXTYP5hfX8uBZAtq&#43;C/VcVerMK36DwDMrIpFOVf&#43;WqnC8B75UYS7GVmyfX7DC0XI/lPaJssxeEw=="
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">青萍之声</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            研究
+          </p>
+        </a>
+        
+        <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            技术
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            随笔
+          </p>
+        </a>
+        
+        <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            算法
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        友链
+    </p>
+</a>
+
+
+            
+            
+  <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        更多
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%A0%94%E7%A9%B6/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            研究
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E6%8A%80%E6%9C%AF/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            技术
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            随笔
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/%E7%AE%97%E6%B3%95/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            算法
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/friends/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            友链
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/more/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            更多
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/feature_hu11609168797949860764.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      【速览】四篇长文本生成论文速览
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-04-01 16:30:11 &#43;0800 CST">2025年4月1日</time><span class="px-2 text-primary-500">&middot;</span><span>12111 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">25 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%A0%94%E7%A9%B6/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    研究
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/agent/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Agent
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    长文本生成
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Ji Binquan" src="/img/avatar_hu9503206400822313302.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Ji Binquan
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">现在也没研究明白</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/herb-42-46"
+          target="_blank"
+          aria-label="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="384px" height="384px"><path d="M 5.0507812 2.6835938 L 3.0507812 8.6835938 L 4.9492188 9.3164062 L 5.7207031 7 L 7 7 L 7 10.222656 C 7 10.868331 6.9219874 11.418087 6.8710938 12 L 4 12 L 4 14 L 6.5429688 14 C 5.983285 16.269768 4.8214393 18.029123 2.5039062 19.353516 L 3.4960938 21.089844 C 6.4085349 19.425482 7.9221912 16.957288 8.5761719 14 L 11 14 L 11 12 L 8.8476562 12 C 8.900895 11.408696 9 10.844144 9 10.222656 L 9 7 L 11 7 L 11 5 L 6.3886719 5 L 6.9492188 3.3164062 L 5.0507812 2.6835938 z M 13 5 L 13 18 L 15 18 L 15 20.869141 L 19.302734 18 L 22 18 L 22 17 L 22 5 L 13 5 z M 15 7 L 20 7 L 20 16 L 18.697266 16 L 17 17.130859 L 17 16 L 15 16 L 15 7 z M 9.1777344 15.806641 L 7.5625 16.986328 L 10.191406 20.589844 L 11.808594 19.410156 L 9.1777344 15.806641 z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/JiBinquan"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:haing6@163.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-storm通过检索和多视角提问综合生成主题大纲">1. STORM：通过检索和多视角提问综合生成主题大纲</a>
+      <ul>
+        <li><a href="#任务目标">任务目标</a></li>
+        <li><a href="#具体方法">具体方法</a>
+          <ul>
+            <li><a href="#step1-主题驱动的视角构建">Step1. 主题驱动的视角构建</a></li>
+            <li><a href="#step2-模拟对话">Step2. 模拟对话</a></li>
+            <li><a href="#step3-创建文章提纲">Step3. 创建文章提纲</a></li>
+            <li><a href="#step4-撰写全文">Step4. 撰写全文</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方法">评估方法</a>
+          <ul>
+            <li><a href="#数据集">数据集</a></li>
+            <li><a href="#评估指标">评估指标</a></li>
+            <li><a href="#基线方法">基线方法</a></li>
+            <li><a href="#llm评估">LLM评估</a></li>
+            <li><a href="#人类评估">人类评估</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果">实验结果</a></li>
+        <li><a href="#评价">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-longwriter释放长上下文llm的10000字生成能力">2. LongWriter：释放长上下文LLM的10,000+字生成能力</a>
+      <ul>
+        <li><a href="#任务目标-1">任务目标</a></li>
+        <li><a href="#具体方法-1">具体方法</a>
+          <ul>
+            <li><a href="#agentwrite"><strong>AgentWrite</strong></a></li>
+            <li><a href="#数据评估">数据评估</a></li>
+            <li><a href="#其他工作">其他工作</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方式">评估方式</a>
+          <ul>
+            <li><a href="#数据集-1">数据集</a></li>
+            <li><a href="#评估指标-1">评估指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-1">实验结果</a></li>
+        <li><a href="#评价-1">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-autopatent用于自动生成专利的多智能体框架">3. AutoPatent：用于自动生成专利的多智能体框架</a>
+      <ul>
+        <li><a href="#任务目标-2">任务目标</a></li>
+        <li><a href="#具体方法-2">具体方法</a>
+          <ul>
+            <li><a href="#step1-短文本组件生成short-components-generation">Step1. 短文本组件生成（Short Components Generation）</a></li>
+            <li><a href="#2-专利撰写指南树pgtree构建building-pgtree">2. 专利撰写指南树（PGTree）构建（Building PGTree）</a></li>
+            <li><a href="#3-参考-审查-增强生成rragreference-review-augmented-generation">3. 参考-审查-增强生成（RRAG）（Reference-Review-Augmented Generation）</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方式-1">评估方式</a>
+          <ul>
+            <li><a href="#客观指标评估">客观指标评估</a></li>
+            <li><a href="#人工评估">人工评估</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-2">实验结果</a></li>
+        <li><a href="#评价-2">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-cogwriter-约束长格式文本生成的认知写作视角">4. CogWriter: 约束长格式文本生成的认知写作视角</a>
+      <ul>
+        <li><a href="#任务目标-3">任务目标</a></li>
+        <li><a href="#具体方法-3">具体方法</a>
+          <ul>
+            <li><a href="#框架概述">框架概述</a></li>
+            <li><a href="#规划agent">规划Agent</a></li>
+            <li><a href="#生成agent">生成Agent</a></li>
+            <li><a href="#整体流程">整体流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方法-1">评估方法</a>
+          <ul>
+            <li><a href="#数据集-2">数据集</a></li>
+            <li><a href="#评估指标-2">评估指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-3">实验结果</a></li>
+        <li><a href="#评价-3">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-storm通过检索和多视角提问综合生成主题大纲">1. STORM：通过检索和多视角提问综合生成主题大纲</a>
+      <ul>
+        <li><a href="#任务目标">任务目标</a></li>
+        <li><a href="#具体方法">具体方法</a>
+          <ul>
+            <li><a href="#step1-主题驱动的视角构建">Step1. 主题驱动的视角构建</a></li>
+            <li><a href="#step2-模拟对话">Step2. 模拟对话</a></li>
+            <li><a href="#step3-创建文章提纲">Step3. 创建文章提纲</a></li>
+            <li><a href="#step4-撰写全文">Step4. 撰写全文</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方法">评估方法</a>
+          <ul>
+            <li><a href="#数据集">数据集</a></li>
+            <li><a href="#评估指标">评估指标</a></li>
+            <li><a href="#基线方法">基线方法</a></li>
+            <li><a href="#llm评估">LLM评估</a></li>
+            <li><a href="#人类评估">人类评估</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果">实验结果</a></li>
+        <li><a href="#评价">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-longwriter释放长上下文llm的10000字生成能力">2. LongWriter：释放长上下文LLM的10,000+字生成能力</a>
+      <ul>
+        <li><a href="#任务目标-1">任务目标</a></li>
+        <li><a href="#具体方法-1">具体方法</a>
+          <ul>
+            <li><a href="#agentwrite"><strong>AgentWrite</strong></a></li>
+            <li><a href="#数据评估">数据评估</a></li>
+            <li><a href="#其他工作">其他工作</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方式">评估方式</a>
+          <ul>
+            <li><a href="#数据集-1">数据集</a></li>
+            <li><a href="#评估指标-1">评估指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-1">实验结果</a></li>
+        <li><a href="#评价-1">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-autopatent用于自动生成专利的多智能体框架">3. AutoPatent：用于自动生成专利的多智能体框架</a>
+      <ul>
+        <li><a href="#任务目标-2">任务目标</a></li>
+        <li><a href="#具体方法-2">具体方法</a>
+          <ul>
+            <li><a href="#step1-短文本组件生成short-components-generation">Step1. 短文本组件生成（Short Components Generation）</a></li>
+            <li><a href="#2-专利撰写指南树pgtree构建building-pgtree">2. 专利撰写指南树（PGTree）构建（Building PGTree）</a></li>
+            <li><a href="#3-参考-审查-增强生成rragreference-review-augmented-generation">3. 参考-审查-增强生成（RRAG）（Reference-Review-Augmented Generation）</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方式-1">评估方式</a>
+          <ul>
+            <li><a href="#客观指标评估">客观指标评估</a></li>
+            <li><a href="#人工评估">人工评估</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-2">实验结果</a></li>
+        <li><a href="#评价-2">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-cogwriter-约束长格式文本生成的认知写作视角">4. CogWriter: 约束长格式文本生成的认知写作视角</a>
+      <ul>
+        <li><a href="#任务目标-3">任务目标</a></li>
+        <li><a href="#具体方法-3">具体方法</a>
+          <ul>
+            <li><a href="#框架概述">框架概述</a></li>
+            <li><a href="#规划agent">规划Agent</a></li>
+            <li><a href="#生成agent">生成Agent</a></li>
+            <li><a href="#整体流程">整体流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#评估方法-1">评估方法</a>
+          <ul>
+            <li><a href="#数据集-2">数据集</a></li>
+            <li><a href="#评估指标-2">评估指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#实验结果-3">实验结果</a></li>
+        <li><a href="#评价-3">评价</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<p>LLM的长文本生成是一个广泛需求但难度较高的研究方向。自从大型语言模型首次进入大众视野以来，大家便积极尝试利用这些模型创作长篇故事。然而，由于上下文长度的限制和灾难性遗忘问题，如何确保生成内容前后一致、逻辑连贯并避免冗余输出，仍是亟待解决的挑战。同时，相较于LLM在语言处理或问答领域的应用，如何客观评估生成文章的质量也是研究者必须面对的重要问题。虽然目前LLM在问答和长文本输入方面已有不少成果，但长文本输出的研究热度相对较低。本文选取了自2024年以来发表的4篇长文本输出相关论文，旨在探讨它们如何应对上述研究难题。</p>
+
+
+<h2 class="relative group">1. STORM：通过检索和多视角提问综合生成主题大纲 
+    <div id="1-storm%E9%80%9A%E8%BF%87%E6%A3%80%E7%B4%A2%E5%92%8C%E5%A4%9A%E8%A7%86%E8%A7%92%E6%8F%90%E9%97%AE%E7%BB%BC%E5%90%88%E7%94%9F%E6%88%90%E4%B8%BB%E9%A2%98%E5%A4%A7%E7%BA%B2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-storm%E9%80%9A%E8%BF%87%E6%A3%80%E7%B4%A2%E5%92%8C%E5%A4%9A%E8%A7%86%E8%A7%92%E6%8F%90%E9%97%AE%E7%BB%BC%E5%90%88%E7%94%9F%E6%88%90%E4%B8%BB%E9%A2%98%E5%A4%A7%E7%BA%B2" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>发表单位：斯坦福大学</p>
+<p>论文地址：[<a href="https://arxiv.org/abs/2402.14207"   target="_blank">
+    2402.14207] Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models</a></p>
+<p>项目地址：<a href="https://github.com/stanford-oval/storm?tab=readme-ov-file"   target="_blank">
+    stanford-oval/storm: An LLM-powered knowledge curation system that researches a topic and generates a full-length report with citations.</a></p>
+<p>录用情况：NAACL 2024</p>
+
+
+<h3 class="relative group">任务目标 
+    <div id="%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>动机</strong>：大型语言模型（LLMs）在写作方面表现出色，但如何利用它们撰写类似维基百科的长篇条目文章仍待探索。撰写此类文章需要在写作前的准备阶段进行彻底的研究和规划，而之前生成维基百科文章的工作通常跳过了这一阶段，假设参考文档或文章大纲已存在，这在一般情况下并不现实。</li>
+<li><strong>现有问题</strong>：收集参考文献和制定大纲需要先进的信息素养技能，这对经验丰富的作家来说也极具挑战性。此外，仅依靠LLMs的参数知识生成大纲或文章存在缺乏细节和幻觉的问题，尤其是在处理长尾主题时。本文的目标即是生成一个具有深度广度的文章大纲，进而生成高质量文章。</li>
+</ul>
+
+
+<h3 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250325135308443.png" alt="image-20250325135308443" style="zoom: 100%;" />
+</div>
+<p>论文通过提出一个名为STORM（Synthesis of Topic Outlines through Retrieval and Multi-perspective Question Asking）的系统来解决这个问题。STORM系统的核心思想是通过模拟多视角的对话来研究主题，并基于这些对话创建文章大纲。STORM的工作流程可以分为以下几个关键步骤：</p>
+
+
+<h4 class="relative group">Step1. 主题驱动的视角构建 
+    <div id="step1-%E4%B8%BB%E9%A2%98%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%A7%86%E8%A7%92%E6%9E%84%E5%BB%BA" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step1-%E4%B8%BB%E9%A2%98%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%A7%86%E8%A7%92%E6%9E%84%E5%BB%BA" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>发现多样视角</strong>：STORM首先通过检索和分析类似主题的维基百科文章来发现不同的视角。它会检索与给定主题相关的维基百科文章，并提取这些文章的目录（TOC），然后基于这些目录来识别可以用于撰写全面文章的不同视角 $ P = {p_1,p_2,&hellip;,p_n}$。此外，作者在 $P$ 中添加了 $p_0$ 作为 “专注于广泛涵盖主题的基本事实的事实编写者”视角，以确保关于原始主题 $t$ 的基本信息也得到涵盖。</li>
+<li><strong>指定具体视角</strong>：在识别出多样视角后，STORM会为每个视角创建一个角色，这些角色将指导后续的问题提问过程。例如，对于“2022年冬奥会开幕式”这一主题，可能的视角包括活动策划者、参与者、观众等，每个视角都有其独特的关注点。</li>
+</ul>
+
+
+<h4 class="relative group">Step2. 模拟对话 
+    <div id="step2-%E6%A8%A1%E6%8B%9F%E5%AF%B9%E8%AF%9D" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step2-%E6%A8%A1%E6%8B%9F%E5%AF%B9%E8%AF%9D" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>初始化对话</strong>：对于每个视角，STORM会模拟一个维基百科写作者与主题专家之间的对话。对话从写作者基于主题和指定视角提出一个问题开始。</p>
+</li>
+<li>
+<p><strong>多轮对话</strong>：在每一轮对话中，写作者会根据主题、指定的视角以及之前的对话历史提出一个问题。然后，系统会将这个问题分解成多个搜索查询，并使用搜索引擎来查找相关的网络信息。搜索结果会经过基于规则（<a href="https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources"   target="_blank">
+    Wikipedia:Reliable sources - Wikipedia</a>）的筛选，以确保只使用可信的来源。最后，系统会综合这些可信的来源来生成专家的回答，并将这些回答添加到参考文献集合 $R$ 中。</p>
+</li>
+<li>
+<p><strong>结束对话</strong>：当写作者没有更多问题时，对话结束。这个过程会为每个视角生成一系列的问题和答案，形成多轮对话的记录。</p>
+</li>
+</ul>
+
+
+<h4 class="relative group">Step3. 创建文章提纲 
+    <div id="step3-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E6%8F%90%E7%BA%B2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step3-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E6%8F%90%E7%BA%B2" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>初步提纲生成</strong>：在实际写作开始前，STORM先创建一个大纲。即首先提示模型仅根据给定的主题 $t$ 生成草稿大纲 $O_D$。这个提纲是一个包含多级标题的列表，用于指导文章的撰写。</li>
+<li><strong>提纲细化</strong>：在完成所有视角的模拟对话后，STORM会进一步结合对话中的信息来细化和优化初步大纲 $O_D$，使其更加全面和有组织，改进后的大纲 $O$ 将被用于生成全文。</li>
+</ul>
+
+
+<h4 class="relative group">Step4. 撰写全文 
+    <div id="step4-%E6%92%B0%E5%86%99%E5%85%A8%E6%96%87" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step4-%E6%92%B0%E5%86%99%E5%85%A8%E6%96%87" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>基于提纲撰写</strong>：在完成提纲后，STORM会根据提纲和收集到的参考文献来撰写完整的维基百科文章。因为参考文献集合 $R$  一次性塞不进大模型，系统会逐段撰写文章，每段内容都基于提纲中的相应标题和使用标题检索到的参考文献集合 $R$  中的相关信息。</li>
+<li><strong>文章整合与优化</strong>：最后，把生成的各段内容拼接到一起，再直接输入到LLM中提示其删除重复信息，优化文章的连贯性和逻辑性，并根据维基百科的风格规范添加摘要部分，即完成了整体文章的生成。</li>
+</ul>
+
+
+<h3 class="relative group">评估方法 
+    <div id="%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>为了评估大纲覆盖率，作者引入了两个指标：标题软召回和标题实体召回。这些指标比较人类撰写的多级章节标题（视为真实值）与O.。考虑到这两组标题元素之间不需要完全匹配，作者使用来自标题的句子BERT嵌入（Reimers和Gurevych，2019年）计算标题软召回（Franti和Mariescu-Istodor，2023）。作者还计算标题实体召回，量化为人类撰写的文章标题中被O覆盖的命名实体百分比。作者提取FLAIR命名实体识别（NER）（Akbik等人，2019年）中的实体。</p>
+
+
+<h4 class="relative group">数据集 
+    <div id="%E6%95%B0%E6%8D%AE%E9%9B%86" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E9%9B%86" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>FreshWiki数据集</strong>：作者创建了一个名为FreshWiki的数据集，包含2022年2月至2023年9月期间创建或大量编辑的高质量维基百科文章。这些文章是最近编辑的，以避免与训练大型语言模型（LLMs）时使用的数据重叠，确保评估的公正性和有效性。数据集中的文章经过筛选，确保其质量达到B类或以上，并且排除了列表文章和没有子部分的文章。</li>
+</ul>
+
+
+<h4 class="relative group">评估指标 
+    <div id="%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>大纲质量评估</strong>：
+<ul>
+<li><strong>标题软召回率（Heading Soft Recall）</strong>：通过计算生成提纲中的标题与人工撰写文章中的标题之间的相似度来衡量提纲的覆盖范围。具体来说，使用Sentence-BERT嵌入来计算标题之间的余弦相似度，然后根据软召回率的定义来评估生成提纲与人工撰写文章的匹配程度。这种方法不要求标题完全一致，而是考虑语义上的相似性。</li>
+<li><strong>标题实体召回率（Heading Entity Recall）</strong>：计算生成提纲中的标题所涵盖的命名实体在人工撰写文章标题中的比例。通过FLAIR命名实体识别（NER）工具来提取实体，从而评估生成提纲在涵盖文章关键实体方面的表现。</li>
+</ul>
+</li>
+<li><strong>文章质量评估</strong>：
+<ul>
+<li><strong>自动指标</strong>：采用ROUGE分数来评估生成文章与参考文章之间的相似度。ROUGE是一种常用的文本摘要评估指标，通过比较生成文本和参考文本中的重叠n-gram、词对和词序列来衡量文本的相似性。此外，还计算文章级别的实体召回率，以评估生成文章涵盖关键实体的情况。</li>
+<li><strong>LLM/人工评价指标</strong>：根据Wikipedia标准，从以下五个方面对文章进行评价：
+<ul>
+<li><strong>兴趣水平（Interest Level）</strong>：评估文章是否引人入胜，能否吸引读者的注意力并激发思考。</li>
+<li><strong>连贯性和组织性（Coherence and Organization）</strong>：判断文章是否结构清晰、逻辑连贯，段落之间是否有良好的过渡。</li>
+<li><strong>相关性和聚焦性（Relevance and Focus）</strong>：检查文章是否紧扣主题，避免无关内容的干扰。</li>
+<li><strong>覆盖范围（Coverage）</strong>：衡量文章对主题的各个方面是否有深入探讨，是否提供了全面的覆盖。</li>
+<li><strong>可验证性（Verifiability）</strong>：确保文章中的每个陈述都有可靠的引用支持，避免原创研究和未经证实的主张。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 class="relative group">基线方法 
+    <div id="%E5%9F%BA%E7%BA%BF%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9F%BA%E7%BA%BF%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>Direct Gen</strong>：直接提示LLM生成提纲，然后使用该提纲生成完整文章。</li>
+<li><strong>RAG（检索增强生成）</strong>：使用主题进行搜索，并结合搜索结果和主题来生成提纲或整篇文章。</li>
+<li><strong>Outline-driven RAG（oRAG）</strong>：与RAG在提纲创建上相同，但在生成文章时，进一步使用部分标题进行搜索，以获取更多信息来逐部分生成文章。</li>
+</ul>
+
+
+<h4 class="relative group">LLM评估 
+    <div id="llm%E8%AF%84%E4%BC%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#llm%E8%AF%84%E4%BC%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者使用<strong>Prometheus</strong>进行自动评估，这是一个13B的开源评估LLM ，可以根据定制的1-5分量规对长篇文章进行评分，从兴趣水平、连贯性和组织、相关性和焦点以及覆盖范围的角度给文章打分。下表给出了作者的评分标准。虽然Prometheus评估最好与分数为5的标准文档一起使用，但添加标准文档会超出模型的上下文长度限制。由于Prometheus原论文表明没有参考答案的Prometheus评分也与人类偏好密切相关，因此作者省略了参考答案，并通过迭代删除最短部分的内容来缩短输入文章至2000字以内，以确保输入可以适应模型的上下文窗口。</p>
+<div align=center>
+<img src="pic/image-20250325165955681.png" alt="image-20250325165955681" style="zoom: 100%;" />
+</div>
+
+
+<h4 class="relative group">人类评估 
+    <div id="%E4%BA%BA%E7%B1%BB%E8%AF%84%E4%BC%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%BA%E7%B1%BB%E8%AF%84%E4%BC%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>评估者</strong>：邀请了10位经验丰富的维基百科编辑者参与评估，他们至少在维基百科上进行了500次编辑，并且有超过1年的经验。</li>
+<li><strong>评估方式</strong>：从数据集中随机抽取20个主题，评估这些主题下由STORM和oRAG生成的文章。每位编辑者会根据上述五个方面对每对文章进行评分，使用1到7的评分标准，其中1表示非常差，7表示非常好。此外，编辑者还需提供开放性反馈和成对偏好。</li>
+<li><strong>评估结果</strong>：通过计算平均评分、成对比较结果以及p值来分析STORM与oRAG之间的差异。结果表明，STORM生成的文章在组织性、覆盖范围、趣味性等方面均优于oRAG，且在与人类撰写的文章相比时，也展现出一定的优势。不过，编辑者也指出了STORM生成文章在中立性和可验证性方面存在的问题，如存在互联网来源的偏见、过度推断等。</li>
+</ul>
+
+
+<h3 class="relative group">实验结果 
+    <div id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250325194842492.png" alt="image-20250325194842492" style="zoom: 100%;" />
+</div>
+<div align=center>
+<img src="pic/image-20250325194853075.png" alt="image-20250325194853075" style="zoom: 45%;" />
+</div>
+<ul>
+<li><strong>实验结果</strong>：STORM在提纲覆盖范围和文章质量方面均优于基线方法。具体来说，STORM生成的文章在组织性、覆盖范围和引用质量等方面表现出色，且能显著提高文章的趣味性和相关性。</li>
+<li><strong>人类评估</strong>：经验丰富的维基百科编辑者认为STORM生成的文章在组织性和覆盖范围上优于基线方法，并且在与人类撰写的文章相比时，也展现出一定的优势。不过，编辑者也指出STORM生成的文章在中立性和可验证性方面仍存在挑战，如存在互联网来源的偏见、过度推断等问题。</li>
+</ul>
+
+
+<h3 class="relative group">评价 
+    <div id="%E8%AF%84%E4%BB%B7" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BB%B7" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>基本就是使用多智能体的思想进行文章生成，使用的也是斯坦福自己的DsPy框架（不愧是斯坦福啊），先大纲后分部分生成也是逻辑十分顺畅的思路。评估方法与思路也有借鉴意义，人工评估财大气粗（不愧是斯坦福啊），大纲正文分别评估的方式有理有据，是比较不错的开拓性工作（不愧是斯坦福啊）。</p>
+
+
+<h2 class="relative group">2. LongWriter：释放长上下文LLM的10,000+字生成能力 
+    <div id="2-longwriter%E9%87%8A%E6%94%BE%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87llm%E7%9A%8410000%E5%AD%97%E7%94%9F%E6%88%90%E8%83%BD%E5%8A%9B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-longwriter%E9%87%8A%E6%94%BE%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87llm%E7%9A%8410000%E5%AD%97%E7%94%9F%E6%88%90%E8%83%BD%E5%8A%9B" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>发表单位：清华大学、智谱AI</p>
+<p>论文地址：[<a href="https://arxiv.org/abs/2408.07055"   target="_blank">
+    2408.07055] LongWriter: Unleashing 10,000+ Word Generation from Long Context LLMs</a></p>
+<p>项目地址：[THUDM/LongWriter: <a href="https://github.com/THUDM/LongWriter/tree/main"   target="_blank">
+    ICLR 2025] LongWriter: Unleashing 10,000+ Word Generation from Long Context LLMs</a></p>
+<p>录用情况：ICLR 2025</p>
+
+
+<h3 class="relative group">任务目标 
+    <div id="%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>​	当前的长上下文大型语言模型（LLMs）能够处理长达100,000个token的输入，但在生成等长的输出上存在困难，通常输出长度限制在2,000个单词左右，这限制了其在需要长篇内容生成的应用场景中的使用。</p>
+<p>经过作者的研究，这种情况是模型采用的SFT数据集更多偏向于长输入，忽略了长输出任务的构建造成的。具体可见下图2，训练数据的输出文本越长，LLM就越能输出更长的文本。</p>
+<div align=center>
+<img src="pic/image-20250324162051854.png" alt="image-20250324162051854" style="zoom: 100%;" />
+</div>
+
+
+<h3 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group"><strong>AgentWrite</strong> 
+    <div id="agentwrite" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#agentwrite" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>本文的目的还是构建一个能够一次性输出超长文本的LLM，那没有输出这么长的训练数据怎么办呢？作者就设计了<strong>AgentWrite</strong>，具体来说，这是一个用来造数据的AGENT。</p>
+<div align=center>
+<img src="pic/image-20250324162946459.png" alt="image-20250324162946459" style="zoom: 100%;" />
+</div>
+<p>这个 <strong>AgentWrite</strong> 分成两个阶段，首先是利用LLM的规划能力，在给定一个写作指令的情况下输出一个写作大纲，其中包括每段的主要内容和字数要求。</p>
+<div align=center>
+<img src="pic/image-20250324163518340.png" alt="image-20250324163518340" style="zoom: 67%;" />
+</div>
+<p>然后，多次调用LLM，逐步完成每一个子章节的写作任务。这里作者是采用串行的方式进行每个章节的生成，即在生成第 $n$ 块文本时，会把前 $n-1$ 块文本和大纲一起输入给大模型。作者给出的理由是，经过实验，这种方式获得的整体连贯性和质量远优于并行生成的结果。</p>
+<div align=center>
+<img src="pic/image-20250324164031142.png" alt="image-20250324164031142" style="zoom: 67%;" />
+</div>
+
+
+<h4 class="relative group">数据评估 
+    <div id="%E6%95%B0%E6%8D%AE%E8%AF%84%E4%BC%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E8%AF%84%E4%BC%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>那光让Agent造数据了，数据的质量怎么样呢？怎么筛选高质量数据？参见下节<strong>评估方式</strong>。</p>
+
+
+<h4 class="relative group">其他工作 
+    <div id="%E5%85%B6%E4%BB%96%E5%B7%A5%E4%BD%9C" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E4%BD%9C" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>LongWriter-6k数据集</strong>：通过上面的方法，作者利用AgentWrite和GPT-4o生成了包含6,000个SFT数据的LongWriter-6k数据集，输出长度范围为2k到32k个单词。</p>
+</li>
+<li>
+<p><strong>模型训练</strong>：将LongWriter-6k数据集整合到模型训练中，通过监督微调和直接偏好优化（DPO）来扩展现有模型的输出窗口大小，使其能够生成超过10,000个单词的输出，同时保持输出质量。</p>
+</li>
+</ul>
+
+
+<h3 class="relative group">评估方式 
+    <div id="%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">数据集 
+    <div id="%E6%95%B0%E6%8D%AE%E9%9B%86-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E9%9B%86-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>作者通过两个数据集进行评估。</p>
+<p><strong>LongWrite-Ruler</strong>：即规定不同的文章生成字数 $L$，如”写一篇关于罗马帝国的 $L$ 字文章（$L∈{1000，2000，5000，10000，20000，30000}$），看看LLM能否很好的达到目标的字数。共48个不同的写作任务提示（一半英文一半中文）。</p>
+<p><strong>LongBench-Write</strong>：包含四个长度范围、七个文章类型共120个写作任务提示（一半英文一半中文）</p>
+<div align=center>
+<img src="pic/image-20250324195052238.png" alt="image-20250324195052238" style="zoom: 50%;" />
+</div>
+<p>具体来说，作者通两个指标对输出进行评估，一个用于评分输出长度，另一个用于评分输出质量。</p>
+
+
+<h4 class="relative group">评估指标 
+    <div id="%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>首先，作者使用分段线性函数计算输出长度得分 $S_l$（其中 $l$ 是所需长度，而 $l&rsquo;$是实际输出长度）：</p>
+<div align=center>
+<img src="pic/image-20250401192035177.png" alt="image-20250401192035177" style="zoom: 80%;" />
+</div>
+<p>换句话说，当输出长度匹配要求时，得分是完美的100分。当输出长度大于或小于要求的四倍或三分之一时，得分线性衰减到零。由于过短的输出往往比过长的输出更令人头疼，所以指标为过短的输出设置了更高的分数衰减系数。</p>
+<div align=center>
+<img src="pic/image-20250324201238123.png" alt="image-20250324201238123" style="zoom: 67%;" />
+</div>
+<p>另一方面，为了自动评估输出质量，作者使用GPT-4o，对生成文本在六个维度上对输出进行评分：相关性、准确性、连贯性、清晰度、广度和深度以及阅读体验。并且作者在提示中指示裁判模型仅根据输出的质量进行评分，而不考虑其长度以尽可能地将质量指标与 $S_l$ 解耦。最后通过在六个维度上的平均得分来获得输出质量的整体分数$S_q$。最终的分数 $\overline{S}$ 是通过计算 $S_l$和 $S_q$的均值得到的。</p>
+
+
+<h3 class="relative group">实验结果 
+    <div id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250324201558800.png" alt="image-20250324201558800" style="zoom: 67%;" />
+</div>
+<div align=center>
+<img src="pic/image-20250324201426317.png" alt="image-20250324201426317" style="zoom: 67%;" />
+</div>
+<p>通过在LongBench-Write上的评估，LongWriter模型在输出长度和质量上均表现出色，其9B参数模型通过DPO进一步改进后，在基准上达到了最先进的性能，甚至超越了更大的专有模型。</p>
+
+
+<h3 class="relative group">评价 
+    <div id="%E8%AF%84%E4%BB%B7-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BB%B7-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>本文从pipeline方法回落到构造数据训练模型，目的在于激发模型输出长文本的潜力？文本质量评估方式也是直接通过LLM打分的方式进行的。就是还是存在这个问题：构造数据训练模型，输出第n个子章节需要输出前n-1个章节、LLM评估整个文章，都隐形限制了文本生成长度还是需要在模型可以接受的处理极限之内。</p>
+
+
+<h2 class="relative group">3. AutoPatent：用于自动生成专利的多智能体框架 
+    <div id="3-autopatent%E7%94%A8%E4%BA%8E%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%B8%93%E5%88%A9%E7%9A%84%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-autopatent%E7%94%A8%E4%BA%8E%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%B8%93%E5%88%A9%E7%9A%84%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E6%A1%86%E6%9E%B6" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>发表单位：中科院深圳先进院、大连理工大学等</p>
+<p>论文地址：[<a href="https://arxiv.org/abs/2412.09796"   target="_blank">
+    2412.09796] AutoPatent: A Multi-Agent Framework for Automatic Patent Generation</a></p>
+<p>项目地址：<a href="https://github.com/QiYao-Wang/AutoPatent"   target="_blank">
+    QiYao-Wang/AutoPatent: Repository of AutoPatent.</a>（代码目前没开源）</p>
+<p>发布时间：2024年12月</p>
+
+
+<h3 class="relative group">任务目标 
+    <div id="%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250326132317157.png" alt="image-20250326132317157" style="zoom: 67%;" />
+</div>
+<ul>
+<li><strong>动机</strong>：专利作为知识产权的重要组成部分，其撰写过程繁琐且耗时费力，通常由熟悉专利法并通过专利代理人考试的人类专利代理人完成，效率低下且成本高昂。随着大型语言模型（LLMs）的发展，其在知识密集型领域的强大能力为自动专利撰写提供了可能。</li>
+<li><strong>现有问题</strong>：现有的专利处理研究多集中在分类任务或短文本生成任务上，如专利分类、审查、摘要生成等，对于生成完整专利这一任务关注较少。此外，专利的特殊性、专业术语和长文本特性也给LLMs带来了挑战。</li>
+</ul>
+<p>本文提出了一个具体的任务：D2P（Draft2Patent），模拟真实场景中发明人和专利代理人之间的互动，将发明人的草稿转换成完整的专利文档。具体来说，作者利用基于智能体的方法来模拟发明人和专利代理人之间的互动，设计了五个问题 $q_1、q_2、&hellip;、q_5$ ，这些问题是关于一项发明的所有相关信息。作者将它们与发明人的答案$a_1、a_2、&hellip;、a_5$ 结合起来形成专利草稿 $D$ 。任务目标即使用专利草稿 $D$ 生成专利 $P$，由专利的标题、摘要、背景、总结、主张和详细描述组成。</p>
+<div align=center>
+<img src="pic/image-20250326143815377.png" alt="image-20250326143815377" style="zoom: 40%;" />
+</div>
+
+
+<h3 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250326132344839.png" alt="image-20250326132344839" style="zoom: 100%;" />
+</div>
+<p>作者提出了一个名为<strong>AutoPatent</strong>的自动多代理专利起草框架，如上图所示。其设计了一个具有八个智能体和三个步骤的专用流程，以模拟现实场景中的专利起草过程。</p>
+
+
+<h4 class="relative group">Step1. 短文本组件生成（Short Components Generation） 
+    <div id="step1-%E7%9F%AD%E6%96%87%E6%9C%AC%E7%BB%84%E4%BB%B6%E7%94%9F%E6%88%90short-components-generation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step1-%E7%9F%AD%E6%96%87%E6%9C%AC%E7%BB%84%E4%BB%B6%E7%94%9F%E6%88%90short-components-generation" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>目的</strong>：根据草稿 $D$ 生成专利的各个短文本组件，包括标题（T）、摘要（A）、背景（B）、总结（S）和权利要求（C），即除去详细描述之外的其他文本。</p>
+</li>
+<li>
+<p><strong>方法</strong>：使用不同的写作者Agent（componentWriter）来生成这些短文本组件。对于参数规模小于14B的开源模型，使用D2P训练集对其进行微调以增强其生成高质量短组件的能力；对于商业模型或较大模型，则使用零样本提示（见下图）。</p>
+</li>
+<li>
+<p><strong>结果</strong>：生成的标题、摘要、背景、总结和权利要求与草稿 $D$ 结合形成参考 $R$ ，为详细描述的生成提供有用信息。</p>
+</li>
+</ul>
+<div align=center>
+<img src="pic/image-20250326134930626.png" alt="image-20250326134930626" style="zoom: 80%;" />
+</div>
+<div align=center>
+<img src="pic/image-20250326134943382.png" alt="image-20250326134943382" style="zoom: 60%;" />
+</div>
+
+
+<h4 class="relative group">2. 专利撰写指南树（PGTree）构建（Building PGTree） 
+    <div id="2-%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E6%8C%87%E5%8D%97%E6%A0%91pgtree%E6%9E%84%E5%BB%BAbuilding-pgtree" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E6%8C%87%E5%8D%97%E6%A0%91pgtree%E6%9E%84%E5%BB%BAbuilding-pgtree" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<div align=center>
+<img src="pic/image-20250326135837335.png" alt="image-20250326135837335" style="zoom: 50%;" />
+</div>
+<ul>
+<li>
+<p><strong>目的</strong>：为专利的详细描述生成一个撰写指南树（PGTree），以指导描述写作者完成详细描述的撰写。</p>
+</li>
+<li>
+<p><strong>方法</strong>：使用规划Agent（planningAgent）根据草稿 $D$ 生成PGTree。PGTree是一个两层多路树结构，第一层提供部分的概述，第二层提供具体的撰写指令。</p>
+</li>
+<li>
+<p><strong>结果</strong>：生成的PGTree将详细描述的撰写任务分解为多个部分和子部分，为描述写作者提供清晰的撰写指导。</p>
+</li>
+</ul>
+<div align=center>
+<img src="pic/image-20250326135933930.png" alt="image-20250326135933930" style="zoom: 50%;" />
+</div>
+
+
+<h4 class="relative group">3. 参考-审查-增强生成（RRAG）（Reference-Review-Augmented Generation） 
+    <div id="3-%E5%8F%82%E8%80%83-%E5%AE%A1%E6%9F%A5-%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90rragreference-review-augmented-generation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E5%8F%82%E8%80%83-%E5%AE%A1%E6%9F%A5-%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90rragreference-review-augmented-generation" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>目的</strong>：根据PGTree的指导和参考 $R$ 中的信息，生成专利的详细描述。</li>
+<li><strong>方法</strong>：
+<ul>
+<li><strong>检索</strong>：描述写作者Agent（descriptionWriter）根据PGTree中的指导 $n_{ij}$ 从参考 $R$ 中检索有用信息 $r_{ij}$。</li>
+<li><strong>生成</strong>：结合检索到的信息 $r_{ij}$、指导 $n_{ij}$和 PGTree $W$，描述写作者生成详细描述的子部分 $d_{ij}$。</li>
+<li><strong>审查与反馈</strong>：审查Agent（examinerAgent）主动介入，评估生成的子部分 $d_{ij}$ 的质量，并提供反馈。如果审查未通过，描述写作者将根据反馈对 $d_{ij}$ 进行修改，直到审查通过。</li>
+<li><strong>拼接</strong>：经过审查和修改的所有子部分 $d_{ij}$ 被拼接在一起，形成完整的详细描述 $D$。</li>
+</ul>
+</li>
+<li><strong>结果</strong>：生成的详细描述 $D$ 与之前生成的短文本组件结合，形成完整的专利 $P$。</li>
+</ul>
+<div align=center>
+<img src="pic/image-20250326150350429.png" alt="image-20250326150350429" style="zoom: 50%;" />
+</div>
+<div align=center>
+<img src="pic/image-20250326150216975.png" alt="image-20250326150216975" style="zoom: 50%;" />
+</div>
+
+
+<h3 class="relative group">评估方式 
+    <div id="%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">客观指标评估 
+    <div id="%E5%AE%A2%E8%A7%82%E6%8C%87%E6%A0%87%E8%AF%84%E4%BC%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%A2%E8%A7%82%E6%8C%87%E6%A0%87%E8%AF%84%E4%BC%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>BLEU</strong>：一种基于n-gram的机器翻译自动评估指标，通过比较机器生成的文本与参考文本之间的n-gram重叠程度来衡量生成文本的质量。在本文中，使用BLEU指标来评估生成专利与真实专利在词汇和短语层面的相似度。</p>
+</li>
+<li>
+<p><strong>ROUGE系列</strong>：包括ROUGE-1、ROUGE-2和ROUGE-L，也是基于n-gram的指标，用于评估生成文本与参考文本之间的相似度。ROUGE-1和ROUGE-2分别考虑了单字和双字的重叠，而ROUGE-L则基于最长公共子序列（LCS）来衡量文本相似度。这些指标能够从不同角度反映生成专利与真实专利在内容上的接近程度。</p>
+</li>
+<li>
+<p><strong>IRR（Inverse Repetition Rate）</strong>：本文新提出的指标，用于衡量专利文本中句子重复的程度。其计算公式为：
+$$
+IRR(\mathcal{P},t)=\frac{C_n^2}{\sum_{i=1}^{n-1}\sum_{j=i+1}^nf(s_i,s_j)+\varepsilon}
+$$</p>
+<p>其中 $P$ 表示专利文本，由 $n$ 个句子组成；$ε$ 是一个小值，用于平滑防止除以零；$t$ 是阈值，用于根据句子 $s_i$ 和 $s_j$ 的 Jaccard 相似度 $J$ 来判断它们是否为重复句；函数 $ f(s_i, s_j) $ 根据Jaccard相似度是否大于等于 $t$ 来取值为1或0。IRR值越低，表示文本中的句子重复程度越低，生成的专利质量越高。\</p>
+<blockquote>
+<p>Jaccard 相似度：
+$$
+J(A, B) = \frac{|A \cap B|}{|A \cup B|}
+$$</p>
+</blockquote>
+</li>
+</ul>
+
+
+<h4 class="relative group">人工评估 
+    <div id="%E4%BA%BA%E5%B7%A5%E8%AF%84%E4%BC%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%BA%E5%B7%A5%E8%AF%84%E4%BC%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>评估人员</strong>：邀请了三位熟悉专利法和专利撰写的专家进行评估，每人拿到两篇专利，一篇来自</li>
+<li><strong>评估标准</strong>：从准确性、逻辑性、全面性、清晰性、连贯性和一致性六个维度对生成的专利进行评估。具体来说：
+<ul>
+<li><strong>准确性</strong>：要求专利文本中的每一个技术细节都必须正确，避免模糊表达，参数、结构和过程应具体清晰地描述，以确保发明在技术上可实现，且用词应符合技术领域的标准，避免歧义和不必要的限制。</li>
+<li><strong>逻辑性</strong>：专利文本的结构应符合专利法的要求，包括摘要、背景、总结、详细描述和权利要求等必要部分，且各部分之间的逻辑连贯，使读者能够逐步理解发明的背景、创新点和具体应用。</li>
+<li><strong>全面性</strong>：专利文本应充分披露发明，使本领域的技术人员能够理解和实施，避免遗漏和模糊描述，同时使用广泛涵盖各种修改和替代方案的术语，以最大化法律保护的范围。</li>
+<li><strong>清晰性</strong>：专利文本应在技术和法律方面取得良好的平衡，使技术解决方案的描述既清晰又易于理解，避免不必要的复杂和冗长的句子结构。</li>
+<li><strong>连贯性</strong>：专利文本必须精确地表达发明，避免使用模糊或不确定的术语，各部分和段落之间应逻辑组织，确保思路的连贯性，使审查员能够逐步理解发明的整体内容。</li>
+<li><strong>一致性</strong>：专利文本必须与提供的真实专利保持一致，确保技术解决方案的描述准确且连贯，各部分之间以及术语的使用应保持一致，避免出现矛盾，以降低专利被无效的风险并增强其法律稳定性。</li>
+</ul>
+</li>
+<li><strong>评估流程</strong>：将生成的专利文本与真实专利文本进行对比，专家们根据上述标准对生成专利的质量进行打分或评价，最终得到AutoPatent框架生成专利的综合质量评估结果。</li>
+</ul>
+<p>由于专利的篇幅较长，作者选择不使用基于大语言模型（LLM）的评估方法，因为这些方法往往无法提供公正且准确的结果。</p>
+
+
+<h3 class="relative group">实验结果 
+    <div id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250326153650245.png" alt="image-20250326153650245" style="zoom: 100%;" />
+</div>
+<div align=center>
+<img src="pic/image-20250326153747465.png" alt="image-20250326153747465" style="zoom: 100%;" />
+</div>
+<ul>
+<li><strong>实验结果</strong>：实验结果表明，AutoPatent框架显著提高了各种LLMs生成完整专利的能力。以Qwen2.5-7B模型为基础的AutoPatent框架生成的专利，在客观指标和人工评估方面均优于GPT-4o、Qwen2.5-72B和LLAMA3.1-70B等更大、更强大的LLMs生成的专利。</li>
+<li><strong>优势</strong>：AutoPatent框架能够生成长度更长、内容更完整、质量更高的专利，有效减少了重复错误，提高了专利撰写的效率和质量。</li>
+</ul>
+
+
+<h3 class="relative group">评价 
+    <div id="%E8%AF%84%E4%BB%B7-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BB%B7-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>除去短文本的生成部分，主要思想就是在先大纲再局部的基础上加入了一个质量审查模块…也行吧，工程和逻辑上都说的通。这个文本长度够长的，结果直接把LLM评估去了…人工评估样本量就很难上去了。</p>
+
+
+<h2 class="relative group">4. CogWriter: 约束长格式文本生成的认知写作视角 
+    <div id="4-cogwriter-%E7%BA%A6%E6%9D%9F%E9%95%BF%E6%A0%BC%E5%BC%8F%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%9A%84%E8%AE%A4%E7%9F%A5%E5%86%99%E4%BD%9C%E8%A7%86%E8%A7%92" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-cogwriter-%E7%BA%A6%E6%9D%9F%E9%95%BF%E6%A0%BC%E5%BC%8F%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%9A%84%E8%AE%A4%E7%9F%A5%E5%86%99%E4%BD%9C%E8%A7%86%E8%A7%92" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>发表单位：穆罕默德·本·扎耶德人工智能大学、中国科学院大学、南洋理工大学</p>
+<p>论文地址：[<a href="https://arxiv.org/abs/2502.12568"   target="_blank">
+    2502.12568] A Cognitive Writing Perspective for Constrained Long-Form Text Generation</a></p>
+<p>代码未开源</p>
+<p>发布时间：2025年2月</p>
+
+
+<h3 class="relative group">任务目标 
+    <div id="%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87-3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>动机</strong>：尽管大型语言模型（LLMs）在自然语言处理任务中展现出了类似人类的写作能力，但在生成符合复杂约束的高质量长篇文本方面仍存在困难。根据认知写作理论，人类写作是一个复杂的认知过程，涉及计划、翻译、回顾和监控等迭代活动。而LLMs的单次生成方式与这些关键认知原则存在根本冲突，主要表现在：将长篇文本生成视为端到端任务，忽视了分层规划过程；自回归架构使得生成的文本不可变，无法进行回顾和重组；缺乏明确的评估机制，难以在长篇生成中保持与目标的一致性。</li>
+<li><strong>现有问题</strong>：LLMs在生成长篇文本时，容易在长跨度文本中失去连贯性，难以处理复杂的多线程叙事，并且在满足详细指令要求方面表现不佳，如在超过10,000字的文本中遵循详细指令。这些问题限制了LLMs在需要扩展、结构化内容的应用中的使用，如创意设计提案、技术文档和综合研究报告等。</li>
+</ul>
+<p>作者将任务定义为<strong>受限长篇文本生成任务</strong>，即生成一系列相互关联的文本段落 $D = {D₁, D₂, &hellip;, Dₙ}$，其中每个 $Dᵢ$ 代表一个连贯的文本单元，并且必须满足一定的约束条件。这些约束条件通过指令集T来体现，T包含以下三种类型的指令：</p>
+<ol>
+<li><strong>单指令（Single Instruction, SI）</strong>：这种指令指定了必须出现在确切、预定义位置的内容。例如，在生成摩天大楼设计文本时，指定第20层必须包含医疗中心。</li>
+<li><strong>范围指令（Range Instruction, RI）</strong>：这种指令指定了在指定范围内每个描述必须包含的内容。例如，在生成摩天大楼设计文本时，指定第5-12层为公司办公室。</li>
+<li><strong>周期指令（Periodic Instruction, PI）</strong>：这种指令要求在固定间隔周期性重复特定内容。例如，在生成摩天大楼设计文本时，每5层设置一个安全检查站。</li>
+</ol>
+<p>这三种类型的指令被统一到一个综合的检查集 $T = {Tₛ, Tᵣ, Tₚ}$ 中，用于全面指导和约束文本生成过程</p>
+
+
+<h3 class="relative group">具体方法 
+    <div id="%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95-3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250326200415014.png" alt="image-20250326200415014" style="zoom: 100%;" />
+</div>
+
+
+<h4 class="relative group">框架概述 
+    <div id="%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>目标</strong>：CogWriter旨在通过整合规划、监控和回顾机制，弥合当前LLMs与人类写作过程之间的差距，从而提升LLMs在长篇文本生成任务中的表现。</li>
+<li><strong>核心组件</strong>：
+<ul>
+<li><strong>规划Agent（Planning Agent）</strong>：负责分层分解任务，创建结构化计划，将复杂的写作任务分解为可管理的组件，同时保持它们之间的复杂关系。</li>
+<li><strong>生成Agent（Generation Agents）</strong>：负责根据计划生成文本段落，同时监控机制持续评估输出，检测内容、结构或要求方面的偏差。当发现问题时，会触发回顾过程，修订和优化输出，确保整体连贯性和对指令的遵循。</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 class="relative group">规划Agent 
+    <div id="%E8%A7%84%E5%88%92agent" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%A7%84%E5%88%92agent" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>功能</strong>：规划代理作为系统的战略核心，类似于有经验的作家从详细的提纲开始，分析任务要求，并在严格的格式约束下生成初始计划Pinitial。</li>
+<li><strong>过程</strong>：
+<ul>
+<li><strong>生成初始计划</strong>：根据任务特定的提示 $p_{plan}$ ，结合指令描述 $T$，生成初始计划 $P_{initial}$。</li>
+<li><strong>计划修正</strong>：通过监控机制评估初始计划，验证其是否满足任务约束和结构正确性。如果发现问题，会触发修正过程，生成修订后的计划 $P_{revised}$，并进行格式修正，得到最终的计划 $P$。</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 class="relative group">生成Agent 
+    <div id="%E7%94%9F%E6%88%90agent" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%94%9F%E6%88%90agent" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>功能</strong>：一旦规划代理生成了最终的全局计划 $P$，多个生成Agent将接管，每个代理负责根据特定的描述任务 $Di$ 生成内容。</li>
+<li><strong>过程</strong>：
+<ul>
+<li><strong>验证和调整本地计划</strong>：每个生成代理首先验证和细化分配到的本地计划 $P_i$ ，通过监控和回顾机制确保其符合指令要求 $T$。如果发现不一致，会调整计划，得到 $P_i&rsquo;$。</li>
+<li><strong>生成内容</strong>：根据调整后的计划 $P_i&rsquo;$，生成初始内容 $D_{initiali}$。</li>
+<li><strong>长度调整</strong>：由于当前大多数LLMs在控制输出长度方面存在限制，会使用修订函数调整内容，使其满足指定的长度 $L$，同时保留关键细节、语义完整性和整体连贯性。</li>
+</ul>
+</li>
+</ul>
+<div align=center>
+<img src="pic/image-20250326201739440.png" alt="image-20250326201739440" style="zoom: 50%;" />
+</div>
+
+
+<h4 class="relative group">整体流程 
+    <div id="%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li><strong>规划阶段</strong>：
+<ul>
+<li>规划代理根据任务指令生成初始计划。</li>
+<li>通过监控和修正机制，确保计划的高质量和有效性。</li>
+</ul>
+</li>
+<li><strong>生成阶段</strong>：
+<ul>
+<li>多个生成代理根据优化后的计划并行生成文本段落。</li>
+<li>在生成过程中，持续监控和回顾，确保内容符合要求。</li>
+<li>对生成的文本进行长度调整和优化，确保最终输出既符合指令又具有良好的连贯性和逻辑性。</li>
+</ul>
+</li>
+</ol>
+
+
+<h3 class="relative group">评估方法 
+    <div id="%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95-1" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">数据集 
+    <div id="%E6%95%B0%E6%8D%AE%E9%9B%86-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%95%B0%E6%8D%AE%E9%9B%86-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>数据集名称</strong>：LongGenBench-16K</li>
+<li><strong>数据集特点</strong>：该数据集专门用于评估模型在复杂约束下的长篇文本生成能力，包含四个场景，每个场景需要生成大约16,000个标记。具体场景包括：
+<ul>
+<li><strong>日记写作（Diary Writing）</strong>：要求在一年的每周生成连贯的内容，注重时间一致性，每篇日记至少200字。</li>
+<li><strong>菜单设计（Menu Design）</strong>：同样要求在一年的每周生成连贯的内容，注重时间一致性，每篇菜单至少200字。</li>
+<li><strong>摩天大楼设计（Skyscraper Design）</strong>：通过详细设施安排来评估空间推理能力，每层楼描述至少150字。</li>
+<li><strong>城市规划（Urban Planning）</strong>：通过详细城市街区的设施安排来评估空间推理能力，每个街区描述至少150字。</li>
+</ul>
+</li>
+<li><strong>指令类型</strong>：每个场景涉及三种指令类型：
+<ul>
+<li><strong>单指令（Single Instructions）</strong>：指定必须出现在确切、预定义位置的内容。</li>
+<li><strong>范围指令（Range Instructions）</strong>：指定在指定范围内每个描述必须包含的内容。</li>
+<li><strong>周期指令（Periodic Instructions）</strong>：指定在固定间隔周期性重复的内容。</li>
+</ul>
+</li>
+<li><strong>数据集规模</strong>：包含400个测试实例，每个场景100个实例。</li>
+</ul>
+
+
+<h4 class="relative group">评估指标 
+    <div id="%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-2" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>
+<p><strong>主任务完成率（Comp. Rate）</strong></p>
+<ul>
+<li><strong>定义</strong>：主任务完成率衡量模型是否按顺序完成了所有指定的子任务，例如在日记写作任务中，是否为一年中的每一周都生成了条目。</li>
+<li><strong>评估方式</strong>：通过检查生成的文本是否涵盖了所有要求的子任务来计算完成率。例如，在摩天大楼设计任务中，是否为每一层楼都提供了描述。</li>
+</ul>
+</li>
+<li>
+<p><strong>指令遵循准确性</strong></p>
+<ul>
+<li><strong>定义</strong>：指令遵循准确性评估模型生成的文本是否符合指定的指令要求，包括单指令、范围指令和周期指令。</li>
+<li><strong>具体指标</strong>：
+<ul>
+<li><strong>单指令准确性（Acc. Once）</strong>：衡量模型是否在指定的确切位置包含了特定内容。</li>
+<li><strong>范围指令准确性（Acc. Range）</strong>：评估模型是否在指定的范围内正确地包含了相关内容。</li>
+<li><strong>周期指令准确性（Acc. Periodic）</strong>：检查模型是否按照规定的间隔周期性地重复了特定内容。</li>
+</ul>
+</li>
+<li><strong>评估方式</strong>：通过对比生成文本与指令要求，统计符合要求的内容出现的次数与总要求次数的比例来计算准确性。</li>
+</ul>
+</li>
+<li>
+<p><strong>平均准确性（Avg. Acc.）</strong></p>
+<ul>
+<li><strong>定义</strong>：平均准确性是单指令、范围指令和周期指令准确性的平均值，提供了一个综合的性能指标。</li>
+<li><strong>评估方式</strong>：将上述三种指令准确性的数值相加后取平均值。</li>
+</ul>
+</li>
+<li>
+<p><strong>字数统计（Words）</strong></p>
+<ul>
+<li><strong>定义</strong>：字数统计用于评估生成文本的长度是否达到了任务要求的最低字数标准。</li>
+<li><strong>评估方式</strong>：直接统计生成文本的字数，并与任务要求的最低字数进行比较。</li>
+</ul>
+</li>
+<li>
+<p><strong>长度控制性能</strong></p>
+<ul>
+<li><strong>定义</strong>：长度控制性能评估模型是否能够按照指定的长度要求生成每个文本段落，例如在摩天大楼设计任务中，每层楼的描述是否达到了150字的要求。</li>
+<li><strong>评估方式</strong>：通过分析生成文本的长度分布，检查其是否集中在目标长度附近，以及是否存在较大的偏差。</li>
+</ul>
+</li>
+</ul>
+
+
+<h3 class="relative group">实验结果 
+    <div id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<div align=center>
+<img src="pic/image-20250326202408734.png" alt="image-20250326202408734" style="zoom: 100%;" />
+</div>
+<p>实验结果表明，CogWriter在所有评估指标上均表现出显著的改进。例如，当以Qwen-2.5-14B-Instruct为骨干时，与基线模型相比，完成率提高了0.51，平均准确性提高了0.17。对于Llama3.3-70B-Instruct和GPT-4o，CogWriter实现了接近完美的完成率，并显著提高了指令遵循准确性。</p>
+
+
+<h3 class="relative group">评价 
+    <div id="%E8%AF%84%E4%BB%B7-3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%AF%84%E4%BB%B7-3" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>认知科学拯救世界了，现在LLMs研究者人均认知科学家，你永远不知道下一篇看到的工作来自哪个远古的认知科学理论。论文整体…感觉思路跟上一篇专利的差不多，先生成后修改。评估方式方面，因为他任务定义成约束条件下文本生成了，主要关注的都是任务完成情况……也算另辟蹊径吧……。</p>
+
+
+<h2 class="relative group">总结 
+    <div id="%E6%80%BB%E7%BB%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%80%BB%E7%BB%93" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>长文本生成目前还是没有一个完整的评估基准去进行方法的评估比较，目前感觉还是都处于探索的阶段。俗话说的好，文无第一，如何客观的评价一篇文章的好坏本来就是及其难以取得共识的问题，加上长文本生成任务的超长输出难以让LLM进行一次性完整评估的限制，自动评估基本只能是从某些侧面入手去进行评估文章某一方面的质量。那人工双盲评估算是可以让大众都能接受的一种评估方法，就是费钱。但是，从上面的工作中我们也能获得一些共识：</p>
+<ol>
+<li>对于模型一次无法完全输出的超长文本，先大纲后局部具体生成的方法是目前共识（因为这至少能一定程度上保证全文逻辑大方面的一致性）。对于局部输出质量的约束可以加入一定的质量监督模块进行保底。</li>
+<li>ROUGE分数与LLM评估虽然说服性有待考证，不过依然是主流的长文本评估方式。</li>
+</ol>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\250401长文本生成论文速览\\index.md"
+        var oid_likes = "likes_posts\\250401长文本生成论文速览\\index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/searchain%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >【速览】Search-in-the-Chain：通过搜索知识密集型任务来互动增强大型语言模型</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-03 15:38:07 &#43;0800 CST">2025年3月3日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <script src="https://giscus.app/client.js"
+        data-repo="JiBinquan/Giscus"
+        data-repo-id="R_kgDOM2XbtA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM2XbtM4Civds"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+      </div>
+    </div>
+    
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/about/"
+            title="">
+            
+            关于
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/statistics/"
+            title="">
+            
+            统计
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      ©️ 2025 Ji Binquan
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://jibinquan.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

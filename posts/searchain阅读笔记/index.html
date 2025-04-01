@@ -954,9 +954,9 @@
           <ul>
             <li><a href="#第一步生成coq">第一步：生成CoQ</a></li>
             <li><a href="#第二步遍历coq">第二步：遍历CoQ</a></li>
+            <li><a href="#第三步修正coq">第三步：修正CoQ</a></li>
           </ul>
         </li>
-        <li><a href="#第三步修正coq">第三步：修正CoQ</a></li>
       </ul>
     </li>
     <li><a href="#创新点">创新点</a></li>
@@ -987,9 +987,9 @@
           <ul>
             <li><a href="#第一步生成coq">第一步：生成CoQ</a></li>
             <li><a href="#第二步遍历coq">第二步：遍历CoQ</a></li>
+            <li><a href="#第三步修正coq">第三步：修正CoQ</a></li>
           </ul>
         </li>
-        <li><a href="#第三步修正coq">第三步：修正CoQ</a></li>
       </ul>
     </li>
     <li><a href="#创新点">创新点</a></li>
@@ -1211,7 +1211,7 @@
 </ul>
 
 
-<h3 class="relative group">第三步：修正CoQ 
+<h4 class="relative group">第三步：修正CoQ 
     <div id="%E7%AC%AC%E4%B8%89%E6%AD%A5%E4%BF%AE%E6%AD%A3coq" class="anchor"></div>
     
     <span
@@ -1220,7 +1220,7 @@
             style="text-decoration-line: none !important;" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E4%BF%AE%E6%AD%A3coq" aria-label="锚点">#</a>
     </span>        
     
-</h3>
+</h4>
 <p>在获得刚才子问题的处理结果后，提示LLM重新生成一个新的CoQ。</p>
 <p>这里使用的LLM的多轮对话方式完成，LLM可以看到之前历史的CoQ与框架给出的子问题修正证据。</p>
 <p>以此迭代循环，直到有一条CoQ的所有问题都被校正或达到最大迭代次数（代码中设置为5）</p>
@@ -1360,6 +1360,28 @@ SearChain 为推理链中的每个步骤标记支持性文档引用。例如在�
           
         </span>
         <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/250401%E9%95%BF%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AE%BA%E6%96%87%E9%80%9F%E8%A7%88/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >【速览】四篇长文本生成论文速览</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-04-01 16:30:11 &#43;0800 CST">2025年4月1日</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
           
         </span>
       </div>
